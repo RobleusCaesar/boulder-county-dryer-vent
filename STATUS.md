@@ -3,7 +3,7 @@
 ## Done
 - On GitHub `main`: Next.js static export + Pages workflow
 - Brand: Boulder County Dryer Vent (no Co., no AI)
-- Phone: **Call coming soon** (no fake number)
+- Phone: **(866) 494-6590** (`tel:+18664946590`)
 - Customer NAP: **6395 Gunpark Dr, Suite J, Boulder, CO 80301**
 - Blog: `/blog/` + seed posts (markdown in `content/blog/`)
 - City heroes: licensed local JPGs via `public/assets/cities/` (+ ensure script)
