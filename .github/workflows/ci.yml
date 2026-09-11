@@ -28,6 +28,8 @@ jobs:
           grep -q 'first-party hit collector' dist/legal/privacy/index.html
           grep -q '__bcdvTrack' dist/js/site.js
           grep -q 'exact-segments-mentioned-previously.trycloudflare.com/hit' dist/index.html
+          ! grep -qi 'open the email again' dist/book/index.html
+          ! grep -q 'data-done-mailto' dist/book/index.html
           ! grep -q 'ava@bouldercountydryervent.com' dist/index.html
           ! grep -q 'ava@bouldercountydryervent.com' dist/legal/terms/index.html
           ! grep -q 'ava@bouldercountydryervent.com' dist/contact/index.html
