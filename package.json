@@ -5,6 +5,7 @@
   "description": "Boulder County Dryer Vent public site, booking funnel, and customer portal stub.",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/ensure-city-images.mjs",
     "build": "next build && node scripts/prepare-pages.mjs",
     "start": "npx --yes serve out",
     "lint": "next lint",
