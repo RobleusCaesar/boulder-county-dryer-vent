@@ -35,6 +35,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href={routes.blog} className="hover:text-teal-100">
+                Blog
+              </Link>
+            </li>
+            <li>
               <Link href={routes.reviews} className="hover:text-teal-100">
                 Reviews
               </Link>
@@ -65,6 +70,7 @@ export function Footer() {
         </div>
         <div className="space-y-3 text-sm text-white/70">
           <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/50">Reach us</h2>
+          <p className="text-white">{brand.addressLine}</p>
           <PhonePlaceholder invert />
           <p>
             Email <span className="text-white">{brand.noticesEmail}</span>
@@ -77,13 +83,18 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="site-wrap flex flex-col gap-3 py-5 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {brand.legalName}. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} {brand.legalName}. All rights reserved.
+          </p>
           <div className="flex gap-4">
             <Link href={routes.terms} className="hover:text-white">
               Terms
             </Link>
             <Link href={routes.privacy} className="hover:text-white">
               Privacy
+            </Link>
+            <Link href="/credits/" className="hover:text-white">
+              Credits
             </Link>
           </div>
         </div>
