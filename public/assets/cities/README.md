@@ -1,6 +1,6 @@
-# City page imagery
+# City heroes (illustrative)
 
-Illustrative Front Range heroes for Boulder, Louisville, Lafayette, Longmont, Superior.
-Caption on site: “Illustrative local scenery — not a job photo.”
+On-page caption: Illustrative local scenery — not a job photo.
 
-Binary JPGs are on Stack Builder box at `/workspace/bcdv/site/public/assets/cities/` — need a reviewed push of the five ~200–400KB files into `public/assets/cities/`.
+Binaries: public/assets/cities-b64/*.jpg.b64 decoded in Pages workflow before build.
+Replace with licensed Wikimedia/Unsplash photos when available.
