@@ -124,8 +124,7 @@ export function bookPage() {
         <h1>Request received</h1>
         <p data-done-via></p>
         <dl class="summary" data-summary></dl>
-        <div class="actions" style="margin-top:24px">
-          <a href="#" class="btn btn--md btn-outline-ink" data-done-mailto hidden>Open the email again</a>
+        <div class="actions actions--confirm" style="margin-top:24px">
           <a href="${site.phoneHref}" class="btn btn--md btn-outline-ink btn--phone">${site.phoneDisplay}</a>
           <a href="${routes.home}" class="btn btn--md btn-quiet">Back to home</a>
           <button type="button" class="btn btn--md btn-quiet" data-restart>Start over</button>

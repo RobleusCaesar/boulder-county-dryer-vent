@@ -185,8 +185,6 @@
     if (via) via.textContent = res.via === 'endpoint'
       ? 'Your request is in. We confirm a two-hour window by text or email, usually within one business day. Nothing was charged.'
       : 'Your email app should have opened with the request filled in — press send there and we confirm a two-hour window by text or email, usually within one business day. If it did not open, call us and we will take it over the phone. Nothing was charged.';
-    var link = root.querySelector('[data-done-mailto]');
-    if (link) { if (res.mailto) { link.href = res.mailto; link.hidden = false; } else { link.hidden = true; } }
   }
 
   render();
