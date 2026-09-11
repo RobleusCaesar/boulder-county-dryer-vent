@@ -8,6 +8,11 @@ export type ServiceArea = {
   housing: string;
   note: string;
   zips: string[];
+  /** Filename under /assets/cities/ */
+  heroImage: string;
+  /** Caption: real local scenery — not a job photo */
+  heroCaption: string;
+  heroAlt: string;
 };
 
 export const serviceAreas: ServiceArea[] = [
@@ -23,6 +28,9 @@ export const serviceAreas: ServiceArea[] = [
       "Many Boulder homes vent through a crawl, a low roof, or a second-story termination tucked behind a deck. We price that work up front instead of discovering it on the ladder.",
     note: "We serve city of Boulder and the nearby unincorporated pockets we can reach on the same route.",
     zips: ["80301", "80302", "80303", "80304", "80305", "80310"],
+    heroImage: "boulder.jpg",
+    heroCaption: "Flatirons from Chautauqua — local Boulder scenery (not a job photo).",
+    heroAlt: "Flatirons at sunrise from Chautauqua in Boulder, Colorado",
   },
   {
     slug: "louisville-co",
@@ -36,6 +44,9 @@ export const serviceAreas: ServiceArea[] = [
       "If your dryer is in a basement and the cap is high on the rear wall or roof, we’ll quote the two-story / roof rate before you book.",
     note: "Downtown Louisville, Cottonwood, and the neighborhoods west of McCaslin are all in-area.",
     zips: ["80027"],
+    heroImage: "louisville.jpg",
+    heroCaption: "Historic Main Street, Louisville, CO — local scenery (not a job photo).",
+    heroAlt: "Jacoe Store on Main Street in historic downtown Louisville, Colorado",
   },
   {
     slug: "lafayette-co",
@@ -49,6 +60,9 @@ export const serviceAreas: ServiceArea[] = [
       "Townhomes with shared side yards and HOA rules are fine. We work from the home’s dryer, not from a roof we weren’t invited onto.",
     note: "If your HOA needs a certificate of insurance on file, say so in the booking notes.",
     zips: ["80026"],
+    heroImage: "lafayette.jpg",
+    heroCaption: "E Simpson Street, Lafayette, CO — local streetscape (not a job photo).",
+    heroAlt: "Looking east on E Simpson Street in Lafayette, Colorado",
   },
   {
     slug: "longmont-co",
@@ -62,6 +76,9 @@ export const serviceAreas: ServiceArea[] = [
       "West Longmont two-stories and east-side ranches both book the same way. Stories and roof access set the price, not the ZIP.",
     note: "Hover and Hygiene-adjacent addresses are reviewed during eligibility.",
     zips: ["80501", "80503", "80504"],
+    heroImage: "longmont.jpg",
+    heroCaption: "Downtown Longmont Main Street — local scenery (not a job photo).",
+    heroAlt: "Main Street downtown Longmont, Colorado",
   },
   {
     slug: "superior-co",
@@ -75,6 +92,9 @@ export const serviceAreas: ServiceArea[] = [
       "Most homes here are two-story with rooftop or high-wall caps. Expect the $169 visit unless you have ground-level termination.",
     note: "Rock Creek and the original Superior townsite are both in-area.",
     zips: ["80027"],
+    heroImage: "superior.jpg",
+    heroCaption: "Rock Creek subdivision overlook, Superior, CO — local scenery (not a job photo).",
+    heroAlt: "Overlook of Rock Creek subdivision in Superior, Colorado",
   },
 ];
 
