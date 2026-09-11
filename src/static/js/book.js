@@ -18,6 +18,18 @@
 
   var steps = root.querySelectorAll('[data-step]');
   var progress = document.querySelectorAll('[data-progress] li');
+  var STEP_IDS = { 1: 'eligibility', 2: 'price', 3: 'times', 4: 'confirm' };
+  var lastViewedStep = null;
+
+  function track(event, props) {
+    if (typeof window.__bcdvTrack === 'function') window.__bcdvTrack(event, props);
+  }
+  function trackStepView() {
+    var id = STEP_IDS[state.step];
+    if (!id || lastViewedStep === id) return;
+    lastViewedStep = id;
+    track('book_step_view', { step: id });
+  }
 
   function save() { try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function difficult() { return state.exit === 'roof' || state.run === 'far'; }
@@ -74,7 +86,16 @@
 
   function corners() { return '<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>'; }
 
-  function go(n) { state.step = n; render(); window.scrollTo({ top: 0, behavior: 'auto' }); var h = root.querySelector('[data-step="' + n + '"] h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
+  function go(n) {
+    var from = state.step;
+    if (n > from && STEP_IDS[from]) track('book_step_complete', { step: STEP_IDS[from] });
+    state.step = n;
+    render();
+    trackStepView();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    var h = root.querySelector('[data-step="' + n + '"] h1');
+    if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+  }
 
   root.addEventListener('click', function (e) {
     var pick = e.target.closest('[data-pick]');
@@ -130,6 +151,7 @@
       btn.disabled = true;
       window.BCDV_deliver('Booking request — ' + fields.Service + ' — ' + (f.get('town') || 'Boulder County'), fields)
         .then(function (res) {
+          track('book_submit');
           fillSummary(fields, res);
           go(4);
           btn.disabled = false;
@@ -168,4 +190,5 @@
   }
 
   render();
+  trackStepView();
 })();

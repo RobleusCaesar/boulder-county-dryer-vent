@@ -29,6 +29,7 @@ Open http://localhost:8787/. Any static server pointed at `dist/` works.
 | Towns, zips, per-town copy, map pin positions | `src/data/site.mjs` → `towns` |
 | FAQs, service steps, warnings, trust bar | `src/data/site.mjs` |
 | Where booking/contact forms are delivered | `src/data/site.mjs` → `forms.endpoint` (see below) |
+| First-party analytics beacon | `src/data/site.mjs` → `analytics.endpoint` (empty = off; set to Ava `PUBLIC_URL` + `/hit` when that URL is stable) |
 | Nav links, header, footer, CTA band, `<head>` / schema | `src/templates/layout.mjs` |
 | Page markup | `src/pages/*.mjs` |
 | Blog posts | `src/content/blog/*.md` (frontmatter: `title`, `slug`, `date`, `category`, `readTime`, `image`, `imageAlt`, `description`) |

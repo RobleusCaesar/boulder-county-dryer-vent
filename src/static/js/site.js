@@ -3,6 +3,55 @@
   'use strict';
   var CFG = window.BCDV || {};
 
+  /* ── First-party analytics beacon (no-op when endpoint is empty) ─ */
+  function track(event, props) {
+    var endpoint = CFG.analyticsEndpoint;
+    if (!endpoint || !event) return;
+    var body = {
+      event: String(event),
+      path: location.pathname + location.search,
+      referrer: document.referrer || '',
+      ts: new Date().toISOString()
+    };
+    if (props && typeof props === 'object') {
+      Object.keys(props).forEach(function (k) {
+        if (/^(name|email|phone|street)$/i.test(k)) return;
+        if (props[k] == null) return;
+        body[k] = props[k];
+      });
+    }
+    var json = JSON.stringify(body);
+    try {
+      if (navigator.sendBeacon) {
+        var blob = new Blob([json], { type: 'application/json' });
+        if (navigator.sendBeacon(endpoint, blob)) return;
+      }
+    } catch (err) { /* fall through to fetch */ }
+    try {
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: json,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(function () {});
+    } catch (err) { /* never block UX */ }
+  }
+  window.__bcdvTrack = track;
+  CFG.track = track;
+
+  track('pageview');
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('a[href]');
+    if (!el) return;
+    var href = el.getAttribute('href') || '';
+    if (el.hasAttribute('data-book-cta') ||
+        ((el.classList.contains('btn') || el.classList.contains('book')) && /\/book\/?(\?|#|$)/.test(href))) {
+      track('book_cta_click');
+    }
+  });
+
   /* ── Mobile menu ─────────────────────────────────────────────────── */
   var openBtn = document.querySelector('[data-menu-open]');
   var overlay = document.querySelector('[data-menu]');
