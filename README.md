@@ -37,6 +37,7 @@ Open http://localhost:8787/. Any static server pointed at `dist/` works.
 ## Routes
 
 `/`, `/dryer-vent-cleaning/`, `/pricing/`, `/book/`, `/areas/`, `/areas/{city}-co/`, `/blog/`, `/blog/{slug}/`, `/reviews/`, `/about/`, `/contact/`, `/legal/terms/`, `/legal/privacy/`, `/credits/`, `404.html`, `sitemap.xml`, `robots.txt`.
+Bare `/terms/` and `/privacy/` redirect to the `/legal/` pages.
 Legacy `/{city}-co-dryer-vent-cleaning/` URLs redirect to the `/areas/` pages.
 
 ## Booking flow and forms
@@ -60,7 +61,7 @@ Phone everywhere: **(866) 494-6590**. Customer NAP: **6395 Gunpark Dr, Suite J, 
 
 ## Legal
 
-Frost River Capital, LLC d/b/a Boulder County Dryer Vent. Trade name ID 20268139028. Notices: 2369 S. Trenton Way Suite P, Denver, CO 80231. rob@frostrivercapital.com.
+Frost River Capital, LLC d/b/a Boulder County Dryer Vent. Trade name ID 20268139028. Notices: 2369 S. Trenton Way Suite P, Denver, CO 80231. ava@bouldercountydryervent.com.
 Cancel ≥ 24h: refund. Cancel < 24h: credit for 90 days.
 
 ## Content rules

@@ -6,7 +6,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { site, routes, towns } from "../src/data/site.mjs";
-import { esc } from "../src/lib/html.mjs";
+import { esc, redirectPage } from "../src/lib/html.mjs";
 import { homePage } from "../src/pages/home.mjs";
 import { servicePage } from "../src/pages/service.mjs";
 import { pricingPage } from "../src/pages/pricing.mjs";
@@ -115,6 +115,10 @@ for (const [path, html] of pages) write(path, html);
 
 // Legacy alias URLs → canonical town pages.
 for (const t of towns) write(routes.seoArea(t.seoSlug), townRedirect(t));
+
+// Bare /terms/ and /privacy/ → existing legal pages (nothing important links here).
+write("/terms/", redirectPage("Terms of service", `${site.url}${routes.terms}`));
+write("/privacy/", redirectPage("Privacy policy", `${site.url}${routes.privacy}`));
 
 // 404, sitemap, robots, .nojekyll
 write("/404.html", notFoundPage());
