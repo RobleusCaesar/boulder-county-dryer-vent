@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-const PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "changeme";
+const PASSWORD =
+  process.env.NEXT_PUBLIC_ADMIN_PASSWORD || process.env.ADMIN_PASSWORD || "changeme";
 
 export default function AdminPage() {
   const [pw, setPw] = useState("");
