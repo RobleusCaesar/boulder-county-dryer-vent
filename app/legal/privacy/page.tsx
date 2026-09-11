@@ -17,6 +17,9 @@ export default function PrivacyPage() {
       />
       <article className="site-wrap max-w-3xl space-y-6 py-12 leading-relaxed text-charcoal-800">
         <p>Last updated: September 11, 2026.</p>
+        <p>
+          {brand.legalName}. Trade name ID {brand.tradeNameId}. Notices: {brand.noticesAddress}. {brand.noticesEmail}.
+        </p>
         <h2 className="display text-2xl">What we intend to collect</h2>
         <p>
           When the CRM is live: name, email, phone, service address, eligibility answers, SMS consent, job notes, and
@@ -33,9 +36,7 @@ export default function PrivacyPage() {
           for the CRM. Those vendors will be named here when they are actually connected.
         </p>
         <h2 className="display text-2xl">Contact</h2>
-        <p>
-          Privacy questions: {brand.email} {brand.emailIsPlaceholder ? "(placeholder)" : ""}.
-        </p>
+        <p>Privacy questions: {brand.noticesEmail}.</p>
       </article>
     </>
   );

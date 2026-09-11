@@ -21,7 +21,7 @@ export const prices: Record<PriceId, Price> = {
   complex: {
     id: "complex",
     amount: 169,
-    label: "Two-story / roof access",
+    label: "Difficult",
     blurb: "Two-story homes, long runs, or work that needs a roof set-up.",
     public: true,
     cadence: "visit",

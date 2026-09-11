@@ -1,16 +1,18 @@
-# STATUS — public site V1
+# STATUS — Boulder County Dryer Vent public site V1
 
-## Done (PR #1 branch → merge to main for Pages)
-- Next.js static export + GitHub Actions Pages workflow
+## Done
+- On GitHub `main`: Next.js static export + Pages workflow
 - Brand: Boulder County Dryer Vent (no Co., no AI)
-- Locked homepage H1 / subhead / CTA; phone = **Call coming soon** (no fake number)
-- /portal demo with banner **Demo — not live accounts**
-- /areas/[slug] city pages; /book multi-step; Stripe stub; empty calendar (no fake slots)
-- /admin password stub (NEXT_PUBLIC_ADMIN_PASSWORD default changeme)
-- $99 route-fill not on public pricing cards
+- Phone: **Call coming soon** (no fake number)
+- Homepage locked H1 / subhead / CTA; trust line in brand.copy
+- `/portal` demo banner: **Demo — not live accounts**
+- `/admin` password stub (default changeme)
+- Empty capacity via CRM `listSlots() => []`
+- Box mirrors: `/workspace/bcdv/site-stable` (build OK) and `/workspace/bcdv/site`
 
 ## Stubbed
-Live Stripe, real capacity, SMS/phone, counsel legal, custom domain (IONOS MX untouched)
+Stripe live, real slots, SMS, counsel legal, custom domain (IONOS MX untouched)
 
-## Pages URL
+## Pages
 https://robleuscaesar.github.io/boulder-county-dryer-vent/
+Enable Settings → Pages → Source: GitHub Actions if not already.

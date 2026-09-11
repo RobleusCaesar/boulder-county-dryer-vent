@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: light;
-  --ring: #12656b;
+  --ring: #0d7377;
 }
 
 html {
@@ -16,7 +16,7 @@ body {
 }
 
 ::selection {
-  background: #12656b;
+  background: #0d7377;
   color: #fff;
 }
 
@@ -30,8 +30,9 @@ body {
 }
 
 .display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-sans), Inter, system-ui, sans-serif;
   letter-spacing: -0.02em;
+  font-weight: 600;
 }
 
 .btn {
@@ -51,7 +52,7 @@ body {
 }
 
 .card {
-  @apply rounded-2xl border border-teal-900/10 bg-white shadow-card;
+  @apply rounded-2xl border border-line bg-white shadow-card;
 }
 
 .field {

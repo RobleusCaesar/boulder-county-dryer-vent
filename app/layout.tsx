@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Inter } from "next/font/google";
 import { brand, homepageCopy } from "@/lib/brand";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { MobileBookBar } from "@/components/site/MobileBookBar";
 import "./globals.css";
 
-const display = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const sans = Source_Sans_3({
+const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -40,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={sans.variable}>
       <body className="min-h-screen pb-20 md:pb-0">
         <Header />
         <main>{children}</main>

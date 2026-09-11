@@ -7,7 +7,7 @@ import { routes } from "@/lib/routes";
 
 export function MobileBookBar() {
   const pathname = usePathname();
-  if (pathname?.startsWith("/portal") || pathname?.startsWith("/book")) return null;
+  if (pathname?.startsWith("/portal") || pathname?.startsWith("/book") || pathname?.startsWith("/admin")) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-teal-900/10 bg-paper/95 p-3 backdrop-blur md:hidden">

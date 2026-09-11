@@ -11,6 +11,8 @@ export const routes = {
   privacy: "/legal/privacy/",
   areas: "/areas/",
   area: (slug: string) => `/areas/${slug}/`,
+  seoArea: (seoSlug: string) => `/${seoSlug}/`,
+  admin: "/admin/",
   portal: {
     login: "/portal/login/",
     home: "/portal/",

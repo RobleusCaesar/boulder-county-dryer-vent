@@ -29,7 +29,7 @@ export default function ContactPage() {
           <div>
             <p className="kicker">Email</p>
             <p className="mt-2 font-semibold">
-              {brand.email} {brand.emailIsPlaceholder && <span className="font-normal text-charcoal-400">(placeholder)</span>}
+              {brand.noticesEmail}
             </p>
           </div>
           <div>
