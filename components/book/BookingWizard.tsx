@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import { inAreaCities, inAreaZips, serviceAreas } from "@/lib/areas";
 import { BOOKING_STORAGE_KEY, CONFIRMATION_STORAGE_KEY, emptyDraft, type BookingDraft } from "@/lib/booking/store";
 import { getCrm } from "@/lib/crm";
-import { lockedCopy } from "@/lib/brand";
 import { formatUsd, prices, quoteFromEligibility } from "@/lib/pricing";
 import { routes } from "@/lib/routes";
+import { EmptyCalendarNotice } from "@/components/book/EmptyCalendarNotice";
 
 const steps = ["Eligibility", "Price", "Times", "Details", "Pay"] as const;
 
@@ -372,11 +372,7 @@ function TimesStep({
     <div className="space-y-4">
       <h1 className="display text-3xl">Appointment times</h1>
       {slots === null && <p className="text-charcoal-400">Checking the book…</p>}
-      {slots && slots.length === 0 && (
-        <div className="rounded-2xl border border-teal-900/10 bg-teal-50/80 p-5">
-          <p className="font-semibold text-teal-950">{lockedCopy.emptyCalendar}</p>
-        </div>
-      )}
+      {slots && slots.length === 0 && <EmptyCalendarNotice />}
       {slots && slots.length > 0 && (
         <ul className="space-y-2">
           {slots.map((slot) => (
