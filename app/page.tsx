@@ -18,6 +18,7 @@ const jsonLd = {
   name: brand.name,
   description: homepageCopy.subhead,
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://robleuscaesar.github.io/boulder-county-dryer-vent",
+  telephone: "+1-866-494-6590",
   areaServed: serviceAreas.map((area) => `${area.city}, CO`),
   priceRange: "$129–$169",
   address: {
