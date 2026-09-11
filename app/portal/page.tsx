@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { brand } from "@/lib/brand";
 import { getCrm } from "@/lib/crm";
 import type { Customer, Invoice, Job } from "@/lib/crm/types";
 import { formatUsd } from "@/lib/pricing";
@@ -43,6 +44,12 @@ export default function PortalHomePage() {
           {customer.addressLine1}, {customer.city}, {customer.state} {customer.zip}
         </p>
         <p className="mt-4 rounded-xl bg-cream px-4 py-3 text-sm">{customer.notes}</p>
+      </article>
+      <article className="card p-6">
+        <p className="kicker">Company</p>
+        <p className="mt-2 font-semibold">{brand.name}</p>
+        <p className="mt-1 text-sm text-charcoal-600">{brand.addressLine}</p>
+        <p className="mt-2 text-sm text-charcoal-600">{brand.hours}</p>
       </article>
       <article className="card p-6">
         <p className="kicker">Next clean</p>
