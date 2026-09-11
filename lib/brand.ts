@@ -13,6 +13,18 @@ export const brand = {
   hours: "Weekdays 8am–5pm · Saturday by route",
   legalName: "Frost River Capital, LLC d/b/a Boulder County Dryer Vent",
   tradeNameId: "20268139028",
+  /** Customer-facing NAP (footer, contact, LocalBusiness, portal). Not Trenton. */
+  address: {
+    streetAddress: "6395 Gunpark Dr",
+    suite: "Suite J",
+    addressLocality: "Boulder",
+    addressRegion: "CO",
+    postalCode: "80301",
+    addressCountry: "US",
+  },
+  /** Formatted customer-facing address line. */
+  addressLine: "6395 Gunpark Dr, Suite J, Boulder, CO 80301",
+  /** Legal/notices only — not customer-facing NAP. */
   noticesAddress: "2369 S. Trenton Way Suite P, Denver, CO 80231",
   noticesEmail: "rob@frostrivercapital.com",
 } as const;
