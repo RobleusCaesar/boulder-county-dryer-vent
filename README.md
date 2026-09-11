@@ -56,7 +56,7 @@ Phone everywhere: **Call coming soon**
 
 ## Legal
 
-Public office: **6654 Gunpark Drive, Boulder, CO 80301** (Gunpark / Gunbarrel).
+Public office (NAP): **6395 Gunpark Drive, Suite J, Boulder, CO 80301**.
 
 Frost River Capital, LLC d/b/a Boulder County Dryer Vent. Trade name ID 20268139028. Legal notices: 2369 S. Trenton Way Suite P, Denver, CO 80231. rob@frostrivercapital.com.
 

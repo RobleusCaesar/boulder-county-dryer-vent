@@ -17,8 +17,18 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: brand.name,
   description: homepageCopy.subhead,
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://robleuscaesar.github.io/boulder-county-dryer-vent",
+  email: brand.noticesEmail,
   areaServed: serviceAreas.map((area) => `${area.city}, CO`),
   priceRange: "$129–$169",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: brand.publicAddress,
+    addressLocality: "Boulder",
+    addressRegion: "CO",
+    postalCode: "80301",
+    addressCountry: "US",
+  },
 };
 
 export default function HomePage() {
