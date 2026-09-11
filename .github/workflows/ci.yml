@@ -12,4 +12,17 @@ jobs:
         with:
           node-version: 20
       - run: node scripts/build.mjs
-      - run: test -f dist/index.html && test -f dist/book/index.html && test -f dist/sitemap.xml
+      - run: |
+          test -f dist/index.html
+          test -f dist/book/index.html
+          test -f dist/sitemap.xml
+          test -f dist/legal/terms/index.html
+          test -f dist/legal/privacy/index.html
+          test -f dist/terms/index.html
+          test -f dist/privacy/index.html
+          grep -q 'ava@bouldercountydryervent.com' dist/index.html
+          grep -q 'ava@bouldercountydryervent.com' dist/legal/terms/index.html
+          grep -q 'ava@bouldercountydryervent.com' dist/legal/privacy/index.html
+          ! grep -q 'rob@frostrivercapital.com' dist/index.html
+          ! grep -q 'rob@frostrivercapital.com' dist/legal/terms/index.html
+          ! grep -q 'rob@frostrivercapital.com' dist/contact/index.html

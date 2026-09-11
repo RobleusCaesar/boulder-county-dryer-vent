@@ -9,6 +9,16 @@ export const esc = (s) =>
 
 export const attr = (s) => esc(s).replace(/'/g, "&#39;");
 
+/** Meta-refresh alias page (e.g. /terms/ → /legal/terms/). Not added to the sitemap. */
+export function redirectPage(title, target) {
+  return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>${esc(title)}</title>
+<meta http-equiv="refresh" content="0; url=${target}">
+<link rel="canonical" href="${target}">
+<meta name="robots" content="noindex">
+</head><body><p>Moved to <a href="${target}">${esc(target)}</a>.</p></body></html>`;
+}
+
 // The four "+" registration marks every blueprint object wears.
 export const corners = () =>
   '<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>';

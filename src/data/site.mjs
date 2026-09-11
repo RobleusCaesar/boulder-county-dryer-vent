@@ -9,7 +9,7 @@ export const site = {
   phoneDisplay: "(866) 494-6590",
   phoneHref: "tel:+18664946590",
   phoneE164: "+1-866-494-6590",
-  email: "rob@frostrivercapital.com",
+  email: "ava@bouldercountydryervent.com",
   hours: "Weekdays 8am–5pm · Saturday by route",
   hoursSchema: ["Mo-Fr 08:00-17:00"],
   // Customer-facing NAP (footer, contact, LocalBusiness schema).
@@ -26,7 +26,7 @@ export const site = {
   legalName: "Frost River Capital, LLC d/b/a Boulder County Dryer Vent",
   tradeNameId: "20268139028",
   noticesAddress: "2369 S. Trenton Way Suite P, Denver, CO 80231",
-  noticesEmail: "rob@frostrivercapital.com",
+  noticesEmail: "ava@bouldercountydryervent.com",
   cancelPolicy:
     "Cancel 24 hours or more before the visit for a refund. Cancel less than 24 hours before the visit and the amount is credited for 90 days.",
   legalUpdated: "September 11, 2026",
