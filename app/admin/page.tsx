@@ -1,72 +1,70 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { prices } from "@/lib/pricing";
+import { useState } from "react";
 
-const STORAGE_KEY = "bcdv-admin";
-const expected = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "changeme";
+const PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "changeme";
 
 export default function AdminPage() {
-  const [password, setPassword] = useState("");
-  const [unlocked, setUnlocked] = useState(false);
-  const [error, setError] = useState("");
+  const [pw, setPw] = useState("");
+  const [ok, setOk] = useState(false);
+  const [err, setErr] = useState("");
 
-  useEffect(() => {
-    setUnlocked(sessionStorage.getItem(STORAGE_KEY) === "ok");
-  }, []);
-
-  function submit(event: React.FormEvent) {
-    event.preventDefault();
-    if (password === expected) {
-      sessionStorage.setItem(STORAGE_KEY, "ok");
-      setUnlocked(true);
-      setError("");
-      return;
+  function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (pw === PASSWORD) {
+      setOk(true);
+      setErr("");
+    } else {
+      setErr("Wrong password.");
     }
-    setError("Wrong password.");
   }
 
-  if (!unlocked) {
+  if (!ok) {
     return (
-      <section className="site-wrap max-w-md py-16">
-        <h1 className="display text-3xl">Ops admin</h1>
-        <p className="mt-2 text-sm text-charcoal-600">Static gate only. Not a live account system.</p>
-        <form className="mt-6 space-y-3" onSubmit={submit}>
-          <label className="block">
-            <span className="label">Password</span>
-            <input
-              className="field"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              autoComplete="current-password"
-            />
-          </label>
-          {error && <p className="text-sm text-red-700">{error}</p>}
-          <button type="submit" className="btn-primary">
+      <div className="site-wrap py-16">
+        <form onSubmit={submit} className="card mx-auto max-w-md space-y-4 p-6">
+          <h1 className="display text-3xl">Admin</h1>
+          <p className="text-sm text-charcoal-600">
+            Stub gate. Password from NEXT_PUBLIC_ADMIN_PASSWORD (default changeme). Not production auth.
+          </p>
+          <input
+            type="password"
+            className="field"
+            value={pw}
+            onChange={(e) => setPw(e.target.value)}
+            placeholder="Password"
+          />
+          {err ? <p className="text-sm text-red-700">{err}</p> : null}
+          <button className="btn-primary w-full" type="submit">
             Enter
           </button>
         </form>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="site-wrap space-y-6 py-12">
-      <h1 className="display text-3xl">Ops admin</h1>
-      <p className="text-charcoal-600">Internal stubs. Route-fill is never shown on the public site.</p>
-      <div className="grid gap-4 md:grid-cols-2">
-        <article className="card p-6">
-          <p className="kicker">Capacity</p>
-          <p className="mt-2 font-semibold">Empty book</p>
-          <p className="mt-2 text-sm text-charcoal-600">No times open yet — join waitlist / leave contact</p>
-        </article>
-        <article className="card p-6">
-          <p className="kicker">Route-fill (ops only)</p>
-          <p className="mt-2 font-semibold">${prices["route-fill"].amount} — not public</p>
-          <p className="mt-2 text-sm text-charcoal-600">Offer link: /book/?offer=route</p>
-        </article>
-      </div>
-    </section>
+    <div className="site-wrap space-y-6 py-16">
+      <h1 className="display text-3xl">Admin stub</h1>
+      <section className="card p-5">
+        <h2 className="font-semibold">Jobs</h2>
+        <p className="mt-2 text-sm text-charcoal-600">No live bookings yet.</p>
+      </section>
+      <section className="card p-5">
+        <h2 className="font-semibold">Capacity</h2>
+        <p className="mt-2 text-sm text-charcoal-600">
+          Zero blocks seeded. Public calendar stays empty until coverage is published.
+        </p>
+      </section>
+      <section className="card p-5">
+        <h2 className="font-semibold">Published prices</h2>
+        <ul className="mt-2 space-y-1 text-sm">
+          <li>Standard $129</li>
+          <li>Difficult $169</li>
+          <li>Annual plan $109/yr</li>
+          <li className="text-charcoal-400">Route-fill $99 — ops only, never public</li>
+        </ul>
+      </section>
+    </div>
   );
 }
