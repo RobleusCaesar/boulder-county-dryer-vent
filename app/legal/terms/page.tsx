@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { brand } from "@/lib/brand";
+import { brand, lockedCopy } from "@/lib/brand";
 import { PageHero } from "@/components/site/PageHero";
 
 export const metadata: Metadata = {
@@ -13,12 +13,19 @@ export default function TermsPage() {
       <PageHero kicker="Legal" title="Terms of service" lede="These terms cover the public site, booking requests, waitlist, and the demo portal." />
       <article className="site-wrap max-w-3xl space-y-6 py-12 leading-relaxed text-charcoal-800">
         <p>Last updated: September 11, 2026.</p>
+        <h2 className="display text-2xl">Who you are contracting with</h2>
+        <p>
+          {brand.legalName}. Colorado trade name ID {brand.tradeNameId}. Notices: {brand.noticesAddress}.{" "}
+          {brand.noticesEmail}.
+        </p>
         <h2 className="display text-2xl">The service</h2>
         <p>
           {brand.name} offers residential dryer vent cleaning in listed Boulder County towns. Online booking is a
           request until we confirm a time. Published prices apply to work that matches the eligibility answers you
           submit.
         </p>
+        <h2 className="display text-2xl">Cancellation</h2>
+        <p>{lockedCopy.cancelPolicy}</p>
         <h2 className="display text-2xl">What we can refuse</h2>
         <p>
           We may decline unsafe roof conditions, commercial plants, multi-unit risers, or homes outside the listed

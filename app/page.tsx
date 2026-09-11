@@ -39,11 +39,11 @@ export default function HomePage() {
               View prices
             </Link>
           </div>
-          <ul className="mt-10 grid gap-3 text-sm text-white/80 sm:grid-cols-3">
-            <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">Fixed prices. No “starts at.”</li>
-            <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">Real times — or an empty book.</li>
-            <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">No fake reviews on this site.</li>
-          </ul>
+          <p className="mt-10 text-sm font-semibold text-white/90 sm:text-base">{homepageCopy.trust}</p>
+          <p className="mt-3 text-3xl font-semibold text-white">
+            {formatUsd(129)}
+            <span className="ml-2 text-base font-normal text-white/70">standard clean</span>
+          </p>
         </div>
       </section>
 
@@ -63,7 +63,7 @@ export default function HomePage() {
           <ol className="card divide-y divide-teal-900/10">
             {[
               ["1", "Eligibility", "City, stories, and access. Commercial work is not booked online."],
-              ["2", "Price", "Standard $129 or two-story / roof $169. Annual plan $109 after the first visit."],
+              ["2", "Price", "Standard $129 or difficult $169. Annual plan $109 after the first visit."],
               ["3", "Times", "If the calendar is empty, we say so and take a waitlist."],
             ].map(([n, title, body]) => (
               <li key={n} className="flex gap-4 px-5 py-4">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { lockedCopy } from "@/lib/brand";
 import { routes } from "@/lib/routes";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -13,7 +14,7 @@ export default function ReviewsPage() {
     <>
       <PageHero
         kicker="Reviews"
-        title="No reviews to show yet — and we will not invent them"
+        title={lockedCopy.reviewsTitle}
         lede="When customers leave notes after a visit, they will appear here. Until then this page stays blank on purpose."
       />
       <section className="site-wrap py-12">
