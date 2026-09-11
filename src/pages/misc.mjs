@@ -225,17 +225,19 @@ export function privacyPage() {
 <p>Name, email, phone, service address, eligibility answers, preferred days, SMS consent, and anything you put in the notes. After a visit: job notes, invoices, and the before-and-after photos of your duct, kept for customers who booked a visit.</p>
 <h2>How this website handles forms</h2>
 <p>This is a static website with no server of its own. When you submit the booking request or contact form, the details are sent to us either as an email composed on your device or through our form provider; the website itself does not store them. Your in-progress booking answers are kept in your browser&#8217;s session storage so a page refresh does not lose them, and are never sent anywhere until you submit.</p>
+<h2>Website analytics</h2>
+<p>This site uses a first-party hit collector we operate for funnel and operations — not an ad network and not a third-party ad tracker (no Google Analytics, Meta Pixel, Plausible, or similar). When the collector is turned on, a page hit may include the path, an event name (for example a booking-funnel step), the referring URL, and a timestamp. It does not include your name, email, or phone. We do not sell this data. The beacon is off unless we configure a collector URL.</p>
 <h2>Sharing</h2>
-<p>We do not sell customer lists. Processors we use or expect to use include an email provider, a payment provider for invoices and card links, and a form-delivery service. We name vendors here when they are actually connected.</p>
+<p>We do not sell customer lists or analytics data. We do not use advertising networks or third-party ad trackers. Processors we use or expect to use include an email provider, a payment provider for invoices and card links, and a form-delivery service. We name vendors here when they are actually connected.</p>
 <h2>Contact</h2>
 <p>Privacy questions: ${esc(site.noticesEmail)}.</p>`;
 
   return page({
     path: routes.privacy,
     title: "Privacy policy",
-    description: `How ${site.name} handles contact and booking information.`,
+    description: `How ${site.name} handles contact, booking information, and first-party analytics.`,
     current: "",
-    body: legalShell({ kicker: "Legal", title: "Privacy policy", lede: "What we collect, how the forms on this site work, and who we share with.", inner }),
+    body: legalShell({ kicker: "Legal", title: "Privacy policy", lede: "What we collect, how the forms on this site work, first-party analytics, and who we share with.", inner }),
   });
 }
 

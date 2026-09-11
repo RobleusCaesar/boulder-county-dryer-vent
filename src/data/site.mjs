@@ -40,6 +40,14 @@ export const forms = {
   endpoint: "",
 };
 
+// First-party hit collector (Ava). Empty endpoint = beacon disabled on every page.
+// When Ava has a stable HTTPS base in /home/box/bcdv/analytics/PUBLIC_URL.txt,
+// set endpoint to that value + "/hit" (e.g. `${PUBLIC_URL}/hit`). Do not invent a tunnel URL.
+export const analytics = {
+  /** First-party collector POST URL. Empty = beacon disabled. */
+  endpoint: "",
+};
+
 export const routes = {
   home: "/",
   service: "/dryer-vent-cleaning/",

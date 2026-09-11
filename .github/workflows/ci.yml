@@ -23,6 +23,9 @@ jobs:
           grep -q 'ava@bouldercountydryervent.com' dist/index.html
           grep -q 'ava@bouldercountydryervent.com' dist/legal/terms/index.html
           grep -q 'ava@bouldercountydryervent.com' dist/legal/privacy/index.html
+          grep -q 'first-party hit collector' dist/legal/privacy/index.html
+          grep -q '__bcdvTrack' dist/js/site.js
+          ! grep -qi 'trycloudflare' dist/index.html
           ! grep -q 'rob@frostrivercapital.com' dist/index.html
           ! grep -q 'rob@frostrivercapital.com' dist/legal/terms/index.html
           ! grep -q 'rob@frostrivercapital.com' dist/contact/index.html

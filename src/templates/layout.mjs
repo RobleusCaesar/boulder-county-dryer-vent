@@ -1,8 +1,8 @@
-import { site, nav, routes, towns, forms, prices, inAreaZips } from "../data/site.mjs";
+import { site, nav, routes, towns, forms, analytics, prices, inAreaZips } from "../data/site.mjs";
 import { esc, attr, corners, join, icons } from "../lib/html.mjs";
 
 const bookBtn = (label = "Book My Visit", cls = "btn btn-ember blueprint") =>
-  `<a href="${routes.book}" class="${cls}">${corners()}${esc(label)}</a>`;
+  `<a href="${routes.book}" class="${cls}" data-book-cta>${corners()}${esc(label)}</a>`;
 
 export function header(current = "") {
   const links = (cls) =>
@@ -29,7 +29,7 @@ export function header(current = "") {
   <div class="menu-top"><span>Menu</span><button type="button" class="menu-close" data-menu-close aria-label="Close menu">&#215;</button></div>
   <nav class="menu-links" aria-label="Mobile">${links("")}<a href="${routes.contact}">Contact</a></nav>
   <div class="menu-actions">
-    <a href="${routes.book}" class="btn btn-ember">Book My Visit</a>
+    <a href="${routes.book}" class="btn btn-ember" data-book-cta>Book My Visit</a>
     <a href="${site.phoneHref}" class="btn btn-outline-light btn--phone">Call ${site.phoneDisplay}</a>
   </div>
 </div>`;
@@ -39,7 +39,7 @@ export function mobileBar() {
   return `
 <div class="mobile-bar" aria-label="Quick actions">
   <a href="${site.phoneHref}" class="call">Call</a>
-  <a href="${routes.book}" class="book">Book My Visit</a>
+  <a href="${routes.book}" class="book" data-book-cta>Book My Visit</a>
 </div>`;
 }
 
@@ -167,6 +167,7 @@ export function page(o) {
     email: site.email,
     phone: site.phoneDisplay,
     formEndpoint: forms.endpoint,
+    analyticsEndpoint: analytics.endpoint,
     prices: { standard: prices.standard.amount, difficult: prices.difficult.amount, annual: prices.annual.amount },
     inAreaZips,
     slots: [],
