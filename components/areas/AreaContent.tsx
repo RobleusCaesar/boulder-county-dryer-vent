@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ServiceArea } from "@/lib/areas";
 import { serviceAreas } from "@/lib/areas";
@@ -10,6 +11,19 @@ export function AreaContent({ area }: { area: ServiceArea }) {
   return (
     <>
       <PageHero kicker={`${area.city}, Colorado`} title={area.title} lede={area.intro} />
+      <section className="site-wrap py-8">
+        <figure className="overflow-hidden rounded-2xl border border-teal-900/10 bg-cream shadow-sm">
+          <Image
+            src={`/assets/cities/${area.heroImage}`}
+            alt={area.heroAlt}
+            width={1600}
+            height={900}
+            className="h-auto w-full object-cover"
+            priority
+          />
+          <figcaption className="px-4 py-3 text-sm text-charcoal-600">{area.heroCaption}</figcaption>
+        </figure>
+      </section>
       <section className="site-wrap grid gap-6 py-12 lg:grid-cols-3">
         <article className="card p-6 lg:col-span-2">
           <h2 className="display text-2xl">Housing we see here</h2>
