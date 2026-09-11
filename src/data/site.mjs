@@ -40,6 +40,16 @@ export const forms = {
   endpoint: "",
 };
 
+// Privacy-oriented page-view counts (Cloudflare Web Analytics JS beacon).
+// Leave `token` empty to ship no script. After creating a Web Analytics
+// property for bouldercountydryervent.com, paste the site token here.
+// Use “Enable with JS Snippet installation” — this site is on GitHub Pages,
+// not proxied through Cloudflare, so automatic injection will not run.
+export const analytics = {
+  provider: "cloudflare",
+  token: "",
+};
+
 export const routes = {
   home: "/",
   service: "/dryer-vent-cleaning/",

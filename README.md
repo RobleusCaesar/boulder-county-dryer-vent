@@ -29,6 +29,7 @@ Open http://localhost:8787/. Any static server pointed at `dist/` works.
 | Towns, zips, per-town copy, map pin positions | `src/data/site.mjs` → `towns` |
 | FAQs, service steps, warnings, trust bar | `src/data/site.mjs` |
 | Where booking/contact forms are delivered | `src/data/site.mjs` → `forms.endpoint` (see below) |
+| Cloudflare Web Analytics site token | `src/data/site.mjs` → `analytics.token` (leave empty to ship no beacon) |
 | Nav links, header, footer, CTA band, `<head>` / schema | `src/templates/layout.mjs` |
 | Page markup | `src/pages/*.mjs` |
 | Blog posts | `src/content/blog/*.md` (frontmatter: `title`, `slug`, `date`, `category`, `readTime`, `image`, `imageAlt`, `description`) |
@@ -58,6 +59,10 @@ Legacy `/{city}-co-dryer-vent-cleaning/` URLs redirect to the `/areas/` pages.
 | **$99** | Route-fill — **ops only**, never on the public site |
 
 Phone everywhere: **(866) 494-6590**. Customer NAP: **6395 Gunpark Dr, Suite J, Boulder, CO 80301**.
+
+## Analytics
+
+After creating a Cloudflare Web Analytics property for `bouldercountydryervent.com` (choose **Enable with JS Snippet installation** — this site is on GitHub Pages, not Cloudflare proxy), paste the site token into `src/data/site.mjs` → `analytics.token` and push to `main`. Leave the token empty to ship no beacon.
 
 ## Legal
 

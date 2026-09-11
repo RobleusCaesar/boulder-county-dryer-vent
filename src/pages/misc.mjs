@@ -227,6 +227,8 @@ export function privacyPage() {
 <p>This is a static website with no server of its own. When you submit the booking request or contact form, the details are sent to us either as an email composed on your device or through our form provider; the website itself does not store them. Your in-progress booking answers are kept in your browser&#8217;s session storage so a page refresh does not lose them, and are never sent anywhere until you submit.</p>
 <h2>Sharing</h2>
 <p>We do not sell customer lists. Processors we use or expect to use include an email provider, a payment provider for invoices and card links, and a form-delivery service. We name vendors here when they are actually connected.</p>
+<h2>Analytics</h2>
+<p>This site uses Cloudflare Web Analytics to count page views and see which pages are used. It is privacy-oriented: it does not use advertising cookies and is not used to build advertising profiles.</p>
 <h2>Contact</h2>
 <p>Privacy questions: ${esc(site.noticesEmail)}.</p>`;
 
@@ -235,7 +237,7 @@ export function privacyPage() {
     title: "Privacy policy",
     description: `How ${site.name} handles contact and booking information.`,
     current: "",
-    body: legalShell({ kicker: "Legal", title: "Privacy policy", lede: "What we collect, how the forms on this site work, and who we share with.", inner }),
+    body: legalShell({ kicker: "Legal", title: "Privacy policy", lede: "What we collect, how the forms on this site work, who we share with, and how we count visits.", inner }),
   });
 }
 

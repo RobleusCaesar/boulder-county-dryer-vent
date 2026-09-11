@@ -1,5 +1,12 @@
-import { site, nav, routes, towns, forms, prices, inAreaZips } from "../data/site.mjs";
+import { site, nav, routes, towns, forms, prices, inAreaZips, analytics } from "../data/site.mjs";
 import { esc, attr, corners, join, icons } from "../lib/html.mjs";
+
+/** Official Cloudflare Web Analytics beacon — omitted when token is empty. */
+function analyticsBeacon() {
+  const token = typeof analytics.token === "string" ? analytics.token.trim() : "";
+  if (analytics.provider !== "cloudflare" || !token) return "";
+  return `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${JSON.stringify({ token })}'></script>`;
+}
 
 const bookBtn = (label = "Book My Visit", cls = "btn btn-ember blueprint") =>
   `<a href="${routes.book}" class="${cls}">${corners()}${esc(label)}</a>`;
@@ -171,6 +178,13 @@ export function page(o) {
     inAreaZips,
     slots: [],
   };
+  const tailScripts = [
+    '<script src="/js/site.js" defer></script>',
+    ...(o.scripts || []).map((s) => `<script src="${s}" defer></script>`),
+    analyticsBeacon(),
+  ]
+    .filter(Boolean)
+    .join("\n");
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -204,8 +218,7 @@ ${o.body}
 </main>
 ${o.bare ? "" : footer()}
 ${o.bare || o.noBar ? "" : mobileBar()}
-<script src="/js/site.js" defer></script>
-${join(o.scripts || [], (s) => `<script src="${s}" defer></script>`)}
+${tailScripts}
 </body>
 </html>`;
 }

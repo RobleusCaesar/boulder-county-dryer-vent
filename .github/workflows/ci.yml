@@ -26,3 +26,7 @@ jobs:
           ! grep -q 'rob@frostrivercapital.com' dist/index.html
           ! grep -q 'rob@frostrivercapital.com' dist/legal/terms/index.html
           ! grep -q 'rob@frostrivercapital.com' dist/contact/index.html
+          ! grep -q 'cloudflareinsights.com' dist/index.html
+          ! grep -q 'data-cf-beacon' dist/index.html
+          ! grep -q 'cloudflareinsights.com' dist/legal/privacy/index.html
+          grep -q 'Cloudflare Web Analytics' dist/legal/privacy/index.html

@@ -25,3 +25,4 @@ https://bouldercountydryervent.com/ — Settings → Pages → Source = **GitHub
 - Stripe online checkout — parked; manual invoice / link per `docs/JOB1-PAY-RUNBOOK.md`
 - Reviews — page stays empty until customers write in
 - Legal copy (terms/privacy) was updated to describe V2's forms; counsel review still pending
+- Cloudflare Web Analytics: paste the site token into `src/data/site.mjs` → `analytics.token` after creating the property for bouldercountydryervent.com (JS snippet install). Empty token ships no beacon.
