@@ -15,7 +15,7 @@
 ## Pages
 https://robleuscaesar.github.io/boulder-county-dryer-vent/
 
-**Owner:** Settings → Pages → Source = **GitHub Actions** (required for deploy job).
+**Owner:** Settings → Pages → Source = **GitHub Actions** — enabled 2026-09-11. Redeploy triggered on this commit.
 
 ## Stubbed
 Stripe live, real slots, SMS, counsel legal, custom domain (IONOS MX untouched)
