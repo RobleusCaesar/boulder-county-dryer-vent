@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/PageHero";
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: "Fixed dryer vent cleaning prices for Boulder County: $129 standard, $169 two-story or roof, $109 annual.",
+  description: "Fixed dryer vent cleaning prices for Boulder County: $129 standard, $169 difficult, $109 annual.",
 };
 
 export default function PricingPage() {

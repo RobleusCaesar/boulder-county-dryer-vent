@@ -19,5 +19,5 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /boulder-county-dryer-vent
+          GITHUB_PAGES: "true"
           NEXT_PUBLIC_SITE_URL: https://robleuscaesar.github.io/boulder-county-dryer-vent

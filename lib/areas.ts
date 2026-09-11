@@ -1,5 +1,6 @@
 export type ServiceArea = {
   slug: string;
+  seoSlug: string;
   city: string;
   state: "CO";
   title: string;
@@ -12,6 +13,7 @@ export type ServiceArea = {
 export const serviceAreas: ServiceArea[] = [
   {
     slug: "boulder-co",
+    seoSlug: "boulder-co-dryer-vent-cleaning",
     city: "Boulder",
     state: "CO",
     title: "Dryer vent cleaning in Boulder, CO",
@@ -20,10 +22,11 @@ export const serviceAreas: ServiceArea[] = [
     housing:
       "Many Boulder homes vent through a crawl, a low roof, or a second-story termination tucked behind a deck. We price that work up front instead of discovering it on the ladder.",
     note: "We serve city of Boulder and the nearby unincorporated pockets we can reach on the same route.",
-    zips: ["80301", "80302", "80303", "80304", "80305"],
+    zips: ["80301", "80302", "80303", "80304", "80305", "80310"],
   },
   {
     slug: "louisville-co",
+    seoSlug: "louisville-co-dryer-vent-cleaning",
     city: "Louisville",
     state: "CO",
     title: "Dryer vent cleaning in Louisville, CO",
@@ -36,6 +39,7 @@ export const serviceAreas: ServiceArea[] = [
   },
   {
     slug: "lafayette-co",
+    seoSlug: "lafayette-co-dryer-vent-cleaning",
     city: "Lafayette",
     state: "CO",
     title: "Dryer vent cleaning in Lafayette, CO",
@@ -48,6 +52,7 @@ export const serviceAreas: ServiceArea[] = [
   },
   {
     slug: "longmont-co",
+    seoSlug: "longmont-co-dryer-vent-cleaning",
     city: "Longmont",
     state: "CO",
     title: "Dryer vent cleaning in Longmont, CO",
@@ -60,6 +65,7 @@ export const serviceAreas: ServiceArea[] = [
   },
   {
     slug: "superior-co",
+    seoSlug: "superior-co-dryer-vent-cleaning",
     city: "Superior",
     state: "CO",
     title: "Dryer vent cleaning in Superior, CO",
@@ -74,6 +80,10 @@ export const serviceAreas: ServiceArea[] = [
 
 export function getArea(slug: string): ServiceArea | undefined {
   return serviceAreas.find((area) => area.slug === slug);
+}
+
+export function getAreaBySeoSlug(seoSlug: string): ServiceArea | undefined {
+  return serviceAreas.find((area) => area.seoSlug === seoSlug);
 }
 
 export const inAreaZips = new Set(serviceAreas.flatMap((area) => area.zips));

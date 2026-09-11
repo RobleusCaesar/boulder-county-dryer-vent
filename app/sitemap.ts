@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.privacy,
     routes.areas,
     ...serviceAreas.map((area) => routes.area(area.slug)),
+    ...serviceAreas.map((area) => routes.seoArea(area.seoSlug)),
   ];
 
   return pages.map((path) => ({

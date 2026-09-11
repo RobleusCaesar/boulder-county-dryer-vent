@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { inAreaCities, inAreaZips, serviceAreas } from "@/lib/areas";
 import { BOOKING_STORAGE_KEY, CONFIRMATION_STORAGE_KEY, emptyDraft, type BookingDraft } from "@/lib/booking/store";
 import { getCrm } from "@/lib/crm";
+import { lockedCopy } from "@/lib/brand";
 import { formatUsd, prices, quoteFromEligibility } from "@/lib/pricing";
 import { routes } from "@/lib/routes";
 
@@ -373,11 +374,7 @@ function TimesStep({
       {slots === null && <p className="text-charcoal-400">Checking the book…</p>}
       {slots && slots.length === 0 && (
         <div className="rounded-2xl border border-teal-900/10 bg-teal-50/80 p-5">
-          <p className="font-semibold text-teal-950">No public times right now</p>
-          <p className="mt-2 text-sm text-charcoal-600">
-            The calendar is empty. We will not show placeholder slots. Join the waitlist and continue with your details
-            so we can offer the next real opening.
-          </p>
+          <p className="font-semibold text-teal-950">{lockedCopy.emptyCalendar}</p>
         </div>
       )}
       {slots && slots.length > 0 && (
