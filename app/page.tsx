@@ -19,7 +19,6 @@ const jsonLd = {
   description: homepageCopy.subhead,
   areaServed: serviceAreas.map((area) => `${area.city}, CO`),
   priceRange: "$129–$169",
-  telephone: brand.phoneDisplay,
 };
 
 export default function HomePage() {
@@ -40,11 +39,7 @@ export default function HomePage() {
               View prices
             </Link>
           </div>
-          <ul className="mt-10 grid gap-3 text-sm text-white/80 sm:grid-cols-3">
-            <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">Fixed prices. No “starts at.”</li>
-            <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">Real times — or an empty book.</li>
-            <li className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">No fake reviews on this site.</li>
-          </ul>
+          <p className="mt-10 text-sm font-semibold text-white/90 sm:text-base">{homepageCopy.trust}</p>
         </div>
       </section>
 
