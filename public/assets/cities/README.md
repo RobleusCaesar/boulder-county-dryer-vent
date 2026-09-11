@@ -1,6 +1,16 @@
-# City heroes (illustrative)
+# City page hero images
 
-On-page caption: Illustrative local scenery — not a job photo.
+Licensed local scenery for Boulder County towns (Wikimedia Commons).
+**Caption on site:** real local scenery — not job photos.
 
-Binaries: public/assets/cities-b64/*.jpg.b64 decoded in Pages workflow before build.
-Replace with licensed Wikimedia/Unsplash photos when available.
+| File | City |
+| --- | --- |
+| `boulder.jpg` | Boulder |
+| `louisville.jpg` | Louisville |
+| `lafayette.jpg` | Lafayette |
+| `longmont.jpg` | Longmont |
+| `superior.jpg` | Superior |
+
+Full license/attribution: `ATTRIBUTION.md` here and `/credits` on the site (also `CREDITS.md` at repo root).
+
+If JPGs are missing in a fresh clone, `scripts/ensure-city-images.mjs` downloads them during `prebuild` / CI.
