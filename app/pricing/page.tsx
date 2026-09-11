@@ -36,7 +36,7 @@ export default function PricingPage() {
               <strong>Standard $129</strong> — single-story, typical access, ground-level or easy termination.
             </li>
             <li>
-              <strong>Two-story / roof $169</strong> — two or more stories, long runs, or a roof set-up.
+              <strong>Difficult $169</strong> — two or more stories, long runs, or a roof set-up.
             </li>
             <li>
               <strong>Annual $109</strong> — after the first paid visit, a yearly return at a set rate. We remind you
