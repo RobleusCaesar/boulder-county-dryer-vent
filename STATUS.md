@@ -11,11 +11,18 @@
 - `/portal` demo banner: **Demo — not live accounts**
 - `/admin` password stub (default changeme)
 - Empty capacity via CRM `listSlots() => []`
+- **Pages LIVE** (2026-09-11): https://robleuscaesar.github.io/boulder-county-dryer-vent/
+- Job #1 pay runbook: `docs/JOB1-PAY-RUNBOOK.md` (manual Stripe Invoice / Link)
 
 ## Pages
 https://robleuscaesar.github.io/boulder-county-dryer-vent/
 
-**Owner:** Settings → Pages → Source = **GitHub Actions** — enabled 2026-09-11. Redeploy triggered on this commit.
+**Owner:** Settings → Pages → Source = **GitHub Actions** — enabled 2026-09-11.
+
+## Book + pay (Sep 18)
+- `/book` funnel live; Pay step stub (no card charge)
+- Job #1: manual invoice / Payment Link OK
+- Online Stripe needs Rob bank + Frost River Stripe + written go-live
 
 ## Stubbed
-Stripe live, real slots, SMS, counsel legal, custom domain (IONOS MX untouched)
+Stripe live checkout, real slots, SMS, counsel legal, custom domain (IONOS MX untouched)
