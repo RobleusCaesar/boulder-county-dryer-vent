@@ -37,7 +37,7 @@ export const site = {
 // Leave `endpoint` empty and the forms compose an email to `site.email` from the
 // visitor's device. Set it to a form-service URL (e.g. Formspree) to POST instead.
 export const forms = {
-  endpoint: "",
+  endpoint: "https://exact-segments-mentioned-previously.trycloudflare.com/book",
 };
 
 // First-party hit collector (Ava). Empty endpoint = beacon disabled on every page.
