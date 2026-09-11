@@ -21,6 +21,10 @@ export default function ContactPage() {
       <section className="site-wrap grid gap-8 py-12 lg:grid-cols-[0.9fr_1.1fr]">
         <aside className="card h-fit space-y-4 p-6">
           <div>
+            <p className="kicker">Address</p>
+            <p className="mt-2 font-semibold">{brand.addressLine}</p>
+          </div>
+          <div>
             <p className="kicker">Phone</p>
             <div className="mt-2">
               <PhonePlaceholder />
@@ -28,9 +32,7 @@ export default function ContactPage() {
           </div>
           <div>
             <p className="kicker">Email</p>
-            <p className="mt-2 font-semibold">
-              {brand.noticesEmail}
-            </p>
+            <p className="mt-2 font-semibold">{brand.noticesEmail}</p>
           </div>
           <div>
             <p className="kicker">Hours</p>
