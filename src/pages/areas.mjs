@@ -9,6 +9,18 @@ const compactPrices = [
   { price: `$${prices.annual.amount}`, title: "Annual plan", note: "After your first visit: same clean, same month, $20 off" },
 ];
 
+const waitHonest =
+  "We confirm a 2-hour window within one business day (usually a few business days out while we ramp).";
+
+const priceProof = `$${prices.standard.amount} standard &#183; $${prices.difficult.amount} difficult/long &#183; $${prices.annual.amount} annual`;
+
+function lafayetteNearby(t) {
+  if (t.slug !== "lafayette-co") return "";
+  const louisville = towns.find((x) => x.slug === "louisville-co");
+  const superior = towns.find((x) => x.slug === "superior-co");
+  return `<p class="muted" style="margin:16px 0 0;font-size:16px">Also see <a href="${routes.areas}">all service areas</a>, <a href="${routes.area(louisville.slug)}">${esc(louisville.name)}</a>, and <a href="${routes.area(superior.slug)}">${esc(superior.name)}</a>.</p>`;
+}
+
 export function areasPage() {
   const body = `
 ${pageHero({
@@ -78,9 +90,11 @@ export function townPage(t) {
       <p class="lede lede--tight" style="margin-top:16px">${esc(t.blurb)}</p>
       <p class="muted" style="margin:14px 0 0;font-size:16px;font-variant-numeric:tabular-nums">Zip codes covered: ${t.zips.join(" &#183; ")}</p>
       <div class="actions" style="margin-top:26px">
-        ${bookBtn(`Book in ${t.name} · $${prices.standard.amount}`)}
-        <a href="${site.phoneHref}" class="btn btn-outline-ink btn--phone">${site.phoneDisplay}</a>
+        ${bookBtn("Request a visit")}
+        <a href="${site.phoneHref}" class="btn btn-outline-ink btn--phone">Call ${site.phoneDisplay}</a>
       </div>
+      <p class="muted" style="margin:14px 0 0;font-size:16px">${esc(waitHonest)}</p>
+      <p class="muted" style="margin:8px 0 0;font-size:16px;font-variant-numeric:tabular-nums">${priceProof}</p>
     </div>
     <figure class="blueprint">
       ${corners()}
@@ -96,6 +110,7 @@ export function townPage(t) {
       <h2 class="t-block" style="margin-bottom:14px">What we see in ${esc(t.name)} homes</h2>
       <p class="body-lg" style="margin-bottom:12px">${esc(t.local1)}</p>
       <p class="body-lg">${esc(t.local2)}</p>
+      ${lafayetteNearby(t)}
     </div>
     <div style="display:grid;gap:12px">
       ${join(
@@ -123,10 +138,14 @@ export function townPage(t) {
 
 <section class="bg-ink cta-band">
   <div class="wrap" style="padding-top:clamp(44px,6vw,88px);padding-bottom:clamp(44px,6vw,88px)">
-    <h2 class="t-cta t-cta--xs">Book a ${esc(t.name)} visit</h2>
+    <div>
+      <h2 class="t-cta t-cta--xs">Book a ${esc(t.name)} visit</h2>
+      <p class="lede-light">${esc(waitHonest)}</p>
+      <p class="lede-light" style="margin-top:10px;font-size:16px;font-variant-numeric:tabular-nums">${priceProof}</p>
+    </div>
     <div class="actions">
-      ${bookBtn(`Request a ${t.name} time`, "btn btn--lg btn-ember blueprint")}
-      <a href="${site.phoneHref}" class="btn btn--lg btn-outline-light btn--phone">${site.phoneDisplay}</a>
+      ${bookBtn("Request a visit", "btn btn--lg btn-ember blueprint")}
+      <a href="${site.phoneHref}" class="btn btn--lg btn-outline-light btn--phone">Call ${site.phoneDisplay}</a>
     </div>
   </div>
 </section>`;
