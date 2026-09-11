@@ -7,6 +7,8 @@ export const routes = {
   about: "/about/",
   contact: "/contact/",
   reviews: "/reviews/",
+  blog: "/blog/",
+  blogPost: (slug: string) => `/blog/${slug}/`,
   terms: "/legal/terms/",
   privacy: "/legal/privacy/",
   areas: "/areas/",
@@ -28,6 +30,7 @@ export const navPrimary = [
   { href: routes.service, label: "The service" },
   { href: routes.pricing, label: "Pricing" },
   { href: routes.areas, label: "Areas" },
+  { href: routes.blog, label: "Blog" },
   { href: routes.reviews, label: "Reviews" },
   { href: routes.about, label: "About" },
 ] as const;
