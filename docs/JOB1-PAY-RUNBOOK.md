@@ -25,11 +25,11 @@ Blocked on Rob:
 4. Written go-live in Owner Approvals before production keys / live Payment Links on `/book`
 
 Then Stack Builder can:
-- A) Wire **Payment Links** into static `/book` pay step (works on GitHub Pages), or
+- A) Add a **Payment Link** button to the `/book` confirmation step (works on GitHub Pages), or
 - B) Add Checkout Session via a small backend (Supabase edge) + webhook → job confirm
 
 ## Capacity note (not Stack Builder)
 Owner pivoted tech capacity to **solopreneurs / gig sites**, not competitor LLCs. Field Ops owns recruitment. Site keeps empty calendar + waitlist until real slots exist.
 
 ## Custom domain
-Parked. Keep IONOS MX/SPF/DKIM/DMARC untouched.
+Live: https://bouldercountydryervent.com/ (configured in GitHub Pages settings). Keep IONOS MX/SPF/DKIM/DMARC untouched.

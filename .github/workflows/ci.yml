@@ -1,8 +1,6 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
 
 jobs:
@@ -13,11 +11,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run build
-        env:
-          GITHUB_PAGES: "true"
-          NEXT_PUBLIC_SITE_URL: https://robleuscaesar.github.io/boulder-county-dryer-vent
+      - run: node scripts/build.mjs
+      - run: test -f dist/index.html && test -f dist/book/index.html && test -f dist/sitemap.xml

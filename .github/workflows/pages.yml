@@ -22,15 +22,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-        env:
-          GITHUB_PAGES: "true"
-          NEXT_PUBLIC_SITE_URL: https://robleuscaesar.github.io/boulder-county-dryer-vent
+      - run: node scripts/build.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: dist
 
   deploy:
     needs: build
