@@ -11,7 +11,9 @@ export function PhonePlaceholder({ compact = false, invert = false }: PhonePlace
   return (
     <p className={`text-sm ${tone}`}>
       <span className={invert ? "text-white" : "font-semibold text-charcoal"}>{brand.phoneDisplay}</span>
-      {brand.phoneIsPlaceholder && !compact && <span className="ml-1 text-xs opacity-70">placeholder</span>}
+      {!compact && brand.phoneIsPlaceholder ? (
+        <span className="ml-1 text-xs opacity-70">— number TBD</span>
+      ) : null}
     </p>
   );
 }
