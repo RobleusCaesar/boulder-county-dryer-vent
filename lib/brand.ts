@@ -4,9 +4,9 @@ export const brand = {
   name: "Boulder County Dryer Vent",
   shortName: "BCDV",
   tagline: "Fixed-price dryer vent cleaning with real appointment times.",
-  phoneDisplay: "Call coming soon",
-  phoneHref: "",
-  phoneIsPlaceholder: true,
+  phoneDisplay: "(866) 494-6590",
+  phoneHref: "tel:+18664946590",
+  phoneIsPlaceholder: false,
   email: "rob@frostrivercapital.com",
   emailIsPlaceholder: false,
   serviceAreaLabel: "Boulder County, Colorado",
@@ -39,7 +39,7 @@ export const homepageCopy = {
 
 export const lockedCopy = {
   emptyCalendar: EMPTY_CALENDAR_COPY,
-  phone: "Call coming soon",
+  phone: "(866) 494-6590",
   portalBanner: "Demo — not live accounts",
   reviewsTitle: "Reviews coming after our first jobs",
   cancelPolicy:
