@@ -33,6 +33,15 @@ export default function ContactPage() {
             </p>
           </div>
           <div>
+            <p className="kicker">Boulder office</p>
+            <p className="mt-2 font-semibold">
+              {brand.publicAddress}
+              <br />
+              {brand.publicCityLine}
+            </p>
+            <p className="mt-1 text-sm text-charcoal-400">Gunpark / Gunbarrel. Not a retail walk-in counter.</p>
+          </div>
+          <div>
             <p className="kicker">Hours</p>
             <p className="mt-2">{brand.hours}</p>
           </div>

@@ -37,7 +37,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - `/`, `/dryer-vent-cleaning`, `/pricing`, `/book`, `/book/confirmation`
 - `/areas/{city}-co` and SEO aliases `/{city}-co-dryer-vent-cleaning` (Boulder, Louisville, Lafayette, Longmont, Superior)
-- `/about`, `/contact`, `/reviews`, `/legal/terms`, `/legal/privacy`
+- `/about`, `/contact`, `/reviews`, `/blog` (seed posts), `/legal/terms`, `/legal/privacy`
 - `/portal` demo stub (`Demo — not live accounts`)
 - `/admin` — password `NEXT_PUBLIC_ADMIN_PASSWORD` (default `changeme`)
 
@@ -56,7 +56,9 @@ Phone everywhere: **Call coming soon**
 
 ## Legal
 
-Frost River Capital, LLC d/b/a Boulder County Dryer Vent. Trade name ID 20268139028. Notices: 2369 S. Trenton Way Suite P, Denver, CO 80231. rob@frostrivercapital.com.
+Public office: **6654 Gunpark Drive, Boulder, CO 80301** (Gunpark / Gunbarrel).
+
+Frost River Capital, LLC d/b/a Boulder County Dryer Vent. Trade name ID 20268139028. Legal notices: 2369 S. Trenton Way Suite P, Denver, CO 80231. rob@frostrivercapital.com.
 
 Cancel ≥24h: refund. Cancel &lt;24h: credit for 90 days.
 

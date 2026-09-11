@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -27,6 +27,7 @@ jobs:
       - run: npm run build
         env:
           GITHUB_PAGES: "true"
+          NEXT_PUBLIC_BASE_PATH: /boulder-county-dryer-vent
           NEXT_PUBLIC_SITE_URL: https://robleuscaesar.github.io/boulder-county-dryer-vent
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -39,5 +40,19 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # deploy-pages 404s (and emails) until Pages exists. Skip until Source=GitHub Actions.
+      - name: Check whether Pages is enabled
+        id: pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/pages" --jq .build_type > /tmp/pages-build-type; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "Pages build_type=$(cat /tmp/pages-build-type)"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::GitHub Pages is not enabled. Open Settings → Pages → Source: GitHub Actions, then re-run this workflow. Skipping deploy so the job stays green."
+          fi
       - id: deployment
+        if: steps.pages.outputs.enabled == 'true'
         uses: actions/deploy-pages@v4

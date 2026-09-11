@@ -15,6 +15,8 @@ export const brand = {
   tradeNameId: "20268139028",
   noticesAddress: "2369 S. Trenton Way Suite P, Denver, CO 80231",
   noticesEmail: "rob@frostrivercapital.com",
+  publicAddress: "6654 Gunpark Drive",
+  publicCityLine: "Boulder, CO 80301",
 } as const;
 
 export const homepageCopy = {

@@ -8,6 +8,7 @@ export type ServiceArea = {
   housing: string;
   note: string;
   zips: string[];
+  image: string;
 };
 
 export const serviceAreas: ServiceArea[] = [
@@ -23,6 +24,7 @@ export const serviceAreas: ServiceArea[] = [
       "Many Boulder homes vent through a crawl, a low roof, or a second-story termination tucked behind a deck. We price that work up front instead of discovering it on the ladder.",
     note: "We serve city of Boulder and the nearby unincorporated pockets we can reach on the same route.",
     zips: ["80301", "80302", "80303", "80304", "80305", "80310"],
+    image: "/assets/cities/boulder.jpg",
   },
   {
     slug: "louisville-co",
@@ -36,6 +38,7 @@ export const serviceAreas: ServiceArea[] = [
       "If your dryer is in a basement and the cap is high on the rear wall or roof, we’ll quote the two-story / roof rate before you book.",
     note: "Downtown Louisville, Cottonwood, and the neighborhoods west of McCaslin are all in-area.",
     zips: ["80027"],
+    image: "/assets/cities/louisville.jpg",
   },
   {
     slug: "lafayette-co",
@@ -49,6 +52,7 @@ export const serviceAreas: ServiceArea[] = [
       "Townhomes with shared side yards and HOA rules are fine. We work from the home’s dryer, not from a roof we weren’t invited onto.",
     note: "If your HOA needs a certificate of insurance on file, say so in the booking notes.",
     zips: ["80026"],
+    image: "/assets/cities/lafayette.jpg",
   },
   {
     slug: "longmont-co",
@@ -62,6 +66,7 @@ export const serviceAreas: ServiceArea[] = [
       "West Longmont two-stories and east-side ranches both book the same way. Stories and roof access set the price, not the ZIP.",
     note: "Hover and Hygiene-adjacent addresses are reviewed during eligibility.",
     zips: ["80501", "80503", "80504"],
+    image: "/assets/cities/longmont.jpg",
   },
   {
     slug: "superior-co",
@@ -75,6 +80,7 @@ export const serviceAreas: ServiceArea[] = [
       "Most homes here are two-story with rooftop or high-wall caps. Expect the $169 visit unless you have ground-level termination.",
     note: "Rock Creek and the original Superior townsite are both in-area.",
     zips: ["80027"],
+    image: "/assets/cities/superior.jpg",
   },
 ];
 

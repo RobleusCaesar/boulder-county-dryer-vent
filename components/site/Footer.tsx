@@ -40,6 +40,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href={routes.blog} className="hover:text-teal-100">
+                Blog
+              </Link>
+            </li>
+            <li>
               <Link href={routes.about} className="hover:text-teal-100">
                 About
               </Link>
@@ -66,6 +71,11 @@ export function Footer() {
         <div className="space-y-3 text-sm text-white/70">
           <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/50">Reach us</h2>
           <PhonePlaceholder invert />
+          <p>
+            {brand.publicAddress}
+            <br />
+            {brand.publicCityLine}
+          </p>
           <p>
             Email <span className="text-white">{brand.noticesEmail}</span>
           </p>

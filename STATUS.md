@@ -15,4 +15,7 @@ Stripe live, real slots, SMS, counsel legal, custom domain (IONOS MX untouched)
 
 ## Pages
 https://robleuscaesar.github.io/boulder-county-dryer-vent/
-Enable Settings → Pages → Source: GitHub Actions if not already.
+
+Deploy 404s until Pages exists. Enable **Settings → Pages → Source: GitHub Actions**, then re-run **Deploy GitHub Pages**. The workflow skips `deploy-pages` (green) until that API is available so failed deploys stop emailing.
+
+Public address on contact/footer: **6654 Gunpark Drive, Boulder, CO 80301**. Legal notices stay Denver (Trenton Way).

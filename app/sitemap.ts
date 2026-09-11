@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { serviceAreas } from "@/lib/areas";
+import { blogPosts } from "@/lib/blog";
 import { routes } from "@/lib/routes";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL || "https://robleuscaesar.github.io/boulder-county-dryer-vent";
@@ -15,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.about,
     routes.contact,
     routes.reviews,
+    routes.blog,
+    ...blogPosts.map((post) => routes.post(post.slug)),
     routes.terms,
     routes.privacy,
     routes.areas,

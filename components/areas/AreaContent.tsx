@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ServiceArea } from "@/lib/areas";
 import { serviceAreas } from "@/lib/areas";
@@ -10,6 +11,21 @@ export function AreaContent({ area }: { area: ServiceArea }) {
   return (
     <>
       <PageHero kicker={`${area.city}, Colorado`} title={area.title} lede={area.intro} />
+      <figure className="site-wrap mt-8">
+        <div className="overflow-hidden rounded-3xl">
+          <Image
+            src={area.image}
+            alt={`${area.city}, Colorado`}
+            width={1600}
+            height={900}
+            className="h-56 w-full object-cover sm:h-72"
+          />
+        </div>
+        <figcaption className="mt-2 text-xs text-charcoal-400">
+          Illustrative local scenery — not a job photo. Licenses are listed in the city photo attribution file in this
+          repo.
+        </figcaption>
+      </figure>
       <section className="site-wrap grid gap-6 py-12 lg:grid-cols-3">
         <article className="card p-6 lg:col-span-2">
           <h2 className="display text-2xl">Housing we see here</h2>
