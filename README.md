@@ -62,7 +62,7 @@ Phone everywhere: **(866) 494-6590**. Customer NAP: **6395 Gunpark Dr, Suite J, 
 
 ## Legal
 
-Frost River Capital, LLC d/b/a Boulder County Dryer Vent. Trade name ID 20268139028. Notices: 2369 S. Trenton Way Suite P, Denver, CO 80231. ava@bouldercountydryervent.com.
+Frost River Capital, LLC d/b/a Boulder County Dryer Vent. Trade name ID 20268139028. Notices: 2369 S. Trenton Way Suite P, Denver, CO 80231. info@frostrivercapital.com.
 Cancel ≥ 24h: refund. Cancel < 24h: credit for 90 days.
 
 ## Content rules
