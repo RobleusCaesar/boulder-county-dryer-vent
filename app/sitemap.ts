@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { serviceAreas } from "@/lib/areas";
+import { getAllPosts } from "@/lib/blog";
 import { routes } from "@/lib/routes";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL || "https://robleuscaesar.github.io/boulder-county-dryer-vent";
@@ -15,8 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.about,
     routes.contact,
     routes.reviews,
+    routes.blog,
+    ...getAllPosts().map((post) => routes.blogPost(post.slug)),
     routes.terms,
     routes.privacy,
+    "/credits/",
     routes.areas,
     ...serviceAreas.map((area) => routes.area(area.slug)),
     ...serviceAreas.map((area) => routes.seoArea(area.seoSlug)),
@@ -25,6 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return pages.map((path) => ({
     url: `${base}${path}`,
     changeFrequency: "weekly" as const,
-    priority: path === routes.home ? 1 : 0.7,
+    priority: path === routes.home ? 1 : path.startsWith("/blog") ? 0.6 : 0.7,
   }));
 }
