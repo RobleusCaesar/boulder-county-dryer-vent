@@ -52,7 +52,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Empty calendar copy: **No times open yet — join waitlist / leave contact**
 
-Phone everywhere: **Call coming soon**
+Phone everywhere: **(866) 494-6590**
 
 ## Legal
 
