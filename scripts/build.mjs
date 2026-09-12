@@ -36,9 +36,12 @@ function parseFrontmatter(raw) {
   return { meta, body: raw.slice(end + 4).trim() };
 }
 
-// Minimal markdown: ##/# headings, paragraphs, - lists, > quotes, **bold**.
+// Minimal markdown: ##/# headings, paragraphs, - lists, > quotes, **bold**, [links](url).
 function renderMarkdown(md) {
-  const inline = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  const inline = (t) =>
+    esc(t)
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, href) => `<a href="${href}">${text}</a>`)
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
   const out = [];
   let list = null;
   const flush = () => { if (list) { out.push(`<ul>${list.join("")}</ul>`); list = null; } };
