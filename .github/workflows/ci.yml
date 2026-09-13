@@ -18,6 +18,7 @@ jobs:
           test -f dist/sitemap.xml
           test -f dist/legal/terms/index.html
           test -f dist/legal/privacy/index.html
+          test -f dist/agents/index.html
           test -f dist/terms/index.html
           test -f dist/privacy/index.html
           grep -q 'ava@frostrivercapital.com' dist/index.html
@@ -29,6 +30,14 @@ jobs:
           grep -q '__bcdvTrack' dist/js/site.js
           grep -q 'keeps-pty-ultimately-payroll.trycloudflare.com/book' dist/index.html
           grep -q 'keeps-pty-ultimately-payroll.trycloudflare.com/hit' dist/index.html
+          grep -q 'keeps-pty-ultimately-payroll.trycloudflare.com/mcp' dist/agents/index.html
+          grep -q 'Book via agent' dist/index.html
+          grep -q 'href="/agents/"' dist/index.html
+          grep -q 'list_services' dist/agents/index.html
+          grep -q 'create_booking' dist/agents/index.html
+          grep -q 'X-BCDV-Agent-Token' dist/agents/index.html
+          ! grep -Eiw 'ai' dist/agents/index.html
+          ! grep -A30 'class="nav-desktop"' dist/index.html | grep -q 'Book via agent'
           ! grep -q 'exact-segments-mentioned-previously.trycloudflare.com' dist/index.html
           ! grep -qi 'open the email again' dist/book/index.html
           ! grep -q 'data-done-mailto' dist/book/index.html
