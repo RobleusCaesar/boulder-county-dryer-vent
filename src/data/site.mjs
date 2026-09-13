@@ -47,6 +47,13 @@ export const analytics = {
   endpoint: "https://keeps-pty-ultimately-payroll.trycloudflare.com/hit",
 };
 
+// Machine-readable booking (MCP). Same public ops host as book ingest (`/book`).
+// Path is stable (`/mcp`); the Cloudflare quick-tunnel hostname may rotate.
+export const mcp = {
+  path: "/mcp",
+  url: "https://keeps-pty-ultimately-payroll.trycloudflare.com/mcp",
+};
+
 export const routes = {
   home: "/",
   service: "/dryer-vent-cleaning/",
@@ -63,6 +70,7 @@ export const routes = {
   terms: "/legal/terms/",
   privacy: "/legal/privacy/",
   credits: "/credits/",
+  agents: "/agents/",
 };
 
 export const nav = [

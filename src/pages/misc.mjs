@@ -1,4 +1,4 @@
-import { site, routes, prices, aboutValues, towns } from "../data/site.mjs";
+import { site, routes, prices, aboutValues, towns, mcp } from "../data/site.mjs";
 import { esc, corners, join, icons } from "../lib/html.mjs";
 import { page, ctaBand, pageHero, bookBtn } from "../templates/layout.mjs";
 
@@ -265,6 +265,85 @@ export function creditsPage() {
     description: "Photo credits and licenses for Boulder County Dryer Vent town page imagery.",
     current: "",
     body: legalShell({ kicker: "Credits", title: "Photo credits", lede: "Town page heroes are licensed local scenery &#8212; not dryer-vent job photos.", inner }),
+  });
+}
+
+/* ── Agents (machine-readable booking) ──────────────────────────────── */
+export function agentsPage() {
+  const mcpUrl = mcp.url;
+  const initBody = `{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"example-agent","version":"0.1.0"}}}`;
+  const listBody = `{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_services","arguments":{}}}`;
+  const curlInit = `curl -sS -X POST '${mcpUrl}' \\
+  -H 'Content-Type: application/json' \\
+  -H 'Accept: application/json, text/event-stream' \\
+  -d '${initBody}'`;
+  const curlList = `curl -sS -X POST '${mcpUrl}' \\
+  -H 'Content-Type: application/json' \\
+  -H 'Accept: application/json, text/event-stream' \\
+  -d '${listBody}'`;
+
+  const inner = `
+<p>Third-party agents can book ${esc(site.name)} services over MCP on behalf of a homeowner. This is an operations note, not a second booking funnel. Homeowners should keep using the <a href="${routes.book}">normal Book flow</a> or call <a href="${site.phoneHref}">${site.phoneDisplay}</a>.</p>
+
+<h2>MCP endpoint</h2>
+<p>HTTPS: <code>${esc(mcpUrl)}</code></p>
+<p>The hostname above is a temporary tunnel and may rotate. The stable path is <code>${esc(mcp.path)}</code> on the same public ops host as book ingest. Operators publish the current URL when the tunnel changes. Primary customer booking remains the Book flow on this site.</p>
+<p>Human book URL: <a href="${site.url}/">${esc(site.url)}/</a><br>Phone: <a href="${site.phoneHref}">${site.phoneDisplay}</a></p>
+
+<h2>Tools</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Tool</th><th>Access</th><th>Notes</th></tr></thead>
+<tbody>
+<tr>
+  <td><code>list_services</code></td>
+  <td>Public</td>
+  <td>Fixed prices: standard $${prices.standard.amount}, difficult $${prices.difficult.amount}. Boulder County service area.</td>
+</tr>
+<tr>
+  <td><code>check_availability</code></td>
+  <td>Public</td>
+  <td>Stub: request a preferred 2-hour window. We confirm within 1 business day.</td>
+</tr>
+<tr>
+  <td><code>create_booking</code></td>
+  <td>Bearer token</td>
+  <td>Fields aligned with the web Book flow: <code>name</code>, <code>phone</code>, <code>email</code>, <code>street</code>, <code>town</code>, <code>service</code> (<code>standard</code> or <code>difficult</code>), <code>preferred_windows</code>, <code>sms_consent</code>. Optional honeypot <code>company_website</code> must be empty.</td>
+</tr>
+<tr>
+  <td><code>get_booking_status</code></td>
+  <td>Bearer token</td>
+  <td>Lookup by <code>public_id</code> (for example <code>BCDV-YYYY-NNNN</code>). The response does not include personal details.</td>
+</tr>
+</tbody>
+</table></div>
+
+<h2>Auth</h2>
+<p>Protected tools accept <code>Authorization: Bearer &lt;token&gt;</code> or <code>X-BCDV-Agent-Token</code>. Tokens are not published here. Request a booking token from <a href="mailto:${site.email}">${esc(site.email)}</a> with your agent name and intended use.</p>
+
+<h2>Example</h2>
+<p>Public JSON-RPC over HTTPS. <code>initialize</code>, then <code>tools/call</code> for <code>list_services</code> (no token):</p>
+<pre><code>${esc(curlInit)}</code></pre>
+<pre><code>${esc(curlList)}</code></pre>
+
+<h2>Non-goals</h2>
+<ul>
+  <li>Payments are not in MCP. Nothing is charged to hold a time; payment is after the visit.</li>
+  <li>A booking created this way is still a request. A person confirms the window by text or email.</li>
+  <li>Lead time is typically 3&#8211;4 business days or more.</li>
+</ul>
+<p><a href="${routes.book}">Book on the website</a> if you are scheduling for yourself.</p>`;
+
+  return page({
+    path: routes.agents,
+    title: "Book via agent",
+    description: `MCP endpoint and tools for third-party agents that book ${site.name} services on behalf of a homeowner.`,
+    current: "",
+    body: legalShell({
+      kicker: "Machine-readable booking",
+      title: "Book via agent",
+      lede: "Third-party agents can book Boulder County Dryer Vent services over MCP. This page is for software that requests a visit on behalf of a homeowner.",
+      inner,
+    }),
   });
 }
 
