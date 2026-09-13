@@ -37,7 +37,7 @@ Open http://localhost:8787/. Any static server pointed at `dist/` works.
 
 ## Routes
 
-`/`, `/dryer-vent-cleaning/`, `/pricing/`, `/book/`, `/areas/`, `/areas/{city}-co/`, `/blog/`, `/blog/{slug}/`, `/reviews/`, `/about/`, `/contact/`, `/legal/terms/`, `/legal/privacy/`, `/credits/`, `404.html`, `sitemap.xml`, `robots.txt`.
+`/`, `/dryer-vent-cleaning/`, `/pricing/`, `/book/`, `/areas/`, `/areas/{city}-co/`, `/blog/`, `/blog/{slug}/`, `/reviews/`, `/about/`, `/contact/`, `/agents/`, `/legal/terms/`, `/legal/privacy/`, `/credits/`, `404.html`, `sitemap.xml`, `robots.txt`.
 Bare `/terms/` and `/privacy/` redirect to the `/legal/` pages.
 Legacy `/{city}-co-dryer-vent-cleaning/` URLs redirect to the `/areas/` pages.
 

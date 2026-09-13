@@ -13,7 +13,7 @@ import { pricingPage } from "../src/pages/pricing.mjs";
 import { areasPage, townPage, townRedirect } from "../src/pages/areas.mjs";
 import { blogIndex, blogPost } from "../src/pages/blog.mjs";
 import { bookPage } from "../src/pages/book.mjs";
-import { aboutPage, reviewsPage, contactPage, termsPage, privacyPage, creditsPage, notFoundPage } from "../src/pages/misc.mjs";
+import { aboutPage, reviewsPage, contactPage, termsPage, privacyPage, creditsPage, agentsPage, notFoundPage } from "../src/pages/misc.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = join(ROOT, "src");
@@ -110,6 +110,7 @@ for (const p of posts) put(routes.post(p.slug), blogPost(p, posts));
 put(routes.reviews, reviewsPage());
 put(routes.about, aboutPage());
 put(routes.contact, contactPage());
+put(routes.agents, agentsPage());
 put(routes.terms, termsPage());
 put(routes.privacy, privacyPage());
 put(routes.credits, creditsPage());

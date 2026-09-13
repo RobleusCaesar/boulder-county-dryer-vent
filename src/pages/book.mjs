@@ -139,6 +139,7 @@ export function bookPage() {
       <span>${esc(site.name)} &#183; ${site.phoneDisplay}</span>
       <a href="${routes.terms}">Terms</a>
       <a href="${routes.privacy}">Privacy</a>
+      <a href="${routes.agents}">Book via agent</a>
     </div>
   </div>
 </div>`;

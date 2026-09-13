@@ -1,5 +1,5 @@
-import { site, routes, prices, aboutValues, towns } from "../data/site.mjs";
-import { esc, corners, join, icons } from "../lib/html.mjs";
+import { site, routes, prices, aboutValues, towns, agentBooking } from "../data/site.mjs";
+import { esc, attr, corners, join, icons } from "../lib/html.mjs";
 import { page, ctaBand, pageHero, bookBtn } from "../templates/layout.mjs";
 
 /* ── About ──────────────────────────────────────────────────────────── */
@@ -265,6 +265,76 @@ export function creditsPage() {
     description: "Photo credits and licenses for Boulder County Dryer Vent town page imagery.",
     current: "",
     body: legalShell({ kicker: "Credits", title: "Photo credits", lede: "Town page heroes are licensed local scenery &#8212; not dryer-vent job photos.", inner }),
+  });
+}
+
+/* ── Agent booking discovery ────────────────────────────────────────── */
+export function agentsPage() {
+  const townList = towns.map((t) => t.name).join(", ").replace(/, ([^,]*)$/, ", and $1");
+  const endpoint = agentBooking.mcpEndpoint;
+  const endpointCopy = endpoint
+    ? `<code>${esc(endpoint)}</code>`
+    : "Same public host as the booking form. Path not published yet.";
+
+  const body = `
+${pageHero({
+  kicker: "Agent booking",
+  title: "Book via agent",
+  size: "t-page--sm",
+  lede: "Published prices, the towns we serve, and how to request a visit &#8212; for booking agents and anyone who wants the same facts in one place. People book the usual way: call or use Book My Visit.",
+})}
+
+<section class="bg-white">
+  <div class="wrap section--md grid grid-2 start">
+    <div class="blueprint card card--pad-lg">
+      ${corners()}
+      <p class="kicker">Published prices</p>
+      <h2 class="t-block" style="margin-bottom:12px">Two flat rates</h2>
+      <p class="card-body" style="margin-bottom:16px">The number on screen is the number on the invoice. Nothing is charged to hold a time.</p>
+      <p class="body-lg" style="margin-bottom:8px"><strong>$${prices.standard.amount}</strong> standard &#8212; ground-floor side-wall termination, run under roughly 15 feet.</p>
+      <p class="body-lg" style="margin-bottom:0"><strong>$${prices.difficult.amount}</strong> difficult &#8212; roof or second-story termination, long or bending runs.</p>
+    </div>
+    <div class="blueprint card card--sand card--pad-lg">
+      ${corners()}
+      <p class="kicker">Service area</p>
+      <h2 class="t-block" style="margin-bottom:12px">Boulder County towns</h2>
+      <p class="card-body" style="margin-bottom:16px">${esc(townList)}.</p>
+      <a href="${routes.areas}" class="link-arrow">All service areas &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-sand bt bb">
+  <div class="wrap section--md grid grid-2 start">
+    <div class="blueprint card card--pad-lg">
+      ${corners()}
+      <p class="kicker">For people</p>
+      <h2 class="t-block" style="margin-bottom:12px">Call or use Book My Visit</h2>
+      <p class="card-body" style="margin-bottom:22px">Two questions, then the published price and a request for the days that work. Or call and we will walk through it.</p>
+      <div class="actions">
+        <a href="${routes.book}" class="btn btn--md btn-ember">Book My Visit</a>
+        <a href="${site.phoneHref}" class="btn btn--md btn-outline-ink btn--phone">${site.phoneDisplay}</a>
+      </div>
+    </div>
+    <div class="blueprint card card--pad-lg" data-mcp-endpoint="${attr(endpoint)}">
+      ${corners()}
+      <!-- TODO(ava): fill agentBooking.mcpEndpoint in src/data/site.mjs once ops publishes the MCP path. Same Cloudflare voice public host as forms.endpoint (/book). Do not invent a URL. -->
+      <p class="kicker">For booking agents</p>
+      <h2 class="t-block" style="margin-bottom:12px">Agent booking endpoint</h2>
+      <p class="card-body" style="margin-bottom:14px">Agent booking is served from the same public host as the booking form. The path is set by ops and is not listed as a permanent address until it is published.</p>
+      <p class="body-lg" style="margin:0"><strong>Endpoint:</strong> ${endpointCopy}</p>
+    </div>
+  </div>
+</section>
+
+${ctaBand({ title: "Prefer to book it yourself?", lede: "The same published prices. Call or request a time on the usual path." })}`;
+
+  return page({
+    path: routes.agents,
+    title: "Agent booking",
+    description: `How to book ${site.name} via an agent: standard $${prices.standard.amount}, difficult $${prices.difficult.amount}, Boulder County towns, ${site.phoneDisplay}, or Book My Visit.`,
+    current: "",
+    body,
   });
 }
 

@@ -60,9 +60,18 @@ export const routes = {
   reviews: "/reviews/",
   about: "/about/",
   contact: "/contact/",
+  agents: "/agents/",
   terms: "/legal/terms/",
   privacy: "/legal/privacy/",
   credits: "/credits/",
+};
+
+// Agent-booking discovery (/agents/). The MCP server lives on Ava's ops box,
+// not in this repo. Same Cloudflare voice public host as forms.endpoint (/book).
+export const agentBooking = {
+  // TODO(ava): set the public MCP URL once ops publishes the path on the same
+  // Cloudflare voice public host as forms.endpoint (/book). Do not invent a URL.
+  mcpEndpoint: "",
 };
 
 export const nav = [
