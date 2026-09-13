@@ -19,6 +19,7 @@ jobs:
           test -f dist/legal/terms/index.html
           test -f dist/legal/privacy/index.html
           test -f dist/agents/index.html
+          test -f dist/.well-known/mcp-registry-auth
           test -f dist/terms/index.html
           test -f dist/privacy/index.html
           grep -q 'ava@frostrivercapital.com' dist/index.html
@@ -38,6 +39,7 @@ jobs:
           grep -q 'X-BCDV-Agent-Token' dist/agents/index.html
           ! grep -Eiw 'ai' dist/agents/index.html
           ! grep -A30 'class="nav-desktop"' dist/index.html | grep -q 'Book via agent'
+          printf '%s\n' 'v=MCPv1; k=ed25519; p=XQ9XIAiU0BBzsbSphCUSev+V3nn7fn+ySwRvsUrZPCY=' | cmp - dist/.well-known/mcp-registry-auth
           ! grep -q 'exact-segments-mentioned-previously.trycloudflare.com' dist/index.html
           ! grep -qi 'open the email again' dist/book/index.html
           ! grep -q 'data-done-mailto' dist/book/index.html
