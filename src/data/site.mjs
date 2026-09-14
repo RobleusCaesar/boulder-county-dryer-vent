@@ -31,6 +31,9 @@ export const site = {
     "Cancel 24 hours or more before the visit for a refund. Cancel less than 24 hours before the visit and the amount is credited for 90 days.",
   legalUpdated: "September 11, 2026",
   copyrightYear: 2026,
+  // Public BBB.org listing. Profile link only — do not claim endorsement.
+  bbbProfileUrl:
+    "https://www.bbb.org/us/co/boulder/profile/dryer-vent-cleaning/boulder-county-dryer-vent-1296-1000201831",
 };
 
 // Where booking requests and contact messages go.
