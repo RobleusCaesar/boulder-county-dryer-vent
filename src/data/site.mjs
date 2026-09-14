@@ -37,21 +37,21 @@ export const site = {
 // Leave `endpoint` empty and the forms compose an email to `site.email` from the
 // visitor's device. Set it to a form-service URL (e.g. Formspree) to POST instead.
 export const forms = {
-  endpoint: "https://keeps-pty-ultimately-payroll.trycloudflare.com/book",
+  endpoint: "https://serious-climate-notification-introductory.trycloudflare.com/book",
 };
 
 // First-party hit collector (Ava). Empty endpoint = beacon disabled on every page.
 // PUBLIC_URL + "/hit". Rotate this if the Cloudflare quick tunnel hostname changes.
 export const analytics = {
   /** First-party collector POST URL. Empty = beacon disabled. */
-  endpoint: "https://keeps-pty-ultimately-payroll.trycloudflare.com/hit",
+  endpoint: "https://serious-climate-notification-introductory.trycloudflare.com/hit",
 };
 
 // Machine-readable booking (MCP). Same public ops host as book ingest (`/book`).
 // Path is stable (`/mcp`); the Cloudflare quick-tunnel hostname may rotate.
 export const mcp = {
   path: "/mcp",
-  url: "https://keeps-pty-ultimately-payroll.trycloudflare.com/mcp",
+  url: "https://serious-climate-notification-introductory.trycloudflare.com/mcp",
 };
 
 export const routes = {
