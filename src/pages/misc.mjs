@@ -287,7 +287,7 @@ export function agentsPage() {
 
 <h2>MCP endpoint</h2>
 <p>HTTPS: <code>${esc(mcpUrl)}</code></p>
-<p>The hostname above is a temporary tunnel and may rotate. The stable path is <code>${esc(mcp.path)}</code> on the same public ops host as book ingest. Operators publish the current URL when the tunnel changes. Primary customer booking remains the Book flow on this site.</p>
+<p>The hostname above is the durable named Cloudflare tunnel. The path is <code>${esc(mcp.path)}</code> on the same public ops host as book ingest. Primary customer booking remains the Book flow on this site.</p>
 <p>Human book URL: <a href="${site.url}/">${esc(site.url)}/</a><br>Phone: <a href="${site.phoneHref}">${site.phoneDisplay}</a></p>
 
 <h2>Tools</h2>
