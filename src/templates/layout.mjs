@@ -82,6 +82,7 @@ export function footer() {
       <a href="${routes.terms}">Terms</a>
       <a href="${routes.privacy}">Privacy</a>
       <a href="${routes.credits}">Credits</a>
+      <a href="${site.bbbProfileUrl}" target="_blank" rel="noopener">BBB profile</a>
       <a href="${routes.agents}" class="footer-agent">Book via agent</a>
     </div>
   </div>
