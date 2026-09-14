@@ -70,8 +70,8 @@ export function bookPage() {
 
     <section class="book-step" data-step="3" hidden>
       <p class="kicker">Step three of three</p>
-      <h1 class="book-h1">Request a time</h1>
-      <p class="book-lede" style="margin-bottom:clamp(22px,3vw,32px)">Tell us your town and the days that work. We confirm a two-hour window by text or email, usually within one business day. Holding a time costs nothing.</p>
+      <h1 class="book-h1">We’ll confirm a 2-hour window in 1 business day</h1>
+      <p class="book-lede" style="margin-bottom:clamp(22px,3vw,32px)">3–4 business days out is typical right now. Holding a time costs nothing.</p>
 
       <div class="slots" data-slots hidden role="radiogroup" aria-label="Open times"></div>
 
@@ -106,7 +106,8 @@ export function bookPage() {
           <div class="field"><label for="b-notes">Notes (gate codes, dryer location, anything unusual)</label><textarea id="b-notes" name="notes" class="input" style="min-height:96px"></textarea></div>
           <label class="checkbox"><input type="checkbox" name="annual" value="yes"> Set me up on the annual plan after this visit ($${prices.annual.amount}/year, cancel any year).</label>
           <label class="checkbox"><input type="checkbox" name="sms" value="yes"> Text me about this appointment. Frequency varies, message and data rates may apply, reply STOP to opt out. Not required to book.</label>
-          <button type="submit" class="btn btn-ember blueprint btn--block book-cta">${corners()}Send my request</button>
+          <button type="submit" class="btn btn-ember blueprint btn--block book-cta">${corners()}Request my visit</button>
+          <p class="book-fine">Prefer to talk? <a href="${site.phoneHref}">${site.phoneDisplay}</a></p>
           <p class="form-error" data-error hidden></p>
           <p class="form-note">Nothing is charged. You pay after the visit. <a href="${routes.terms}">Terms</a> &#183; <a href="${routes.privacy}">Privacy</a></p>
         </form>
