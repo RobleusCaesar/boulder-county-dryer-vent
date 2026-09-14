@@ -402,5 +402,5 @@ export const booking = {
     "Airflow measured before and after",
     "Photos of the duct emailed the same day",
   ],
-  emptyCalendarTitle: "No times open yet — join waitlist / leave contact",
+  emptyCalendarTitle: "No open times listed yet — request your visit",
 };
