@@ -44,6 +44,12 @@ jobs:
           ! grep -q 'exact-segments-mentioned-previously.trycloudflare.com' dist/index.html
           ! grep -qi 'open the email again' dist/book/index.html
           ! grep -q 'data-done-mailto' dist/book/index.html
+          grep -q 'We’ll confirm a 2-hour window in 1 business day' dist/book/index.html
+          grep -q '3–4 business days out is typical right now. Holding a time costs nothing.' dist/book/index.html
+          grep -q 'Request my visit' dist/book/index.html
+          grep -q 'Prefer to talk?' dist/book/index.html
+          grep -q 'tel:+18664946590' dist/book/index.html
+          ! grep -q 'Send my request' dist/book/index.html
           ! grep -q 'info@frostrivercapital.com' dist/index.html
           ! grep -q 'info@frostrivercapital.com' dist/legal/terms/index.html
           ! grep -q 'info@frostrivercapital.com' dist/contact/index.html
