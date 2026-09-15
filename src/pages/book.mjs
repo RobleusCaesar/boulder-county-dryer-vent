@@ -64,7 +64,8 @@ export function bookPage() {
         ${icons.info()}
         <p>After this visit, the annual plan keeps the same clean at <strong>$${prices.annual.amount}</strong> a year, same month every year. Tick the box on the next step and we set it up.</p>
       </div>
-      <button type="button" class="btn btn-ember blueprint btn--block book-cta" data-next="3" style="margin-top:20px">${corners()}Request a time</button>
+      <button type="button" class="btn btn-ember blueprint btn--block book-cta" data-next="3" style="margin-top:20px">${corners()}Continue — request my visit</button>
+      <p class="book-fine">Next you’ll pick days that work — holding a time costs nothing.</p>
       <button type="button" class="text-btn book-back" data-next="1">&#8592; Change my answers</button>
     </section>
 
