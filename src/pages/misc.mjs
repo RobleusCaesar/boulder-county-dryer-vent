@@ -206,14 +206,15 @@ export function termsPage() {
 <h2>Payments</h2>
 <p>This website does not charge cards and nothing is charged to hold a time. Payment is collected after the visit by card link, invoice, or on site, and charges appear on your statement as ${esc(site.name)}.</p>
 <h2>Texts</h2>
-<p>If you opt in to SMS, you agree to receive appointment and service messages. Frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.</p>`;
+<p>If you opt in to SMS, you agree to receive texts from ${esc(site.name)} at the mobile number you give us. Those messages are about your visit and your service &#8212; not mass marketing or promotional blasts. We may send appointment confirmations, reminders, and day-of updates; missed-call callbacks when you reached us and we could not pick up; customer-care replies to a question you already started; and, after a completed visit, a friend or warm ask for a Google Business Profile review. We do not text review asks to people who did not hire us, and we do not run mass review campaigns.</p>
+<p>Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. You can also call <a href="${site.phoneHref}">${site.phoneDisplay}</a> or email <a href="mailto:${site.noticesEmail}">${esc(site.noticesEmail)}</a>. How we handle your number and this consent is in our <a href="${site.url}${routes.privacy}">Privacy policy</a>.</p>`;
 
   return page({
     path: routes.terms,
     title: "Terms of service",
     description: `Terms for booking and using the ${site.name} website.`,
     current: "",
-    body: legalShell({ kicker: "Legal", title: "Terms of service", lede: "These terms cover the public site, booking requests, and the waitlist.", inner }),
+    body: legalShell({ kicker: "Legal", title: "Terms of service", lede: "These terms cover the public site, booking requests, the waitlist, and SMS if you opt in.", inner }),
   });
 }
 
@@ -222,7 +223,10 @@ export function privacyPage() {
 <p>Last updated: ${esc(site.legalUpdated)}.</p>
 <p>${esc(site.legalName)}. Trade name ID ${esc(site.tradeNameId)}. Notices: ${esc(site.noticesAddress)}. ${esc(site.noticesEmail)}.</p>
 <h2>What we collect when you book or write to us</h2>
-<p>Name, email, phone, service address, eligibility answers, preferred days, SMS consent, and anything you put in the notes. After a visit: job notes, invoices, and the before-and-after photos of your duct, kept for customers who booked a visit.</p>
+<p>Name, email, phone, service address, eligibility answers, preferred days, SMS consent (whether you checked the text box), and anything you put in the notes. After a visit: job notes, invoices, and the before-and-after photos of your duct, kept for customers who booked a visit.</p>
+<h2>Texts and SMS consent</h2>
+<p>If you check the SMS box when you book, you consent to texts from ${esc(site.name)} at that mobile number. We use it for appointment confirmations, reminders, and day-of updates; missed-call callbacks; customer care; and a friend or warm Google Business Profile review ask after a completed visit &#8212; not mass marketing. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.</p>
+<p>We do not sell your mobile number. We do not share mobile information or SMS opt-in consent with third parties or affiliates for their marketing or promotional purposes. The SMS program terms, including STOP and HELP, are also in our <a href="${site.url}${routes.terms}">Terms of service</a>.</p>
 <h2>How this website handles forms</h2>
 <p>This is a static website with no server of its own. When you submit the booking request or contact form, the details are sent to us either as an email composed on your device or through our form provider; the website itself does not store them. Your in-progress booking answers are kept in your browser&#8217;s session storage so a page refresh does not lose them, and are never sent anywhere until you submit.</p>
 <h2>Website analytics</h2>
@@ -237,7 +241,7 @@ export function privacyPage() {
     title: "Privacy policy",
     description: `How ${site.name} handles contact, booking information, and first-party analytics.`,
     current: "",
-    body: legalShell({ kicker: "Legal", title: "Privacy policy", lede: "What we collect, how the forms on this site work, first-party analytics, and who we share with.", inner }),
+    body: legalShell({ kicker: "Legal", title: "Privacy policy", lede: "What we collect, how SMS opt-in works, how the forms on this site work, first-party analytics, and who we share with.", inner }),
   });
 }
 
