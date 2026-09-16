@@ -29,7 +29,7 @@ export const site = {
   noticesEmail: "ava@frostrivercapital.com",
   cancelPolicy:
     "Cancel 24 hours or more before the visit for a refund. Cancel less than 24 hours before the visit and the amount is credited for 90 days.",
-  legalUpdated: "September 11, 2026",
+  legalUpdated: "September 16, 2026",
   copyrightYear: 2026,
   // Public BBB.org listing used as a quiet footer text link.
   bbbProfileUrl:

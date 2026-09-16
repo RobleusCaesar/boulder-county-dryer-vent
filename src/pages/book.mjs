@@ -106,7 +106,7 @@ export function bookPage() {
           <div class="field"><label for="b-days">Days and times that work</label><input id="b-days" name="days" class="input" type="text" placeholder="Weekday mornings, or any Saturday"></div>
           <div class="field"><label for="b-notes">Notes (gate codes, dryer location, anything unusual)</label><textarea id="b-notes" name="notes" class="input" style="min-height:96px"></textarea></div>
           <label class="checkbox"><input type="checkbox" name="annual" value="yes"> Set me up on the annual plan after this visit ($${prices.annual.amount}/year, cancel any year).</label>
-          <label class="checkbox"><input type="checkbox" name="sms" value="yes"> Text me about this appointment. Frequency varies, message and data rates may apply, reply STOP to opt out. Not required to book.</label>
+          <label class="checkbox"><input type="checkbox" name="sms" value="yes"> Text me appointment confirmations, reminders, day-of updates, missed-call callbacks, customer care, and a friend or warm Google review ask after a visit &#8212; not mass marketing. Frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. <a href="${site.url}${routes.terms}">Terms</a> &#183; <a href="${site.url}${routes.privacy}">Privacy</a>.</label>
           <button type="submit" class="btn btn-ember blueprint btn--block book-cta">${corners()}Request my visit</button>
           <p class="book-fine">Prefer to talk? <a href="${site.phoneHref}">${site.phoneDisplay}</a></p>
           <p class="form-error" data-error hidden></p>

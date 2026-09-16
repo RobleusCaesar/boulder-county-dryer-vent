@@ -28,6 +28,19 @@ jobs:
           grep -q 'ava@frostrivercapital.com' dist/contact/index.html
           grep -q '"email":"ava@frostrivercapital.com"' dist/index.html
           grep -q 'first-party hit collector' dist/legal/privacy/index.html
+          grep -q 'missed-call callbacks' dist/legal/terms/index.html
+          grep -q 'missed-call callbacks' dist/legal/privacy/index.html
+          grep -q 'Google Business Profile' dist/legal/terms/index.html
+          grep -q 'Google Business Profile' dist/legal/privacy/index.html
+          grep -q 'Reply STOP to opt out, HELP for help' dist/legal/terms/index.html
+          grep -q 'Reply STOP to opt out, HELP for help' dist/legal/privacy/index.html
+          grep -q 'Consent is not a condition of purchase' dist/legal/terms/index.html
+          grep -q 'Consent is not a condition of purchase' dist/legal/privacy/index.html
+          grep -q 'https://bouldercountydryervent.com/legal/privacy/' dist/legal/terms/index.html
+          grep -q 'https://bouldercountydryervent.com/legal/terms/' dist/legal/privacy/index.html
+          grep -q 'missed-call callbacks' dist/book/index.html
+          grep -q 'Consent is not a condition of purchase' dist/book/index.html
+          grep -q 'Reply STOP to opt out, HELP for help' dist/book/index.html
           grep -q '__bcdvTrack' dist/js/site.js
           grep -q 'https://api.bouldercountydryervent.com/book' dist/index.html
           grep -q 'https://api.bouldercountydryervent.com/hit' dist/index.html
