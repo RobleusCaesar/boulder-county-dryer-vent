@@ -1,4 +1,4 @@
-import { site, routes, towns, trust, homeSteps, priceCards, routeFillNote, prices } from "../data/site.mjs";
+import { site, routes, towns, trust, homeSteps, priceCards, routeFillNote, prices, launchSpecial } from "../data/site.mjs";
 import { esc, corners, join, icons, checkList } from "../lib/html.mjs";
 import { page, bookBtn } from "../templates/layout.mjs";
 import { postCard } from "./blog.mjs";
@@ -9,9 +9,10 @@ export function priceCardHtml(p, { home = false } = {}) {
   ${corners()}
   <div class="price-head">
     <span class="price-kicker">${esc(p.kicker)}</span>
-    ${p.tag ? '<span class="badge">Best value</span>' : ""}
+    ${p.tag ? `<span class="badge">${esc(p.tag === true ? "Best value" : p.tag)}</span>` : ""}
   </div>
   <div class="price-amount"><b>${esc(p.price)}</b><span>${esc(p.unit)}</span></div>
+  ${p.compare ? `<p class="price-was">${esc(p.compare)}</p>` : ""}
   <h3 class="price-title">${esc(p.title)}</h3>
   <p class="price-body">${esc(home ? p.homeBody : p.body)}</p>
   ${home ? "" : '<span class="qualifies">What qualifies</span>'}
@@ -38,6 +39,7 @@ export function mapFigure({ caption = "" } = {}) {
 
 export function homePage(posts) {
   const body = `
+<p class="launch-banner">${esc(launchSpecial.banner)}</p>
 <section class="hero">
   <img class="hero-img" src="/img/hero-exterior.jpg" alt="Technician cleaning an exterior dryer vent on a Boulder-area home" fetchpriority="high">
   <div class="hero-shade"></div>
@@ -48,15 +50,16 @@ export function homePage(posts) {
       ${icons.wave()}
       <p class="hero-lede">The price is published, so there is nothing to quote. Answer two questions, request a time, we clean the full duct run, you get photos of what came out. That is the whole transaction.</p>
       <div class="actions hero-actions">
-        ${bookBtn("Book My Visit", "btn btn-ember blueprint")}
+        ${bookBtn(`Book My Visit · $${prices.standard.amount}`, "btn btn-ember blueprint")}
         <a href="${site.phoneHref}" class="btn btn-outline-light btn--phone">${site.phoneDisplay}</a>
       </div>
-      <p class="hero-fine">Three taps &#183; no card to hold a time &#183; cancel free up to 24h</p>
+      <p class="hero-fine">Launch special &#183; normally $${prices.standard.normally} &#183; through ${esc(launchSpecial.through)}</p>
     </div>
     <div class="blueprint price-tag">
       ${corners()}
-      <small>Standard clean, published</small>
+      <small>Launch special, standard clean</small>
       <span class="baseline"><b>$${prices.standard.amount}</b><span class="unit">flat, one dryer</span></span>
+      <span class="price-was">Normally $${prices.standard.normally}</span>
     </div>
   </div>
 </section>

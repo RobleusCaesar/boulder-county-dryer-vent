@@ -1,4 +1,4 @@
-import { site, nav, routes, towns, forms, analytics, prices, inAreaZips } from "../data/site.mjs";
+import { site, nav, routes, towns, forms, analytics, prices, launchSpecial, inAreaZips } from "../data/site.mjs";
 import { esc, attr, corners, join, icons } from "../lib/html.mjs";
 
 const bookBtn = (label = "Book My Visit", cls = "btn btn-ember blueprint") =>
@@ -139,7 +139,13 @@ function localBusinessJsonLd() {
     areaServed: towns.map((t) => ({ "@type": "City", name: `${t.name}, CO` })),
     openingHours: site.hoursSchema,
     makesOffer: [
-      { "@type": "Offer", name: prices.standard.label, price: String(prices.standard.amount), priceCurrency: "USD" },
+      {
+        "@type": "Offer",
+        name: "Standard clean, launch special",
+        price: String(prices.standard.amount),
+        priceCurrency: "USD",
+        priceValidUntil: launchSpecial.throughIso,
+      },
       { "@type": "Offer", name: prices.difficult.label, price: String(prices.difficult.amount), priceCurrency: "USD" },
     ],
   });
@@ -170,7 +176,13 @@ export function page(o) {
     phone: site.phoneDisplay,
     formEndpoint: forms.endpoint,
     analyticsEndpoint: analytics.endpoint,
-    prices: { standard: prices.standard.amount, difficult: prices.difficult.amount, annual: prices.annual.amount },
+    prices: {
+      standard: prices.standard.amount,
+      difficult: prices.difficult.amount,
+      annual: prices.annual.amount,
+      standardNormally: prices.standard.normally,
+    },
+    launchSpecialThrough: launchSpecial.through,
     inAreaZips,
     slots: [],
   };

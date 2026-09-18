@@ -4,7 +4,9 @@
 (function () {
   'use strict';
   var CFG = window.BCDV || {};
-  var PRICES = CFG.prices || { standard: 129, difficult: 169, annual: 109 };
+  var PRICES = CFG.prices || { standard: 99, difficult: 169, annual: 109, standardNormally: 129 };
+  var STANDARD_NORMALLY = PRICES.standardNormally || 129;
+  var SPECIAL_THROUGH = CFG.launchSpecialThrough || 'Sunday Sep 20';
   var SLOTS = CFG.slots || []; // Populate in src/data/site.mjs when real capacity exists.
   var ZIPS = CFG.inAreaZips || [];
   var KEY = 'bcdv.book.v2';
@@ -54,10 +56,15 @@
     var d = difficult();
     root.querySelectorAll('[data-price]').forEach(function (el) { el.textContent = '$' + price(); });
     root.querySelectorAll('[data-tier]').forEach(function (el) { el.textContent = tierLabel(); });
+    var was = root.querySelector('[data-price-was]');
+    if (was) {
+      was.hidden = d;
+      if (!d) was.textContent = 'Normally $' + STANDARD_NORMALLY;
+    }
     var note = root.querySelector('[data-price-note]');
     if (note) note.textContent = d
       ? 'Roof access and long runs take an extra set of rods and about forty minutes more on site. This is the published difficult rate — it will not move at the door.'
-      : 'The published standard rate for one dryer. It covers everything below, and it will not move at the door.';
+      : 'Launch special for one standard clean: $' + PRICES.standard + ' (normally $' + STANDARD_NORMALLY + ') through ' + SPECIAL_THROUGH + '. It covers everything below, and it will not move at the door.';
     // Step 3 slots vs request
     var slotsWrap = root.querySelector('[data-slots]');
     var emptyWrap = root.querySelector('[data-empty]');

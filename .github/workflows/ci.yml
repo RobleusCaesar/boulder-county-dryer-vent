@@ -67,6 +67,13 @@ jobs:
           ! grep -q 'Request a time' dist/book/index.html
           grep -q 'Request my visit' dist/book/index.html
           grep -q 'Prefer to talk?' dist/book/index.html
+          grep -q 'Launch special: standard clean $99 (normally $129) through Sunday Sep 20' dist/index.html
+          grep -q 'Book at $99' dist/index.html
+          grep -q 'Normally $129' dist/index.html
+          grep -q '"price":"99"' dist/index.html
+          grep -q '"price":"169"' dist/index.html
+          grep -q 'Normally $129' dist/book/index.html
+          grep -q 'launch special, normally $129' dist/book/index.html
           grep -q 'tel:+18664946590' dist/book/index.html
           ! grep -q 'Send my request' dist/book/index.html
           ! grep -q 'info@frostrivercapital.com' dist/index.html

@@ -4,7 +4,7 @@ import { page, ctaBand, pageHero, bookBtn } from "../templates/layout.mjs";
 import { mapFigure } from "./home.mjs";
 
 const compactPrices = [
-  { price: `$${prices.standard.amount}`, title: "Standard clean", note: "Ground-floor side-wall termination" },
+  { price: `$${prices.standard.amount}`, title: "Standard clean", note: `Launch special, normally $${prices.standard.normally}` },
   { price: `$${prices.difficult.amount}`, title: "Difficult clean", note: "Roof, upper floor, or a long run" },
   { price: `$${prices.annual.amount}`, title: "Annual plan", note: "After your first visit: same clean, same month, $20 off" },
 ];
@@ -12,7 +12,7 @@ const compactPrices = [
 const waitHonest =
   "We confirm a 2-hour window within one business day (usually a few business days out while we ramp).";
 
-const priceProof = `$${prices.standard.amount} standard &#183; $${prices.difficult.amount} difficult/long &#183; $${prices.annual.amount} annual`;
+const priceProof = `$${prices.standard.amount} launch special (normally $${prices.standard.normally}) &#183; $${prices.difficult.amount} difficult/long &#183; $${prices.annual.amount} annual`;
 
 function lafayetteNearby(t) {
   if (t.slug !== "lafayette-co") return "";
