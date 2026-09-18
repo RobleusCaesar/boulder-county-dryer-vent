@@ -43,7 +43,7 @@ Legacy `/{city}-co-dryer-vent-cleaning/` URLs redirect to the `/areas/` pages.
 
 ## Booking flow and forms
 
-`/book/` is a three-step flow: two eligibility questions → published price (`$129` standard, `$169` roof / second story / run over ~15 ft) → request a time. There is no server, so:
+`/book/` is a three-step flow: two eligibility questions → published price (`$99` launch special for standard, normally `$129`; `$169` roof / second story / run over ~15 ft) → request a time. There is no server, so:
 
 - **Default (`forms.endpoint` empty):** submitting the booking request or contact form composes an email to `site.email` on the visitor's device with every field filled in, and the confirmation screen shows the request summary plus the phone number as a fallback.
 - **Recommended:** create a free form endpoint (Formspree or similar), paste the URL into `forms.endpoint`, and rebuild. Submissions are then POSTed as JSON and land in your inbox without the visitor's mail app being involved.
@@ -53,10 +53,10 @@ Legacy `/{city}-co-dryer-vent-cleaning/` URLs redirect to the `/areas/` pages.
 
 | Price | When |
 | --- | --- |
-| **$129** | Standard — ground-floor side-wall termination, run under ~15 ft |
+| **$99** | Launch special — standard clean through Sunday Sep 20 (normally $129) |
+| **$129** | Standard regular price (shown as "normally $129" while the special is live) |
 | **$169** | Difficult — roof or second-story termination, long or bending runs |
 | **$109 / year** | Annual plan after the first visit |
-| **$99** | Route-fill — **ops only**, never on the public site |
 
 Phone everywhere: **(866) 494-6590**. Customer NAP: **6395 Gunpark Dr, Suite J, Boulder, CO 80301**.
 

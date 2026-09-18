@@ -85,8 +85,19 @@ export const nav = [
   { id: "about", label: "About", href: routes.about },
 ];
 
+// Same-day launch special. `prices.standard.amount` is the live offer so
+// homepage cards, book CTAs, and schema.org Offer stay in lockstep with ads.
+// Turn this off by restoring amount to `normally` and dropping the banner.
+export const launchSpecial = {
+  amount: 99,
+  normally: 129,
+  through: "Sunday Sep 20",
+  throughIso: "2026-09-20",
+  banner: "Launch special: standard clean $99 (normally $129) through Sunday Sep 20",
+};
+
 export const prices = {
-  standard: { amount: 129, label: "Standard clean" },
+  standard: { amount: launchSpecial.amount, normally: launchSpecial.normally, label: "Standard clean" },
   difficult: { amount: 169, label: "Difficult clean" },
   annual: { amount: 109, label: "Annual plan" },
 };
@@ -96,7 +107,8 @@ export const priceCards = [
   {
     id: "standard",
     kicker: "Standard",
-    price: "$129",
+    price: `$${launchSpecial.amount}`,
+    compare: `normally $${launchSpecial.normally}`,
     unit: "flat",
     title: "Standard clean",
     homeBody: "The common case: a ground-floor laundry room with a side-wall termination.",
@@ -108,8 +120,8 @@ export const priceCards = [
       "Duct run under roughly 15 feet",
       "Reachable without ladder work",
     ],
-    tag: false,
-    cta: "Book at $129",
+    tag: "Launch special",
+    cta: `Book at $${launchSpecial.amount}`,
   },
   {
     id: "difficult",

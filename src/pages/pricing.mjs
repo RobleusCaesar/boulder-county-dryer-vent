@@ -1,4 +1,4 @@
-import { site, routes, prices, priceCards, routeFillNote, pricingRules, planBullets, pricingFaqs } from "../data/site.mjs";
+import { site, routes, prices, priceCards, routeFillNote, pricingRules, planBullets, pricingFaqs, launchSpecial } from "../data/site.mjs";
 import { esc, corners, join, checkList, faqList } from "../lib/html.mjs";
 import { page, ctaBand, pageHero } from "../templates/layout.mjs";
 import { priceCardHtml } from "./home.mjs";
@@ -33,7 +33,7 @@ ${pageHero({
   kicker: "Pricing",
   title: "Three numbers. That is the whole price list.",
   size: "t-page--lg max-20",
-  lede: "No estimate visit, no per-foot charges, no weekend surcharge. You see which tier you are in before you book, and it does not change once we are at the door.",
+  lede: `${launchSpecial.banner}. Difficult stays $${prices.difficult.amount}. No estimate visit, no per-foot charges, no weekend surcharge. You see which tier you are in before you book, and it does not change once we are at the door.`,
 })}
 
 <section class="bg-white">
@@ -94,7 +94,7 @@ ${ctaBand({ lede: "Two questions, then your published price and a request for th
   return page({
     path: routes.pricing,
     title: "Pricing — three published numbers",
-    description: `Dryer vent cleaning prices in Boulder County: $${prices.standard.amount} standard, $${prices.difficult.amount} difficult (roof or long run), $${prices.annual.amount}/year annual plan. No estimate visit, no trip charge, price locked before you book.`,
+    description: `Dryer vent cleaning prices in Boulder County: $${prices.standard.amount} launch special for a standard clean (normally $${prices.standard.normally}), $${prices.difficult.amount} difficult (roof or long run), $${prices.annual.amount}/year annual plan. No estimate visit, no trip charge, price locked before you book.`,
     current: "pricing",
     body,
     jsonLd,

@@ -56,6 +56,7 @@ export function bookPage() {
         ${corners()}
         <span class="tier-pill">${icons.check("#2E8B57", 14)}<span data-tier>Standard clean</span></span>
         <div class="price-big"><b data-price>$${prices.standard.amount}</b><span>flat</span></div>
+        <p class="price-was" data-price-was>Normally $${prices.standard.normally}</p>
         <p class="price-note" data-price-note></p>
         ${checkList(booking.included)}
       </div>
@@ -148,7 +149,7 @@ export function bookPage() {
   return page({
     path: routes.book,
     title: "Book My Visit — see your price in two taps",
-    description: `Two questions about your dryer vent, your published price ($${prices.standard.amount} or $${prices.difficult.amount}), then request the days that work. No card to hold a time.`,
+    description: `Two questions about your dryer vent, your published price ($${prices.standard.amount} launch special, normally $${prices.standard.normally}, or $${prices.difficult.amount} difficult), then request the days that work. No card to hold a time.`,
     current: "",
     body,
     bare: true,
