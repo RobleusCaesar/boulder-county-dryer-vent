@@ -9,6 +9,10 @@ export const site = {
   phoneDisplay: "(866) 494-6590",
   phoneHref: "tel:+18664946590",
   phoneE164: "+1-866-494-6590",
+  // Local SMS originating number (Ava Direct). Customers may receive opted-in
+  // texts from this number and/or the 866 line. Not NAP — do not use in schema
+  // telephone, header Call buttons, or footer phone.
+  smsDisplay: "(720) 605-3198",
   email: "ava@frostrivercapital.com",
   hours: "Weekdays 8am–5pm · Saturday by route",
   hoursSchema: ["Mo-Fr 08:00-17:00"],
@@ -29,7 +33,7 @@ export const site = {
   noticesEmail: "ava@frostrivercapital.com",
   cancelPolicy:
     "Cancel 24 hours or more before the visit for a refund. Cancel less than 24 hours before the visit and the amount is credited for 90 days.",
-  legalUpdated: "September 16, 2026",
+  legalUpdated: "September 21, 2026",
   copyrightYear: 2026,
   // Public BBB.org listing used as a quiet footer text link.
   bbbProfileUrl:
