@@ -4,7 +4,7 @@
 - **V2 redesign live on `main`**: static HTML from the Claude Design "Industry" system (ember / ink / sand, Barlow Condensed, blueprint frames). Replaces the Next.js V1.
 - Fixes the broken custom-domain deploy: V1 built with a `/boulder-county-dryer-vent` basePath, so every asset 404'd at https://bouldercountydryervent.com/. V2 serves from `/`.
 - Brand: Boulder County Dryer Vent (no Co., no AI marks)
-- Phone: **(866) 494-6590** (`tel:+18664946590`)
+- Phone: **(720) 605-3198** (`tel:+17206053198`)
 - Customer NAP: **6395 Gunpark Dr, Suite J, Boulder, CO 80301** · ava@frostrivercapital.com
 - Pages: home, service, pricing, book (3-step), areas + 5 town pages, blog (3 posts) + post template, reviews (honest empty), about, contact, terms, privacy, credits, 404. Sitemap, robots, LocalBusiness + FAQ + BlogPosting schema.
 - Booking + contact forms deliver by composed email to ava@frostrivercapital.com by default; drop a form-endpoint URL into `src/data/site.mjs` → `forms.endpoint` to POST instead.

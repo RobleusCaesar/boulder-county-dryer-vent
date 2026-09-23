@@ -24,7 +24,7 @@ You do not need a technician on site to pick a tier. On our book page, two quest
 1. Where does the vent exit outdoors (ground / side wall vs roof / upper floor)?
 2. About how long is the duct run?
 
-Pick the matching tier, book online, and we confirm the day. If you are unsure, choose the harder tier or call **(866) 494-6590** — we would rather price it right once than surprise you later.
+Pick the matching tier, book online, and we confirm the day. If you are unsure, choose the harder tier or call **(720) 605-3198** — we would rather price it right once than surprise you later.
 
 ## Annual plan
 Once your vent is clean, most homes do well with a yearly revisit. Our annual plan is **$109** for the next standard clean when you stay enrolled.

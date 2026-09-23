@@ -58,7 +58,7 @@ Legacy `/{city}-co-dryer-vent-cleaning/` URLs redirect to the `/areas/` pages.
 | **$109 / year** | Annual plan after the first visit |
 | **$99** | Route-fill — **ops only**, never on the public site |
 
-Phone everywhere: **(866) 494-6590**. Customer NAP: **6395 Gunpark Dr, Suite J, Boulder, CO 80301**.
+Phone everywhere: **(720) 605-3198**. Customer NAP: **6395 Gunpark Dr, Suite J, Boulder, CO 80301**.
 
 ## Legal
 
