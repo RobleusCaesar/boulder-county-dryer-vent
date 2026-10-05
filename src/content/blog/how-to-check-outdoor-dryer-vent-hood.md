@@ -1,7 +1,7 @@
 ---
 title: How to check your outdoor dryer vent hood in five minutes
 slug: how-to-check-outdoor-dryer-vent-hood
-date: 2026-09-28
+date: 2026-10-05
 category: Maintenance
 readTime: 4 min read
 image: idalia-exterior-lint
