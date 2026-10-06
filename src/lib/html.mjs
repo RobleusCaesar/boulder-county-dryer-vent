@@ -1,4 +1,5 @@
 // Tiny HTML helpers shared by every template.
+import { mcp } from "../data/site.mjs";
 
 export const esc = (s) =>
   String(s ?? "")
@@ -9,12 +10,20 @@ export const esc = (s) =>
 
 export const attr = (s) => esc(s).replace(/'/g, "&#39;");
 
+/** Invisible machine-discovery hints. Not shown in the page body. */
+export function discoveryLinks() {
+  return `<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
+<link rel="describedby" href="/llms.txt" type="text/plain">
+<link rel="mcp" href="${mcp.url}" type="application/json">`;
+}
+
 /** Meta-refresh alias page (e.g. /terms/ → /legal/terms/). Not added to the sitemap. */
 export function redirectPage(title, target) {
   return `<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>${esc(title)}</title>
 <meta http-equiv="refresh" content="0; url=${target}">
 <link rel="canonical" href="${target}">
+${discoveryLinks()}
 <meta name="robots" content="noindex">
 </head><body><p>Moved to <a href="${target}">${esc(target)}</a>.</p></body></html>`;
 }

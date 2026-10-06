@@ -23,6 +23,10 @@ jobs:
         with:
           node-version: 20
       - run: node scripts/build.mjs
+      # upload-pages-artifact v3 still packs dotfiles into the Pages artifact.
+      # v4 and later omit them unless include-hidden-files is true, which would
+      # 404 /.well-known/ (MCP discovery) and drop .nojekyll. Stay on v3, or
+      # set include-hidden-files: true when moving to v5+.
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -1,5 +1,5 @@
 import { site, nav, routes, towns, forms, analytics, prices, inAreaZips } from "../data/site.mjs";
-import { esc, attr, corners, join, icons } from "../lib/html.mjs";
+import { esc, attr, corners, join, icons, discoveryLinks } from "../lib/html.mjs";
 
 const bookBtn = (label = "Book My Visit", cls = "btn btn-ember blueprint") =>
   `<a href="${routes.book}" class="${cls}" data-book-cta>${corners()}${esc(label)}</a>`;
@@ -142,6 +142,21 @@ function localBusinessJsonLd() {
       { "@type": "Offer", name: prices.standard.label, price: String(prices.standard.amount), priceCurrency: "USD" },
       { "@type": "Offer", name: prices.difficult.label, price: String(prices.difficult.amount), priceCurrency: "USD" },
     ],
+    // ReserveAction is a schema.org type; the target is the human book page.
+    // The MCP endpoint is a JSON-RPC transport, not a reservation form, so it
+    // stays in the head links and the discovery files rather than this graph.
+    potentialAction: {
+      "@type": "ReserveAction",
+      name: "Book a dryer vent cleaning",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${site.url}${routes.book}`,
+        actionPlatform: [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform",
+        ],
+      },
+    },
   });
 }
 
@@ -182,6 +197,7 @@ export function page(o) {
 <title>${esc(title)}</title>
 <meta name="description" content="${attr(o.description)}">
 <link rel="canonical" href="${canonical}">
+${discoveryLinks()}
 ${o.noindex ? '<meta name="robots" content="noindex">' : ""}
 <meta property="og:type" content="${o.ogType || "website"}">
 <meta property="og:site_name" content="${attr(site.name)}">
