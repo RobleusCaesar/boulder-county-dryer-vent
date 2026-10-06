@@ -63,9 +63,91 @@ jobs:
           grep -q 'Book via agent' dist/index.html
           grep -q 'href="/agents/"' dist/index.html
           grep -q 'list_services' dist/agents/index.html
+          grep -q 'check_availability' dist/agents/index.html
           grep -q 'create_booking' dist/agents/index.html
-          grep -q 'X-BCDV-Agent-Token' dist/agents/index.html
+          grep -q 'get_booking_status' dist/agents/index.html
+          grep -q 'company_website' dist/agents/index.html
+          grep -q 'No token' dist/agents/index.html
+          grep -q 'PENDING' dist/agents/index.html
+          grep -q 'CONFIRM 4821' dist/agents/index.html
+          grep -q '48 hours' dist/agents/index.html
+          grep -q 'never contacted' dist/agents/index.html
+          grep -q 'valid US mobile or landline' dist/agents/index.html
+          grep -q 'real Boulder County' dist/agents/index.html
+          ! grep -q 'one business day' dist/agents/index.html
+          grep -q '7205550100' dist/agents/index.html
+          grep -q 'public_id' dist/agents/index.html
+          ! grep -q 'X-BCDV-Agent-Token' dist/agents/index.html
+          ! grep -q 'Bearer' dist/agents/index.html
           ! grep -Eiw 'ai' dist/agents/index.html
+          grep -q 'rel="alternate" type="text/plain" href="/llms.txt"' dist/index.html
+          grep -q 'rel="describedby" href="/llms.txt"' dist/index.html
+          grep -q 'rel="mcp" href="https://api.bouldercountydryervent.com/mcp"' dist/index.html
+          grep -q 'ReserveAction' dist/index.html
+          grep -q 'http://schema.org/DesktopWebPlatform' dist/index.html
+          grep -q 'https://bouldercountydryervent.com/book/' dist/index.html
+          test -f dist/llms.txt
+          test -f dist/.well-known/mcp.json
+          test -f dist/.well-known/mcp/server-card.json
+          test -f dist/.well-known/ai-catalog.json
+          test -f dist/.well-known/mcp-registry-auth
+          grep -q 'https://api.bouldercountydryervent.com/mcp' dist/llms.txt
+          grep -q '/agents/' dist/llms.txt
+          grep -q '/book/' dist/llms.txt
+          grep -q '$129' dist/llms.txt
+          grep -q '$169' dist/llms.txt
+          grep -q '(720) 605-3198' dist/llms.txt
+          grep -q '6395 Gunpark Dr' dist/llms.txt
+          grep -q 'PENDING' dist/llms.txt
+          grep -q 'CONFIRM <code>' dist/llms.txt
+          grep -q '48 hours' dist/llms.txt
+          grep -q 'never contacted' dist/llms.txt
+          grep -q 'within one business day' dist/llms.txt
+          ! grep -q '$99' dist/llms.txt
+          ! grep -q '866' dist/llms.txt
+          ! grep -q '$99' dist/.well-known/mcp.json
+          ! grep -q '866' dist/.well-known/mcp.json
+          grep -q '"type": "streamable-http"' dist/.well-known/mcp.json
+          grep -q 'https://api.bouldercountydryervent.com/mcp' dist/.well-known/mcp.json
+          grep -q 'list_services' dist/.well-known/mcp.json
+          grep -q 'check_availability' dist/.well-known/mcp.json
+          grep -q 'create_booking' dist/.well-known/mcp.json
+          grep -q 'get_booking_status' dist/.well-known/mcp.json
+          grep -q 'company_website' dist/.well-known/mcp.json
+          grep -q 'PENDING request, not a booking' dist/.well-known/mcp.json
+          grep -q 'CONFIRM <code>' dist/.well-known/mcp.json
+          grep -q '48 hours' dist/.well-known/mcp.json
+          grep -q 'never contacted' dist/.well-known/mcp.json
+          grep -q 'valid US mobile or landline' dist/.well-known/mcp.json
+          grep -q 'Strict per-IP and daily rate limits' dist/.well-known/mcp.json
+          grep -q 'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json' dist/.well-known/mcp/server-card.json
+          grep -q 'streamable-http' dist/.well-known/mcp/server-card.json
+          grep -q 'https://api.bouldercountydryervent.com/mcp' dist/.well-known/mcp/server-card.json
+          grep -q 'urn:air:bouldercountydryervent.com:mcp:booking' dist/.well-known/ai-catalog.json
+          grep -q 'application/mcp-server-card+json' dist/.well-known/ai-catalog.json
+          grep -q 'Allow: /' dist/robots.txt
+          grep -q 'llms.txt' dist/robots.txt
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+            const read = (p) => JSON.parse(readFileSync(p, "utf8"));
+            const manifest = read("dist/.well-known/mcp.json");
+            const card = read("dist/.well-known/mcp/server-card.json");
+            const catalog = read("dist/.well-known/ai-catalog.json");
+            const names = manifest.tools.map((t) => t.name);
+            for (const n of ["list_services", "check_availability", "create_booking", "get_booking_status"]) {
+              if (!names.includes(n)) process.exit(1);
+            }
+            if (manifest.transport.type !== "streamable-http") process.exit(1);
+            if (manifest.transport.url !== "https://api.bouldercountydryervent.com/mcp") process.exit(1);
+            if (manifest.authentication.required !== false) process.exit(1);
+            if (card.$schema !== "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json") process.exit(1);
+            if (card.description.length < 1 || card.description.length > 100) process.exit(1);
+            if (card.name !== "com.bouldercountydryervent/booking") process.exit(1);
+            if (card.remotes[0].type !== "streamable-http") process.exit(1);
+            if (card.remotes[0].url !== "https://api.bouldercountydryervent.com/mcp") process.exit(1);
+            if (catalog.specVersion !== "1.0") process.exit(1);
+            if (catalog.entries[0].url !== "https://bouldercountydryervent.com/.well-known/mcp/server-card.json") process.exit(1);
+          '
           ! grep -A30 'class="nav-desktop"' dist/index.html | grep -q 'Book via agent'
           printf '%s\n' 'v=MCPv1; k=ed25519; p=XQ9XIAiU0BBzsbSphCUSev+V3nn7fn+ySwRvsUrZPCY=' | cmp - dist/.well-known/mcp-registry-auth
           ! grep -q 'serious-climate-notification-introductory.trycloudflare.com' dist/index.html

@@ -5,7 +5,7 @@ import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, ex
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { site, routes, towns } from "../src/data/site.mjs";
+import { site, routes, towns, mcp, prices } from "../src/data/site.mjs";
 import { esc, redirectPage } from "../src/lib/html.mjs";
 import { homePage } from "../src/pages/home.mjs";
 import { servicePage } from "../src/pages/service.mjs";
@@ -133,7 +133,170 @@ const urls = [...pages.keys()]
   .map((p) => `  <url><loc>${site.url}${p}</loc><lastmod>${today}</lastmod><priority>${p === "/" ? "1.0" : p.startsWith("/blog/") ? "0.6" : "0.7"}</priority></url>`)
   .join("\n");
 writeFileSync(join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
-writeFileSync(join(DIST, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`);
+writeDiscovery(DIST);
 writeFileSync(join(DIST, ".nojekyll"), "");
 
 console.log(`Built ${pages.size} pages + ${towns.length} redirects, ${posts.length} posts → dist/`);
+
+/* ── Machine discovery (llms.txt, MCP well-known) ────────────────────── */
+// Written at build time so prices, phone, and the MCP URL stay in sync with
+// src/data/site.mjs. Files land in dist/.well-known/, which this host already
+// serves (see .github/workflows/pages.yml — the Pages artifact must keep dotfiles).
+function writeDiscovery(dist) {
+  const mcpUrl = mcp.url;
+  const bookUrl = `${site.url}${routes.book}`;
+  const agentsUrl = `${site.url}${routes.agents}`;
+  const cardUrl = `${site.url}/.well-known/mcp/server-card.json`;
+  const catalogUrl = `${site.url}/.well-known/ai-catalog.json`;
+  const townList = towns.map((t) => t.name).join(", ");
+  const cardDescription = "Dryer vent cleaning in Boulder County. Pay after the visit.";
+  const createBookingDescription =
+    `Open a PENDING request, not a booking. No token. Requires name, a valid US mobile or landline (phone), and a real Boulder County street address (street and town; validated). Optional: email, service (standard or difficult), preferred_windows, sms_consent, notes. Honeypot company_website must be empty or omitted. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment. Pay after the service.`;
+
+  const manifest = {
+    name: "bcdv-agent-booking",
+    title: site.name,
+    version: "1.0.0",
+    description: `${site.name}. Fixed price $${prices.standard.amount} standard or $${prices.difficult.amount} difficult. create_booking opens a PENDING request, not a booking. No token. No payment until after the service.`,
+    transport: {
+      type: "streamable-http",
+      url: mcpUrl,
+      endpoint: mcpUrl,
+    },
+    url: mcpUrl,
+    authentication: { required: false },
+    documentation: agentsUrl,
+    website: site.url,
+    serverCard: cardUrl,
+    catalog: catalogUrl,
+    tools: [
+      {
+        name: "list_services",
+        description: `Fixed prices (standard $${prices.standard.amount}, difficult $${prices.difficult.amount}), service-area towns, phone, and the public book URL.`,
+      },
+      {
+        name: "check_availability",
+        description: "Preferred 2-hour window. Does not open a request or book a visit.",
+      },
+      {
+        name: "create_booking",
+        description: createBookingDescription,
+        inputSchema: {
+          type: "object",
+          required: ["name", "phone", "street", "town"],
+          properties: {
+            name: { type: "string" },
+            phone: { type: "string", description: "Valid US mobile or landline. The CONFIRM text must be sent from this number." },
+            email: { type: "string" },
+            street: { type: "string", description: "Real street address in Boulder County. Validated." },
+            town: { type: "string", description: `Town in the service area (${townList}), validated with street.` },
+            service: {
+              type: "string",
+              description: `standard ($${prices.standard.amount}) or difficult ($${prices.difficult.amount}: roof, long run, or upper floor)`,
+            },
+            preferred_windows: { type: "string", description: "Requested 2-hour window, for example Tue 9-11am" },
+            sms_consent: { type: "boolean" },
+            notes: { type: "string" },
+            company_website: { type: "string", description: "Honeypot. Must be empty or omitted." },
+          },
+        },
+      },
+      {
+        name: "get_booking_status",
+        description: "Look up a pending request. No token when public_id and the phone number used on the request are both sent. Other personal details are not returned.",
+        inputSchema: {
+          type: "object",
+          required: ["public_id", "phone"],
+          properties: {
+            public_id: { type: "string", description: "Job public id, for example BCDV-2026-0008" },
+            phone: { type: "string", description: "Phone number used on the request" },
+          },
+        },
+      },
+    ],
+  };
+
+  // SEP-2127 server card: identity and transport only. Tools stay on mcp.json
+  // and on the live tools/list response. Any URI is valid; this path is the
+  // one agents still probe, and the catalog below points at it.
+  const serverCard = {
+    $schema: "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+    name: "com.bouldercountydryervent/booking",
+    version: "1.0.0",
+    description: cardDescription,
+    title: site.name,
+    websiteUrl: `${site.url}/`,
+    remotes: [
+      {
+        type: "streamable-http",
+        url: mcpUrl,
+        supportedProtocolVersions: ["2024-11-05"],
+      },
+    ],
+  };
+
+  const catalog = {
+    specVersion: "1.0",
+    entries: [
+      {
+        identifier: "urn:air:bouldercountydryervent.com:mcp:booking",
+        type: "application/mcp-server-card+json",
+        url: cardUrl,
+      },
+    ],
+  };
+
+  if (cardDescription.length < 1 || cardDescription.length > 100) {
+    throw new Error(`Server card description must be 1–100 characters (got ${cardDescription.length})`);
+  }
+  if (!/^[a-zA-Z0-9.-]+\/[a-zA-Z0-9._-]+$/.test(serverCard.name)) {
+    throw new Error(`Server card name is not reverse-DNS: ${serverCard.name}`);
+  }
+  if (serverCard.remotes[0].type !== "streamable-http" || serverCard.remotes[0].url !== mcpUrl) {
+    throw new Error("Server card remote does not point at the MCP endpoint");
+  }
+
+  const llms = `# ${site.name}
+
+> Fixed-price dryer vent cleaning in Boulder County, Colorado. Standard clean $${prices.standard.amount}. Difficult clean (roof, long run, or upper floor) $${prices.difficult.amount}. Pay after the service.
+
+${site.name} cleans one residential dryer vent at a published price. Service area: ${townList}. Address: ${site.addressLine}. Phone: ${site.phoneDisplay}. ${site.hours}. Holding a time costs nothing. After the first visit, an annual plan is $${prices.annual.amount}.
+
+## Booking
+
+- [Book a visit](${bookUrl}): Request a time on the website. The page shows the published price, then asks for days that work. A person confirms a 2-hour window within one business day.
+- [Phone](${site.phoneHref}): Call ${site.phoneDisplay}.
+- [MCP endpoint](${mcpUrl}): Streamable HTTP. POST JSON-RPC (\`initialize\`, then \`tools/call\`) with Content-Type application/json and Accept application/json, text/event-stream. No token. Tools: list_services, check_availability, create_booking, get_booking_status. create_booking opens a PENDING request, not a booking. It requires a real Boulder County street address (validated) and a valid US mobile or landline; leave company_website empty. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment; pay after the service. get_booking_status needs public_id and the phone on the request.
+
+## Discovery
+
+- [MCP manifest](${site.url}/.well-known/mcp.json): Endpoint, streamable-http transport, and the tool list.
+- [MCP server card](${cardUrl}): Server card for the booking endpoint.
+- [Domain catalog](${catalogUrl}): Catalog entry that points at the server card.
+
+## Pages
+
+- [Home](${site.url}/): Overview and published prices.
+- [The service](${site.url}${routes.service}): What a cleaning includes.
+- [Pricing](${site.url}${routes.pricing}): $${prices.standard.amount} standard and $${prices.difficult.amount} difficult.
+- [Service areas](${site.url}${routes.areas}): Boulder County towns we cover.
+- [Book via agent](${agentsUrl}): Tool fields and curl examples for the MCP booking endpoint.
+- [Contact](${site.url}${routes.contact}): Phone, email, and address.
+- [About](${site.url}${routes.about}): Who does the work.
+`;
+
+  const robots = `User-agent: *
+Allow: /
+
+# Machine-readable summary: ${site.url}/llms.txt
+
+Sitemap: ${site.url}/sitemap.xml
+`;
+
+  mkdirSync(join(dist, ".well-known", "mcp"), { recursive: true });
+  writeFileSync(join(dist, "llms.txt"), llms);
+  writeFileSync(join(dist, "robots.txt"), robots);
+  writeFileSync(join(dist, ".well-known", "mcp.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+  writeFileSync(join(dist, ".well-known", "mcp", "server-card.json"), `${JSON.stringify(serverCard, null, 2)}\n`);
+  writeFileSync(join(dist, ".well-known", "ai-catalog.json"), `${JSON.stringify(catalog, null, 2)}\n`);
+}

@@ -273,26 +273,68 @@ export function creditsPage() {
 }
 
 /* ── Agents (machine-readable booking) ──────────────────────────────── */
+function mcpCurl(url, body) {
+  return `curl -sS -X POST '${url}' \\
+  -H 'Content-Type: application/json' \\
+  -H 'Accept: application/json, text/event-stream' \\
+  -d '${JSON.stringify(body)}'`;
+}
+
 export function agentsPage() {
   const mcpUrl = mcp.url;
-  const initBody = `{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"example-agent","version":"0.1.0"}}}`;
-  const listBody = `{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_services","arguments":{}}}`;
-  const curlInit = `curl -sS -X POST '${mcpUrl}' \\
-  -H 'Content-Type: application/json' \\
-  -H 'Accept: application/json, text/event-stream' \\
-  -d '${initBody}'`;
-  const curlList = `curl -sS -X POST '${mcpUrl}' \\
-  -H 'Content-Type: application/json' \\
-  -H 'Accept: application/json, text/event-stream' \\
-  -d '${listBody}'`;
+  const curlInit = mcpCurl(mcpUrl, {
+    jsonrpc: "2.0",
+    id: 1,
+    method: "initialize",
+    params: {
+      protocolVersion: "2025-03-26",
+      capabilities: {},
+      clientInfo: { name: "example-agent", version: "0.1.0" },
+    },
+  });
+  const curlList = mcpCurl(mcpUrl, {
+    jsonrpc: "2.0",
+    id: 2,
+    method: "tools/call",
+    params: { name: "list_services", arguments: {} },
+  });
+  const curlBook = mcpCurl(mcpUrl, {
+    jsonrpc: "2.0",
+    id: 3,
+    method: "tools/call",
+    params: {
+      name: "create_booking",
+      arguments: {
+        name: "Jordan Lee",
+        phone: "7205550100",
+        email: "jordan@example.com",
+        street: "100 Example St",
+        town: "Louisville",
+        service: "standard",
+        preferred_windows: "Tue 9-11am",
+        sms_consent: true,
+        company_website: "",
+      },
+    },
+  });
+  const curlStatus = mcpCurl(mcpUrl, {
+    jsonrpc: "2.0",
+    id: 4,
+    method: "tools/call",
+    params: {
+      name: "get_booking_status",
+      arguments: { public_id: "BCDV-2026-0008", phone: "7205550100" },
+    },
+  });
 
   const inner = `
 <p>Third-party agents can book ${esc(site.name)} services over MCP on behalf of a homeowner. This is an operations note, not a second booking funnel. Homeowners should keep using the <a href="${routes.book}">normal Book flow</a> or call <a href="${site.phoneHref}">${site.phoneDisplay}</a>.</p>
 
 <h2>MCP endpoint</h2>
 <p>HTTPS: <code>${esc(mcpUrl)}</code></p>
-<p>The hostname above is the durable named Cloudflare tunnel. The path is <code>${esc(mcp.path)}</code> on the same public ops host as book ingest. Primary customer booking remains the Book flow on this site.</p>
-<p>Human book URL: <a href="${site.url}/">${esc(site.url)}/</a><br>Phone: <a href="${site.phoneHref}">${site.phoneDisplay}</a></p>
+<p>Streamable HTTP. GET returns a short JSON note. Booking calls are POST JSON-RPC (<code>initialize</code>, then <code>tools/call</code>) on that same URL. The path is <code>${esc(mcp.path)}</code> on the same public ops host as book ingest. Primary customer booking remains the Book flow on this site.</p>
+<p>Human book URL: <a href="${routes.book}">${esc(site.url)}${routes.book}</a><br>Phone: <a href="${site.phoneHref}">${site.phoneDisplay}</a></p>
+<p>Discovery files: <a href="/llms.txt">/llms.txt</a>, <a href="/.well-known/mcp.json">/.well-known/mcp.json</a>, <a href="/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a>.</p>
 
 <h2>Tools</h2>
 <div class="table-scroll"><table>
@@ -301,38 +343,41 @@ export function agentsPage() {
 <tr>
   <td><code>list_services</code></td>
   <td>Public</td>
-  <td>Fixed prices: standard $${prices.standard.amount}, difficult $${prices.difficult.amount}. Boulder County service area.</td>
+  <td>Fixed prices: standard $${prices.standard.amount}, difficult $${prices.difficult.amount} (roof, long run, or upper floor). Boulder County service area.</td>
 </tr>
 <tr>
   <td><code>check_availability</code></td>
   <td>Public</td>
-  <td>Stub: request a preferred 2-hour window. We confirm within 1 business day.</td>
+  <td>Stub: request a preferred 2-hour window. This does not open a request.</td>
 </tr>
 <tr>
   <td><code>create_booking</code></td>
-  <td>Bearer token</td>
-  <td>Fields aligned with the web Book flow: <code>name</code>, <code>phone</code>, <code>email</code>, <code>street</code>, <code>town</code>, <code>service</code> (<code>standard</code> or <code>difficult</code>), <code>preferred_windows</code>, <code>sms_consent</code>. Optional honeypot <code>company_website</code> must be empty.</td>
+  <td>Public</td>
+  <td>No token. Opens a PENDING request, not a booking. Required: <code>name</code>, <code>phone</code> (a valid US mobile or landline), and <code>street</code> plus <code>town</code> (a real Boulder County address; it is validated). Also send <code>service</code> (<code>standard</code> or <code>difficult</code>), and optionally <code>email</code>, <code>preferred_windows</code>, <code>sms_consent</code>, and <code>notes</code>. Honeypot <code>company_website</code> must be empty or omitted. The response includes a short confirmation code. Strict per-IP and daily rate limits. No payment. Pay after the service.</td>
 </tr>
 <tr>
   <td><code>get_booking_status</code></td>
-  <td>Bearer token</td>
-  <td>Lookup by <code>public_id</code> (for example <code>BCDV-YYYY-NNNN</code>). The response does not include personal details.</td>
+  <td>Public</td>
+  <td>No token. Pass <code>public_id</code> (for example <code>BCDV-YYYY-NNNN</code>) and <code>phone</code> (the phone number used on the request). The response does not include other personal details.</td>
 </tr>
 </tbody>
 </table></div>
 
-<h2>Auth</h2>
-<p>Protected tools accept <code>Authorization: Bearer &lt;token&gt;</code> or <code>X-BCDV-Agent-Token</code>. Tokens are not published here. Request a booking token from <a href="mailto:${site.email}">${esc(site.email)}</a> with your agent name and intended use.</p>
+<h2>Access</h2>
+<p>No token. Any agent can call <code>list_services</code>, <code>check_availability</code>, <code>create_booking</code>, and <code>get_booking_status</code>. Do not send an Authorization header.</p>
+<p><code>create_booking</code> does not book a visit. It opens a PENDING request and the response includes a short confirmation code. The homeowner must text <code>CONFIRM</code> and that code (for example <code>CONFIRM 4821</code>) from the same phone to <a href="${site.phoneHref}">${site.phoneDisplay}</a> within 48 hours. If they do not, the request expires and is never contacted. Leave <code>company_website</code> empty. Strict per-IP and daily rate limits apply. Nothing is charged to hold a time. Pay after the service.</p>
 
 <h2>Example</h2>
-<p>Public JSON-RPC over HTTPS. <code>initialize</code>, then <code>tools/call</code> for <code>list_services</code> (no token):</p>
+<p>Public JSON-RPC over HTTPS. No token. <code>initialize</code>, then <code>tools/call</code>. A successful <code>create_booking</code> returns a PENDING request and a short confirmation code. The sample street and phone are placeholders: substitute a real Boulder County street address and a valid US mobile or landline, or the call is rejected. The homeowner then texts CONFIRM and the code from that phone to ${site.phoneDisplay} within 48 hours. The status id below is a sample.</p>
 <pre><code>${esc(curlInit)}</code></pre>
 <pre><code>${esc(curlList)}</code></pre>
+<pre><code>${esc(curlBook)}</code></pre>
+<pre><code>${esc(curlStatus)}</code></pre>
 
 <h2>Non-goals</h2>
 <ul>
   <li>Payments are not in MCP. Nothing is charged to hold a time; payment is after the visit.</li>
-  <li>A booking created this way is still a request. A person confirms the window by text or email.</li>
+  <li>This call does not create a booking. Without the CONFIRM text within 48 hours, the request expires and is never contacted.</li>
   <li>Lead time is typically 3&#8211;4 business days or more.</li>
 </ul>
 <p><a href="${routes.book}">Book on the website</a> if you are scheduling for yourself.</p>`;
