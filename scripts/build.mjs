@@ -149,13 +149,15 @@ function writeDiscovery(dist) {
   const cardUrl = `${site.url}/.well-known/mcp/server-card.json`;
   const catalogUrl = `${site.url}/.well-known/ai-catalog.json`;
   const townList = towns.map((t) => t.name).join(", ");
-  const cardDescription = "Book a dryer vent cleaning in Boulder County. Pay after the visit.";
+  const cardDescription = "Dryer vent cleaning in Boulder County. Pay after the visit.";
+  const createBookingDescription =
+    `Open a PENDING request, not a booking. No token. Requires name, a valid US mobile or landline (phone), and a real Boulder County street address (street and town; validated). Optional: email, service (standard or difficult), preferred_windows, sms_consent, notes. Honeypot company_website must be empty or omitted. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment. Pay after the service.`;
 
   const manifest = {
     name: "bcdv-agent-booking",
     title: site.name,
     version: "1.0.0",
-    description: `${site.name} booking. Fixed price $${prices.standard.amount} standard or $${prices.difficult.amount} difficult. No token. No payment to hold a time.`,
+    description: `${site.name}. Fixed price $${prices.standard.amount} standard or $${prices.difficult.amount} difficult. create_booking opens a PENDING request, not a booking. No token. No payment until after the service.`,
     transport: {
       type: "streamable-http",
       url: mcpUrl,
@@ -174,20 +176,20 @@ function writeDiscovery(dist) {
       },
       {
         name: "check_availability",
-        description: "Request a preferred 2-hour window. A person confirms within one business day.",
+        description: "Preferred 2-hour window. Does not open a request or book a visit.",
       },
       {
         name: "create_booking",
-        description: "Create a booking lead. No token. Rate-limited. No payment. A person confirms the 2-hour window within one business day. Pay after the service.",
+        description: createBookingDescription,
         inputSchema: {
           type: "object",
           required: ["name", "phone", "street", "town"],
           properties: {
             name: { type: "string" },
-            phone: { type: "string" },
+            phone: { type: "string", description: "Valid US mobile or landline. The CONFIRM text must be sent from this number." },
             email: { type: "string" },
-            street: { type: "string" },
-            town: { type: "string", description: `Town in the service area: ${townList}` },
+            street: { type: "string", description: "Real street address in Boulder County. Validated." },
+            town: { type: "string", description: `Town in the service area (${townList}), validated with street.` },
             service: {
               type: "string",
               description: `standard ($${prices.standard.amount}) or difficult ($${prices.difficult.amount}: roof, long run, or upper floor)`,
@@ -201,13 +203,13 @@ function writeDiscovery(dist) {
       },
       {
         name: "get_booking_status",
-        description: "Look up a booking. No token when public_id and the phone number used on the booking are both sent. Other personal details are not returned.",
+        description: "Look up a pending request. No token when public_id and the phone number used on the request are both sent. Other personal details are not returned.",
         inputSchema: {
           type: "object",
           required: ["public_id", "phone"],
           properties: {
             public_id: { type: "string", description: "Job public id, for example BCDV-2026-0008" },
-            phone: { type: "string", description: "Phone number used on the booking" },
+            phone: { type: "string", description: "Phone number used on the request" },
           },
         },
       },
@@ -258,13 +260,13 @@ function writeDiscovery(dist) {
 
 > Fixed-price dryer vent cleaning in Boulder County, Colorado. Standard clean $${prices.standard.amount}. Difficult clean (roof, long run, or upper floor) $${prices.difficult.amount}. Pay after the service.
 
-${site.name} cleans one residential dryer vent at a published price. Service area: ${townList}. Address: ${site.addressLine}. Phone: ${site.phoneDisplay}. ${site.hours}. A person confirms a requested 2-hour window within one business day. Holding a time costs nothing. After the first visit, an annual plan is $${prices.annual.amount}.
+${site.name} cleans one residential dryer vent at a published price. Service area: ${townList}. Address: ${site.addressLine}. Phone: ${site.phoneDisplay}. ${site.hours}. Holding a time costs nothing. After the first visit, an annual plan is $${prices.annual.amount}.
 
 ## Booking
 
-- [Book a visit](${bookUrl}): Request a time on the website. The page shows the published price, then asks for days that work.
+- [Book a visit](${bookUrl}): Request a time on the website. The page shows the published price, then asks for days that work. A person confirms a 2-hour window within one business day.
 - [Phone](${site.phoneHref}): Call ${site.phoneDisplay}.
-- [MCP endpoint](${mcpUrl}): Streamable HTTP. POST JSON-RPC (\`initialize\`, then \`tools/call\`) with Content-Type application/json and Accept application/json, text/event-stream. No token. Tools: list_services, check_availability, create_booking, get_booking_status. create_booking needs name, phone, street, and town; leave company_website empty. get_booking_status needs public_id and the phone on the booking.
+- [MCP endpoint](${mcpUrl}): Streamable HTTP. POST JSON-RPC (\`initialize\`, then \`tools/call\`) with Content-Type application/json and Accept application/json, text/event-stream. No token. Tools: list_services, check_availability, create_booking, get_booking_status. create_booking opens a PENDING request, not a booking. It requires a real Boulder County street address (validated) and a valid US mobile or landline; leave company_website empty. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment; pay after the service. get_booking_status needs public_id and the phone on the request.
 
 ## Discovery
 

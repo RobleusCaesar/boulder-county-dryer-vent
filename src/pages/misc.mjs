@@ -348,27 +348,27 @@ export function agentsPage() {
 <tr>
   <td><code>check_availability</code></td>
   <td>Public</td>
-  <td>Stub: request a preferred 2-hour window. A person confirms within 1 business day.</td>
+  <td>Stub: request a preferred 2-hour window. This does not open a request.</td>
 </tr>
 <tr>
   <td><code>create_booking</code></td>
   <td>Public</td>
-  <td>No token. Required: <code>name</code>, <code>phone</code>, <code>street</code>, <code>town</code>. Also send <code>service</code> (<code>standard</code> or <code>difficult</code>), and optionally <code>email</code>, <code>preferred_windows</code>, <code>sms_consent</code>, and <code>notes</code>. Honeypot <code>company_website</code> must be empty or omitted. Rate-limited. No payment. A person confirms the 2-hour window within one business day. Pay after the service.</td>
+  <td>No token. Opens a PENDING request, not a booking. Required: <code>name</code>, <code>phone</code> (a valid US mobile or landline), and <code>street</code> plus <code>town</code> (a real Boulder County address; it is validated). Also send <code>service</code> (<code>standard</code> or <code>difficult</code>), and optionally <code>email</code>, <code>preferred_windows</code>, <code>sms_consent</code>, and <code>notes</code>. Honeypot <code>company_website</code> must be empty or omitted. The response includes a short confirmation code. Strict per-IP and daily rate limits. No payment. Pay after the service.</td>
 </tr>
 <tr>
   <td><code>get_booking_status</code></td>
   <td>Public</td>
-  <td>No token. Pass <code>public_id</code> (for example <code>BCDV-YYYY-NNNN</code>) and <code>phone</code> (the phone number used on the booking). The response does not include other personal details.</td>
+  <td>No token. Pass <code>public_id</code> (for example <code>BCDV-YYYY-NNNN</code>) and <code>phone</code> (the phone number used on the request). The response does not include other personal details.</td>
 </tr>
 </tbody>
 </table></div>
 
 <h2>Access</h2>
 <p>No token. Any agent can call <code>list_services</code>, <code>check_availability</code>, <code>create_booking</code>, and <code>get_booking_status</code>. Do not send an Authorization header.</p>
-<p><code>create_booking</code> is rate-limited. Leave <code>company_website</code> empty. Nothing is charged to hold a time. A person confirms the 2-hour window within one business day, by text or email. Pay after the service.</p>
+<p><code>create_booking</code> does not book a visit. It opens a PENDING request and the response includes a short confirmation code. The homeowner must text <code>CONFIRM</code> and that code (for example <code>CONFIRM 4821</code>) from the same phone to <a href="${site.phoneHref}">${site.phoneDisplay}</a> within 48 hours. If they do not, the request expires and is never contacted. Leave <code>company_website</code> empty. Strict per-IP and daily rate limits apply. Nothing is charged to hold a time. Pay after the service.</p>
 
 <h2>Example</h2>
-<p>Public JSON-RPC over HTTPS. No token. <code>initialize</code>, then <code>tools/call</code>. Substitute the homeowner&#8217;s details in <code>create_booking</code>. The status id below is a sample.</p>
+<p>Public JSON-RPC over HTTPS. No token. <code>initialize</code>, then <code>tools/call</code>. A successful <code>create_booking</code> returns a PENDING request and a short confirmation code. The sample street and phone are placeholders: substitute a real Boulder County street address and a valid US mobile or landline, or the call is rejected. The homeowner then texts CONFIRM and the code from that phone to ${site.phoneDisplay} within 48 hours. The status id below is a sample.</p>
 <pre><code>${esc(curlInit)}</code></pre>
 <pre><code>${esc(curlList)}</code></pre>
 <pre><code>${esc(curlBook)}</code></pre>
@@ -377,7 +377,7 @@ export function agentsPage() {
 <h2>Non-goals</h2>
 <ul>
   <li>Payments are not in MCP. Nothing is charged to hold a time; payment is after the visit.</li>
-  <li>A booking created this way is still a request. A person confirms the window by text or email.</li>
+  <li>This call does not create a booking. Without the CONFIRM text within 48 hours, the request expires and is never contacted.</li>
   <li>Lead time is typically 3&#8211;4 business days or more.</li>
 </ul>
 <p><a href="${routes.book}">Book on the website</a> if you are scheduling for yourself.</p>`;

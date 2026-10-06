@@ -68,6 +68,13 @@ jobs:
           grep -q 'get_booking_status' dist/agents/index.html
           grep -q 'company_website' dist/agents/index.html
           grep -q 'No token' dist/agents/index.html
+          grep -q 'PENDING' dist/agents/index.html
+          grep -q 'CONFIRM 4821' dist/agents/index.html
+          grep -q '48 hours' dist/agents/index.html
+          grep -q 'never contacted' dist/agents/index.html
+          grep -q 'valid US mobile or landline' dist/agents/index.html
+          grep -q 'real Boulder County' dist/agents/index.html
+          ! grep -q 'one business day' dist/agents/index.html
           grep -q '7205550100' dist/agents/index.html
           grep -q 'public_id' dist/agents/index.html
           ! grep -q 'X-BCDV-Agent-Token' dist/agents/index.html
@@ -91,6 +98,11 @@ jobs:
           grep -q '$169' dist/llms.txt
           grep -q '(720) 605-3198' dist/llms.txt
           grep -q '6395 Gunpark Dr' dist/llms.txt
+          grep -q 'PENDING' dist/llms.txt
+          grep -q 'CONFIRM <code>' dist/llms.txt
+          grep -q '48 hours' dist/llms.txt
+          grep -q 'never contacted' dist/llms.txt
+          grep -q 'within one business day' dist/llms.txt
           ! grep -q '$99' dist/llms.txt
           ! grep -q '866' dist/llms.txt
           ! grep -q '$99' dist/.well-known/mcp.json
@@ -102,6 +114,12 @@ jobs:
           grep -q 'create_booking' dist/.well-known/mcp.json
           grep -q 'get_booking_status' dist/.well-known/mcp.json
           grep -q 'company_website' dist/.well-known/mcp.json
+          grep -q 'PENDING request, not a booking' dist/.well-known/mcp.json
+          grep -q 'CONFIRM <code>' dist/.well-known/mcp.json
+          grep -q '48 hours' dist/.well-known/mcp.json
+          grep -q 'never contacted' dist/.well-known/mcp.json
+          grep -q 'valid US mobile or landline' dist/.well-known/mcp.json
+          grep -q 'Strict per-IP and daily rate limits' dist/.well-known/mcp.json
           grep -q 'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json' dist/.well-known/mcp/server-card.json
           grep -q 'streamable-http' dist/.well-known/mcp/server-card.json
           grep -q 'https://api.bouldercountydryervent.com/mcp' dist/.well-known/mcp/server-card.json
