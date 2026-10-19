@@ -6,7 +6,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { site, routes, towns, mcp, prices } from "../src/data/site.mjs";
-import { esc, redirectPage } from "../src/lib/html.mjs";
+import { attr, esc, redirectPage } from "../src/lib/html.mjs";
 import { homePage } from "../src/pages/home.mjs";
 import { servicePage } from "../src/pages/service.mjs";
 import { pricingPage } from "../src/pages/pricing.mjs";
@@ -42,10 +42,22 @@ function renderMarkdown(md) {
     esc(t)
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, href) => `<a href="${href}">${text}</a>`)
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  // Block images: ![alt](/img/name.jpg) or ![alt](/img/name.jpg "caption").
+  // The hero still comes from frontmatter. This is only for figures in the body.
+  const imageBlock = (line) => {
+    const m = line.match(/^!\[([^\]]*)\]\((\/img\/[A-Za-z0-9][A-Za-z0-9._/-]*\.jpg)(?:\s+"([^"]*)")?\)$/);
+    if (!m) return null;
+    const cap = m[3]
+      ? `<figcaption class="cap" style="padding-left:0;padding-right:0">${esc(m[3])}</figcaption>`
+      : "";
+    return `<figure class="post-inline"><img src="${m[2]}" alt="${attr(m[1])}" width="1280" height="720">${cap}</figure>`;
+  };
   const out = [];
   let list = null;
   const flush = () => { if (list) { out.push(`<ul>${list.join("")}</ul>`); list = null; } };
   for (const line of md.split("\n")) {
+    const img = imageBlock(line.trim());
+    if (img) { flush(); out.push(img); continue; }
     if (line.startsWith("## ")) {
       flush();
       const m = line.slice(3).match(/^(\d+)\.\s+(.*)$/);
