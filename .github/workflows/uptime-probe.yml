@@ -1,10 +1,12 @@
 # External uptime probe. Independent of the droplet and any other monitor host.
 # GitHub may start the cron late; a failing pass rechecks inside this run.
+# Schedule only. This workflow does not run on push.
 name: Uptime probe
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    # Minutes 3, 13, 23, 33, 43, 53. Stays off the top of the hour.
+    - cron: "3-59/10 * * * *"
   workflow_dispatch:
 
 # One run at a time. A second trigger waits; an older waiting run is dropped
@@ -23,10 +25,7 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Unit tests
-        run: python3 ops/monitor/test_outside_probe.py
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Restore probe state
         run: bash ops/monitor/git_state.sh restore "$RUNNER_TEMP/bcdv-probe"
@@ -34,6 +33,8 @@ jobs:
       - name: Run outside probe
         id: probe
         env:
+          # Repository Actions variable. Exactly "true" sends texts.
+          # This job sets no environment, so an environment variable is not read.
           ALERTS_ENABLED: ${{ vars.ALERTS_ENABLED }}
           TELNYX_API_KEY: ${{ secrets.TELNYX_API_KEY }}
           OWNER_PHONE: ${{ secrets.OWNER_PHONE }}
@@ -60,6 +61,9 @@ jobs:
           echo "exit_code=${rc}" >> "$GITHUB_OUTPUT"
           exit "${rc}"
 
+      # Exit 1 is a persist failure (or a usage error). Retry the push.
+      # Exits 0, 2, and 3 have a state file worth keeping. A retry that
+      # finds nothing new prints "probe state unchanged" and succeeds.
       - name: Persist probe state
-        if: always() && (steps.probe.outputs.exit_code == '0' || steps.probe.outputs.exit_code == '2' || steps.probe.outputs.exit_code == '3')
+        if: always() && (steps.probe.outputs.exit_code == '0' || steps.probe.outputs.exit_code == '1' || steps.probe.outputs.exit_code == '2' || steps.probe.outputs.exit_code == '3')
         run: bash ops/monitor/git_state.sh persist "$RUNNER_TEMP/bcdv-probe"

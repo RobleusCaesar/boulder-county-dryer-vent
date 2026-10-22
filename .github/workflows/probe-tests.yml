@@ -1,0 +1,22 @@
+# Unit tests for the outside probe. Does not build or deploy the site.
+name: Probe tests
+
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - probe-state
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Outside probe unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Unit tests
+        run: python3 ops/monitor/test_outside_probe.py

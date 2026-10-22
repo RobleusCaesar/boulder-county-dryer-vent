@@ -5,18 +5,23 @@ Runs from somewhere other than the droplet (GitHub Actions, or a shell).
 The droplet cannot see itself go down. Read-only GETs of public URLs.
 
 Log-only unless the environment variable ALERTS_ENABLED is exactly "true".
-When it is, a down component that stays down for 10 minutes is texted once
-via the Telnyx SMS API, and a single recovery text is sent after it returns.
+When it is, a down component that stays down for 10 continuous minutes is
+texted once via the Telnyx SMS API, and a single recovery text is sent after
+it returns. A failed text is not retried. Time the probe did not observe does
+not count toward those 10 minutes, and the incident stays open across a long
+gap so there is still one down text and one recovery.
 Secrets are read from the environment and are never written to state, the
 outage log, or stdout.
 
 Exit: 0 up (or only droplet-owned), 2 a component still down, 3 this vantage
-cannot reach neutral sites (no verdict), 1 usage or unexpected error.
+cannot reach neutral sites (no verdict), 1 usage, persist failure, or
+unexpected error.
 """
 import argparse
 import fcntl
 import json
 import os
+import re
 import shlex
 import subprocess
 import sys
@@ -36,10 +41,10 @@ HB_FUTURE_SKEW = 5 * 60
 # Millisecond timestamps and other non-second values sit above this.
 HB_EPOCH_MAX = 10_000_000_000
 ALERT_AFTER = 10 * 60
-# Prototype used 20 min for a paused monitor box. GitHub's scheduler is often
-# later than that; a short gap would close the incident and text a second time
-# for the same outage. A multi-hour silence still closes at the last look.
-FREEZE_GAP = 3 * 60 * 60
+# Unobserved time longer than this does not count toward the 10 continuous
+# minutes. The incident itself stays open, so a long gap still yields one
+# down text and one recovery.
+CONTINUITY_GAP = 15 * 60
 TELNYX_URL = "https://api.telnyx.com/v2/messages"
 SECRET_ENV = ("TELNYX_API_KEY", "OWNER_PHONE", "FROM_NUMBER")
 
@@ -71,10 +76,14 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 OPENER = urllib.request.build_opener(NoRedirect)
+PERSIST_FAILED = False
+TOKEN_RE = re.compile(r"(?:ghp_|gho_|ghs_|github_pat_|glpat-)[A-Za-z0-9_]+")
 
 
 def alerts_enabled():
-    return os.environ.get("ALERTS_ENABLED", "").strip().lower() == "true"
+    # Repository Actions variable only. Exactly "true"; "True", "1", and
+    # whitespace stay log-only.
+    return os.environ.get("ALERTS_ENABLED") == "true"
 
 
 def secret_values():
@@ -87,7 +96,7 @@ def secret_values():
 
 
 def redact(text):
-    out = str(text)
+    out = TOKEN_RE.sub("[redacted]", str(text))
     for secret in secret_values():
         if secret in out:
             out = out.replace(secret, "[redacted]")
@@ -146,8 +155,12 @@ def fetch(url, timeout=10, limit=65536):
         location = headers.get("Location", "") if headers else ""
         date_hdr = headers.get("Date") if headers else None
         err = f"redirect to {location}" if location else None
+        try:
+            body = exc.read(limit).decode("utf-8", "replace")
+        except Exception:
+            body = ""
         elapsed = int((time.time() - started) * 1000)
-        return exc.code, "", err, elapsed, date_hdr
+        return exc.code, body, err, elapsed, date_hdr
     except Exception as exc:
         elapsed = int((time.time() - started) * 1000)
         return None, "", clip(f"{type(exc).__name__}: {exc}", 160), elapsed, None
@@ -176,16 +189,35 @@ def judge_hb(body, date_hdr, ms):
         return "down", f"hb stale {age / 60:.0f} min (droplet health timer not running?)"
     if payload.get("ok") is not True:
         # Fresh heartbeat, not-ok: the droplet alerts on its own. Log only.
-        failing = payload.get("failing")
-        return "droplet_owns", clip(
-            f"hb fresh ({age / 60:.1f} min) but ok={payload.get('ok')!r} failing={failing!r}"
-        )
-    return "ok", f"hb ok, age {age / 60:.1f} min via Date ({ms} ms)"
+        return "droplet_owns", droplet_false_detail(payload, 200, age)
+    return "ok", f"hb ok, age {age / 60:.1f} min via Date ({ms} ms); droplet ok: true"
+
+
+def json_object(body):
+    if not body:
+        return None
+    try:
+        payload = json.loads(body)
+    except Exception:
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def droplet_false_detail(payload, code, age=None):
+    failing = payload.get("failing")
+    status = f"HTTP {code}" if code is not None else "no response"
+    fresh = f", age {age / 60:.1f} min" if isinstance(age, (int, float)) else ""
+    return clip(f"{status} droplet ok: false{fresh} failing={failing!r}")
 
 
 def check_once(name, url, want, kind):
     """Return (status, detail). status is ok, down, or droplet_owns."""
     code, body, err, ms, date_hdr = fetch(url)
+    # A heartbeat that says ok:false is the droplet's alert, even on HTTP 503.
+    if kind == "hb":
+        payload = json_object(body)
+        if payload is not None and payload.get("ok") is False:
+            return "droplet_owns", droplet_false_detail(payload, code)
     if code is None:
         return "down", f"{err} ({ms} ms)"
     if code != want:
@@ -244,7 +276,9 @@ def load_state(path):
     return {}
 
 
-def save_state(path, state):
+def save_state(path, state, *, hook=True):
+    """Write state. Return False when the persist hook fails. Never swallow that."""
+    global PERSIST_FAILED
     parent = os.path.dirname(os.path.abspath(path))
     fd, tmp = tempfile.mkstemp(dir=parent, prefix=".probe-")
     try:
@@ -258,18 +292,25 @@ def save_state(path, state):
         except OSError:
             pass
         raise
-    hook = os.environ.get("PROBE_AFTER_SAVE", "").strip()
-    if not hook or os.environ.get("PROBE_INSIDE_SAVE") == "1":
-        return
+    command = os.environ.get("PROBE_AFTER_SAVE", "").strip()
+    if not hook or not command or os.environ.get("PROBE_INSIDE_SAVE") == "1":
+        return True
     os.environ["PROBE_INSIDE_SAVE"] = "1"
     try:
-        completed = subprocess.run(shlex.split(hook), check=False)
+        completed = subprocess.run(shlex.split(command), check=False)
         if completed.returncode != 0:
+            PERSIST_FAILED = True
+            print("::error::probe state persist failed", file=sys.stderr, flush=True)
             progress({"event": "state_persist_failed", "exit": completed.returncode})
+            return False
     except Exception as exc:
+        PERSIST_FAILED = True
+        print("::error::probe state persist failed", file=sys.stderr, flush=True)
         progress({"event": "state_persist_failed", "detail": clip(f"{type(exc).__name__}: {exc}", 120)})
+        return False
     finally:
         os.environ.pop("PROBE_INSIDE_SAVE", None)
+    return True
 
 
 def mt(ts):
@@ -333,23 +374,32 @@ def log_close(path, ref, comp, since, end, detail, resolution):
             handle.write(row)
 
 
-def resolution_text(texted, recovery, gap=False):
-    base = "end unknown: probe gap, last seen down" if gap else "self-recovered"
-    if gap and texted and alerts_enabled():
-        extra = "; down text sent; no recovery text (probe gap)"
-    elif gap and texted:
-        extra = "; LOG-ONLY: 10-min text would have gone out (not sent)"
-    elif gap:
-        extra = "; no text (probe gap)"
-    elif texted and alerts_enabled() and recovery == "sent":
+def resolution_text(texted, would, recovery, droplet=None):
+    if droplet is False:
+        base = "standing down; droplet ok: false"
+    elif droplet is True:
+        base = "self-recovered; droplet ok: true"
+    else:
+        base = "self-recovered"
+    if texted and recovery == "sent":
         extra = "; down text sent; recovery text sent"
-    elif texted and alerts_enabled() and recovery == "pending":
-        extra = "; down text sent; recovery text pending"
+    elif texted and recovery == "failed":
+        extra = "; down text sent; recovery text failed"
     elif texted:
+        extra = "; down text sent"
+    elif would:
         extra = "; LOG-ONLY: 10-min text would have gone out (not sent)"
     else:
         extra = "; no text (under 10 min)"
     return base + extra
+
+
+def recovery_message(name, mins, status):
+    if name == "api_hb" and status == "droplet_owns":
+        return f"BCDV outside check: api_hb standing down after {mins} min; droplet ok: false"
+    if name == "api_hb":
+        return f"BCDV outside check: api_hb recovered after {mins} min; droplet ok: true"
+    return f"BCDV outside check: {name} recovered after {mins} min"
 
 
 def send_text(message):
@@ -392,97 +442,88 @@ def send_text(message):
 
 
 def note_down(cs, name, down, detail, events, state, state_path):
+    """One down notice per incident. The sent flag is stored before the SMS."""
     message = clip(
         f"BCDV outside check: {name} down {down / 60:.0f} min ({detail})",
         480,
     )
+    down_min = round(down / 60, 1)
+    if not alerts_enabled():
+        cs["would_texted"] = True
+        events.append({
+            "event": "would_text",
+            "component": name,
+            "down_min": down_min,
+            "message": message,
+        })
+        save_state(state_path, state)
+        return
+    # Persist first. A failed send must not be tried again, and a failed
+    # persist must not send a text the next run cannot see was claimed.
+    cs["texted"] = True
+    if not save_state(state_path, state):
+        cs["texted"] = False
+        save_state(state_path, state, hook=False)
+        events.append({
+            "event": "text_failed",
+            "component": name,
+            "down_min": down_min,
+            "detail": "probe state persist failed",
+        })
+        return
+    ok, info = send_text(message)
     event = {
-        "event": "would_text",
+        "event": "texted" if ok else "text_failed",
         "component": name,
-        "down_min": round(down / 60, 1),
-        "message": message,
+        "down_min": down_min,
+        "detail": info,
     }
-    if alerts_enabled():
-        ok, info = send_text(message)
-        if not ok:
-            events.append({
-                "event": "text_failed",
-                "component": name,
-                "down_min": round(down / 60, 1),
-                "detail": info,
-            })
-            return
-        cs["texted"] = True
-        event["event"] = "texted"
-        event["detail"] = info
-    else:
-        cs["texted"] = True
     events.append(event)
-    save_state(state_path, state)
 
 
-def note_recovery(cs, name, now, events, state, state_path):
-    """Return sent, pending, log-only, or no-text. One recovery text if we texted the down."""
+def note_recovery(cs, name, now, events, state, state_path, status):
+    """Return sent, failed, persist-failed, or no-text. No second attempt."""
     mins = max(0, round((now - cs["down_since"]) / 60))
-    message = f"BCDV outside check: {name} recovered after {mins} min"
+    message = recovery_message(name, mins, status)
     if not cs.get("texted"):
         return "no-text"
-    if not alerts_enabled():
-        return "log-only"
-    pending = state.get("pending_recovery")
-    if isinstance(pending, dict) and name in pending:
-        return "pending"
     if cs.get("recovery_sent"):
         return "sent"
+    if not alerts_enabled():
+        return "no-text"
+    cs["recovery_sent"] = True
+    if not save_state(state_path, state):
+        cs["recovery_sent"] = False
+        save_state(state_path, state, hook=False)
+        events.append({
+            "event": "recovery_text_failed",
+            "component": name,
+            "detail": "probe state persist failed",
+        })
+        return "persist-failed"
     ok, info = send_text(message)
     if not ok:
-        # recovery_sent blocks a second SMS; pending_recovery retries this one.
-        cs["recovery_sent"] = True
-        pending = state.setdefault("pending_recovery", {})
-        pending[name] = {"message": message}
         events.append({"event": "recovery_text_failed", "component": name, "detail": info})
-        save_state(state_path, state)
-        return "pending"
-    cs["recovery_sent"] = True
-    pending = state.get("pending_recovery")
-    if isinstance(pending, dict):
-        pending.pop(name, None)
-        if not pending:
-            state.pop("pending_recovery", None)
+        return "failed"
     events.append({
         "event": "texted_recovery",
         "component": name,
         "down_min": mins,
         "detail": info,
     })
-    save_state(state_path, state)
     return "sent"
 
 
-def flush_pending(state, events, state_path):
-    pending = state.get("pending_recovery")
-    if not isinstance(pending, dict) or not pending or not alerts_enabled():
+def close_component(state, name, cs, now, events, args, status):
+    recovery = note_recovery(cs, name, now, events, state, args.state, status)
+    if recovery == "persist-failed":
+        # The sent flag never landed. Keep the incident so a later run can
+        # send the one recovery, instead of closing with no record of it.
         return
-    for name in list(pending):
-        item = pending.get(name) or {}
-        message = item.get("message") if isinstance(item, dict) else None
-        if not message:
-            pending.pop(name, None)
-            continue
-        ok, info = send_text(message)
-        if ok:
-            pending.pop(name, None)
-            events.append({"event": "texted_recovery", "component": name, "detail": info})
-            if not pending:
-                state.pop("pending_recovery", None)
-            save_state(state_path, state)
-        else:
-            events.append({"event": "recovery_text_failed", "component": name, "detail": info})
-
-
-def close_component(state, name, cs, now, events, args):
-    recovery = note_recovery(cs, name, now, events, state, args.state)
     ref = cs.get("ref") or f"outside-probe:{name}:{int(cs['down_since'])}"
+    droplet = None
+    if name == "api_hb":
+        droplet = status != "droplet_owns"
     if args.log:
         log_close(
             args.log,
@@ -491,16 +532,47 @@ def close_component(state, name, cs, now, events, args):
             cs["down_since"],
             now,
             cs.get("last_detail") or "",
-            resolution_text(bool(cs.get("texted")), recovery),
+            resolution_text(
+                bool(cs.get("texted")),
+                bool(cs.get("would_texted")),
+                recovery,
+                droplet,
+            ),
         )
     events.append({
         "event": "recovered",
         "component": name,
         "down_min": round((now - cs["down_since"]) / 60, 1),
-        "would_text_recovery": bool(cs.get("texted")) and not alerts_enabled(),
+        "would_text_recovery": (
+            bool(cs.get("would_texted"))
+            and not bool(cs.get("texted"))
+            and not alerts_enabled()
+        ),
         "texted_recovery": recovery == "sent",
     })
     state["components"].pop(name, None)
+
+
+def note_continuity(cs, name, now, events):
+    """Start the 10-minute clock over when this incident was not observed lately.
+
+    The incident, its ref, and the texted flag stay. Unobserved time does not
+    count as continuous downtime.
+    """
+    last_seen = cs.get("last_seen", cs.get("down_since"))
+    try:
+        gap = now - float(last_seen)
+    except (TypeError, ValueError):
+        return False
+    if gap <= CONTINUITY_GAP:
+        return False
+    cs["down_since"] = now
+    events.append({
+        "event": "continuity_reset",
+        "component": name,
+        "gap_min": round(gap / 60, 1),
+    })
+    return True
 
 
 def run_pass(checks, state, args, now, events, results):
@@ -517,51 +589,30 @@ def run_pass(checks, state, args, now, events, results):
             if not current:
                 current = comps[name] = {
                     "down_since": now,
+                    "last_seen": now,
                     "texted": False,
                     "last_detail": detail,
                 }
                 current["ref"] = log_open(args.log, name, now, detail) if args.log else None
                 events.append({"event": "opened", "component": name, "detail": detail})
+            else:
+                # Only a still-down check moves the clock. A recovery keeps
+                # the original incident through one recovery text.
+                note_continuity(current, name, now, events)
             current["last_detail"] = detail
-            down_for = now - current["down_since"]
-            if down_for >= ALERT_AFTER and not current.get("texted"):
+            current["last_seen"] = now
+            down_for = now - float(current["down_since"])
+            claimed = current.get("texted") or (
+                current.get("would_texted") and not alerts_enabled()
+            )
+            if down_for >= ALERT_AFTER and not claimed:
                 note_down(current, name, down_for, detail, events, state, args.state)
         else:
             if current:
-                close_component(state, name, current, now, events, args)
+                close_component(state, name, current, now, events, args, status)
             if status == "droplet_owns":
                 events.append({"event": "droplet_owns", "component": name, "detail": detail})
     return comps
-
-
-def apply_freeze_gap(state, args, now, events):
-    last = state.get("last_run")
-    comps = state.get("components")
-    if not last or not isinstance(comps, dict) or not comps:
-        return
-    if now - last <= FREEZE_GAP:
-        return
-    gap_min = round((now - last) / 60)
-    note = f"probe gap {gap_min:.0f} min, end = last observation"
-    for name, cs in list(comps.items()):
-        if not isinstance(cs, dict) or "down_since" not in cs:
-            comps.pop(name, None)
-            continue
-        ref = cs.get("ref") or f"outside-probe:{name}:{int(cs['down_since'])}"
-        detail = cs.get("last_detail") or ""
-        if args.log:
-            log_close(
-                args.log,
-                ref,
-                name,
-                cs["down_since"],
-                last,
-                f"{detail}; {note}",
-                resolution_text(bool(cs.get("texted")), "no-text", gap=True),
-            )
-        events.append({"event": "reset_after_gap", "component": name, "gap_min": gap_min})
-    state["components"] = {}
-    save_state(args.state, state)
 
 
 def finish(state, events, results, ok, when=None):
@@ -588,6 +639,12 @@ def finish(state, events, results, ok, when=None):
 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(prog="outside_probe", exit_on_error=False)
+
+    def fail(message):
+        emit({"ok": None, "error": f"usage: {message}"})
+        raise SystemExit(1)
+
+    parser.error = fail
     parser.add_argument("--state", required=True)
     parser.add_argument("--log", help="outage markdown log (omit = no log writes)")
     parser.add_argument("--recheck-wait", type=float, default=300)
@@ -596,15 +653,20 @@ def parse_args(argv=None):
     parser.add_argument("--override", help="TEST ONLY: name=url to replace one check URL")
     try:
         return parser.parse_args(argv)
+    except SystemExit:
+        raise
     except (argparse.ArgumentError, argparse.ArgumentTypeError) as exc:
-        emit({"ok": None, "error": f"usage: {exc}"})
-        return None
+        fail(str(exc))
 
 
 def main(argv=None):
-    args = parse_args(argv)
-    if args is None:
-        return 1
+    try:
+        args = parse_args(argv)
+    except SystemExit as exc:
+        code = exc.code
+        if code is None or code == 0:
+            return 0
+        return code if isinstance(code, int) else 1
     checks = list(CHECKS)
     if args.override:
         if "=" not in args.override:
@@ -632,7 +694,6 @@ def main(argv=None):
         events = []
         results = {}
         now = time.time()
-        apply_freeze_gap(state, args, now, events)
 
         if not vantage_ok():
             events.append({
@@ -644,7 +705,6 @@ def main(argv=None):
             finish(state, events, results, None, when=now)
             return 3
 
-        flush_pending(state, events, args.state)
         comps = run_pass(checks, state, args, now, events, results)
         passes = 0
         paused_at = None
@@ -677,7 +737,11 @@ def main(argv=None):
         state["last_run"] = paused_at or time.time()
         save_state(args.state, state)
         finish(state, events, results, not comps)
-        return 2 if comps else 0
+        if comps:
+            return 2
+        if PERSIST_FAILED:
+            return 1
+        return 0
     finally:
         try:
             fcntl.flock(lock_handle, fcntl.LOCK_UN)
