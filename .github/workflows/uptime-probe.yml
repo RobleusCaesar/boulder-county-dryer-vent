@@ -6,11 +6,6 @@ on:
   schedule:
     - cron: "*/10 * * * *"
   workflow_dispatch:
-  # Registers the workflow so workflow_dispatch can target this branch before
-  # the file is on main. Dropped once that dispatch has been run.
-  push:
-    branches:
-      - cursor/outside-uptime-probe-b1fa
 
 # One run at a time. A second trigger waits; an older waiting run is dropped
 # so a long outage does not pile up 10-minute jobs.
