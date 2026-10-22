@@ -110,7 +110,7 @@ export function bookPage() {
           <button type="submit" class="btn btn-ember blueprint btn--block book-cta">${corners()}Request my visit</button>
           <p class="book-fine">Prefer to talk? <a href="${site.phoneHref}">${site.phoneDisplay}</a></p>
           <p class="form-error" data-error hidden></p>
-          <p class="form-note">Nothing is charged. You pay after the visit. <a href="${routes.terms}">Terms</a> &#183; <a href="${routes.privacy}">Privacy</a></p>
+          <p class="form-note">Nothing is charged to hold a time. Payment is due before the visit, by card through Stripe only. <a href="${routes.terms}">Terms</a> &#183; <a href="${routes.privacy}">Privacy</a></p>
         </form>
       </div>
 

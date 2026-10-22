@@ -204,7 +204,7 @@ export function termsPage() {
 <h2>What we can refuse</h2>
 <p>We may decline unsafe roof conditions, commercial plants, multi-unit risers, or homes outside the listed area. If we decline after a visit starts because the job does not match the booking, we will say so before charging for a visit that was not performed.</p>
 <h2>Payments</h2>
-<p>This website does not charge cards and nothing is charged to hold a time. Payment is collected after the visit by card link, invoice, or on site, and charges appear on your statement as ${esc(site.name)}.</p>
+<p>This website does not charge cards and nothing is charged to hold a time. Payment is due before the visit, by card through Stripe only. We do not take cash, checks, Venmo, or Zelle. Charges appear on your statement as ${esc(site.name)}.</p>
 <h2>Texts</h2>
 <p>If you opt in to SMS, you agree to receive texts from ${esc(site.name)} at the mobile number you give us. Those messages come from ${site.phoneDisplay}, our primary business phone. Those messages are about your visit and your service &#8212; not mass marketing or promotional blasts. We may send appointment confirmations, reminders, and day-of updates; missed-call callbacks when you reached us and we could not pick up; customer-care replies to a question you already started; and, after a completed visit, a friend or warm ask for a Google Business Profile review. We do not text review asks to people who did not hire us, and we do not run mass review campaigns.</p>
 <p>Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. You can also call <a href="${site.phoneHref}">${site.phoneDisplay}</a> or email <a href="mailto:${site.noticesEmail}">${esc(site.noticesEmail)}</a>. How we handle your number and this consent is in our <a href="${site.url}${routes.privacy}">Privacy policy</a>.</p>`;
@@ -232,7 +232,7 @@ export function privacyPage() {
 <h2>Website analytics</h2>
 <p>This site uses a first-party hit collector we operate for funnel and operations — not an ad network and not a third-party ad tracker (no Google Analytics, Meta Pixel, Plausible, or similar). When the collector is turned on, a page hit may include the path, an event name (for example a booking-funnel step), the referring URL, and a timestamp. It does not include your name, email, or phone. We do not sell this data. The beacon is off unless we configure a collector URL.</p>
 <h2>Sharing</h2>
-<p>We do not sell customer lists or analytics data. We do not use advertising networks or third-party ad trackers. Processors we use or expect to use include an email provider, a payment provider for invoices and card links, and a form-delivery service. We name vendors here when they are actually connected.</p>
+<p>We do not sell customer lists or analytics data. We do not use advertising networks or third-party ad trackers. Processors we use or expect to use include an email provider, a payment provider (Stripe) for card payments, and a form-delivery service. We name vendors here when they are actually connected.</p>
 <h2>Contact</h2>
 <p>Privacy questions: ${esc(site.noticesEmail)}.</p>`;
 
@@ -353,7 +353,7 @@ export function agentsPage() {
 <tr>
   <td><code>create_booking</code></td>
   <td>Public</td>
-  <td>No token. Opens a PENDING request, not a booking. Required: <code>name</code>, <code>phone</code> (a valid US mobile or landline), and <code>street</code> plus <code>town</code> (a real Boulder County address; it is validated). Also send <code>service</code> (<code>standard</code> or <code>difficult</code>), and optionally <code>email</code>, <code>preferred_windows</code>, <code>sms_consent</code>, and <code>notes</code>. Honeypot <code>company_website</code> must be empty or omitted. The response includes a short confirmation code. Strict per-IP and daily rate limits. No payment. Pay after the service.</td>
+  <td>No token. Opens a PENDING request, not a booking. Required: <code>name</code>, <code>phone</code> (a valid US mobile or landline), and <code>street</code> plus <code>town</code> (a real Boulder County address; it is validated). Also send <code>service</code> (<code>standard</code> or <code>difficult</code>), and optionally <code>email</code>, <code>preferred_windows</code>, <code>sms_consent</code>, and <code>notes</code>. Honeypot <code>company_website</code> must be empty or omitted. The response includes a short confirmation code. Strict per-IP and daily rate limits. No payment in MCP. Payment is due before service, by card through Stripe only.</td>
 </tr>
 <tr>
   <td><code>get_booking_status</code></td>
@@ -365,7 +365,7 @@ export function agentsPage() {
 
 <h2>Access</h2>
 <p>No token. Any agent can call <code>list_services</code>, <code>check_availability</code>, <code>create_booking</code>, and <code>get_booking_status</code>. Do not send an Authorization header.</p>
-<p><code>create_booking</code> does not book a visit. It opens a PENDING request and the response includes a short confirmation code. The homeowner must text <code>CONFIRM</code> and that code (for example <code>CONFIRM 4821</code>) from the same phone to <a href="${site.phoneHref}">${site.phoneDisplay}</a> within 48 hours. If they do not, the request expires and is never contacted. Leave <code>company_website</code> empty. Strict per-IP and daily rate limits apply. Nothing is charged to hold a time. Pay after the service.</p>
+<p><code>create_booking</code> does not book a visit. It opens a PENDING request and the response includes a short confirmation code. The homeowner must text <code>CONFIRM</code> and that code (for example <code>CONFIRM 4821</code>) from the same phone to <a href="${site.phoneHref}">${site.phoneDisplay}</a> within 48 hours. If they do not, the request expires and is never contacted. Leave <code>company_website</code> empty. Strict per-IP and daily rate limits apply. Nothing is charged to hold a time. Payment is due before service, by card through Stripe only.</p>
 
 <h2>Example</h2>
 <p>Public JSON-RPC over HTTPS. No token. <code>initialize</code>, then <code>tools/call</code>. A successful <code>create_booking</code> returns a PENDING request and a short confirmation code. The sample street and phone are placeholders: substitute a real Boulder County street address and a valid US mobile or landline, or the call is rejected. The homeowner then texts CONFIRM and the code from that phone to ${site.phoneDisplay} within 48 hours. The status id below is a sample.</p>
@@ -376,7 +376,7 @@ export function agentsPage() {
 
 <h2>Non-goals</h2>
 <ul>
-  <li>Payments are not in MCP. Nothing is charged to hold a time; payment is after the visit.</li>
+  <li>Payments are not in MCP. Nothing is charged to hold a time; payment is due before the visit, by card through Stripe only.</li>
   <li>This call does not create a booking. Without the CONFIRM text within 48 hours, the request expires and is never contacted.</li>
   <li>Lead time is typically 3&#8211;4 business days or more.</li>
 </ul>

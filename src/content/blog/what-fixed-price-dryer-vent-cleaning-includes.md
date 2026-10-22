@@ -33,7 +33,7 @@ We do not bury add-ons at the door for ordinary access. The flat rate does **not
 If access is materially different from what you described (for example a sealed chase we can’t reach without cutting), we stop and talk before doing extra work.
 
 ## How booking works
-Request a visit online. We confirm a **2-hour window** within one business day (usually a few business days out while we ramp). Pay after the visit — Venmo is fine.
+Request a visit online. We confirm a **2-hour window** within one business day (usually a few business days out while we ramp). Payment is due before the visit, by card through Stripe only.
 
 ## Ready when you are
 See the live prices and request days that work: [Book a visit](/book/).

@@ -356,7 +356,7 @@ export const pricingFaqs = [
   },
   {
     q: "How do I pay?",
-    a: "Nothing is charged to hold a time. You pay after the visit — by card link or invoice, or on site.",
+    a: "Nothing is charged to hold a time. Payment is due before the visit, by card through Stripe only.",
   },
   {
     q: "Do you clean HVAC ducts too?",
