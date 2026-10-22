@@ -1,0 +1,23 @@
+# One-shot helper: the cloud token cannot call workflow_dispatch, and a
+# GITHUB_TOKEN with actions:write can. Removed after the probe run exists.
+name: Dispatch uptime probe once
+
+on:
+  push:
+    branches:
+      - cursor/outside-uptime-probe-b1fa
+    paths:
+      - .github/workflows/dispatch-uptime-probe-once.yml
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch uptime probe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run uptime-probe.yml --ref cursor/outside-uptime-probe-b1fa
