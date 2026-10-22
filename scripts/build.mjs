@@ -161,15 +161,15 @@ function writeDiscovery(dist) {
   const cardUrl = `${site.url}/.well-known/mcp/server-card.json`;
   const catalogUrl = `${site.url}/.well-known/ai-catalog.json`;
   const townList = towns.map((t) => t.name).join(", ");
-  const cardDescription = "Dryer vent cleaning in Boulder County. Pay before service, Stripe only.";
+  const cardDescription = "Dryer vent cleaning in Boulder County. Payment is due before the visit, by card through Stripe only.";
   const createBookingDescription =
-    `Open a PENDING request, not a booking. No token. Requires name, a valid US mobile or landline (phone), and a real Boulder County street address (street and town; validated). Optional: email, service (standard or difficult), preferred_windows, sms_consent, notes. Honeypot company_website must be empty or omitted. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment in MCP. Payment is due before service, by card through Stripe only.`;
+    `Open a PENDING request, not a booking. No token. Requires name, a valid US mobile or landline (phone), and a real Boulder County street address (street and town; validated). Optional: email, service (standard or difficult), preferred_windows, sms_consent, notes. Honeypot company_website must be empty or omitted. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment in MCP. Payment is due before the visit, by card through Stripe only.`;
 
   const manifest = {
     name: "bcdv-agent-booking",
     title: site.name,
     version: "1.0.0",
-    description: `${site.name}. Fixed price $${prices.standard.amount} standard or $${prices.difficult.amount} difficult. create_booking opens a PENDING request, not a booking. No token. No payment in MCP. Payment is due before service, by card through Stripe only.`,
+    description: `${site.name}. Fixed price $${prices.standard.amount} standard or $${prices.difficult.amount} difficult. create_booking opens a PENDING request, not a booking. No token. No payment in MCP. Payment is due before the visit, by card through Stripe only.`,
     transport: {
       type: "streamable-http",
       url: mcpUrl,
@@ -270,7 +270,7 @@ function writeDiscovery(dist) {
 
   const llms = `# ${site.name}
 
-> Fixed-price dryer vent cleaning in Boulder County, Colorado. Standard clean $${prices.standard.amount}. Difficult clean (roof, long run, or upper floor) $${prices.difficult.amount}. Payment is due before service, by card through Stripe only.
+> Fixed-price dryer vent cleaning in Boulder County, Colorado. Standard clean $${prices.standard.amount}. Difficult clean (roof, long run, or upper floor) $${prices.difficult.amount}. Payment is due before the visit, by card through Stripe only.
 
 ${site.name} cleans one residential dryer vent at a published price. Service area: ${townList}. Address: ${site.addressLine}. Phone: ${site.phoneDisplay}. ${site.hours}. Holding a time costs nothing. After the first visit, an annual plan is $${prices.annual.amount}.
 
@@ -278,7 +278,7 @@ ${site.name} cleans one residential dryer vent at a published price. Service are
 
 - [Book a visit](${bookUrl}): Request a time on the website. The page shows the published price, then asks for days that work. A person confirms a 2-hour window within one business day.
 - [Phone](${site.phoneHref}): Call ${site.phoneDisplay}.
-- [MCP endpoint](${mcpUrl}): Streamable HTTP. POST JSON-RPC (\`initialize\`, then \`tools/call\`) with Content-Type application/json and Accept application/json, text/event-stream. No token. Tools: list_services, check_availability, create_booking, get_booking_status. create_booking opens a PENDING request, not a booking. It requires a real Boulder County street address (validated) and a valid US mobile or landline; leave company_website empty. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment in MCP; payment is due before service, by card through Stripe only. get_booking_status needs public_id and the phone on the request.
+- [MCP endpoint](${mcpUrl}): Streamable HTTP. POST JSON-RPC (\`initialize\`, then \`tools/call\`) with Content-Type application/json and Accept application/json, text/event-stream. No token. Tools: list_services, check_availability, create_booking, get_booking_status. create_booking opens a PENDING request, not a booking. It requires a real Boulder County street address (validated) and a valid US mobile or landline; leave company_website empty. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment in MCP. Payment is due before the visit, by card through Stripe only. get_booking_status needs public_id and the phone on the request.
 
 ## Discovery
 

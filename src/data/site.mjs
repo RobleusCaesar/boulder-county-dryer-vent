@@ -246,7 +246,7 @@ export const homeSteps = [
   {
     n: "3",
     title: "Times",
-    body: "Tell us your town and the days that work. We confirm a two-hour window by text or email. No card to hold it.",
+    body: "Tell us your town and the days that work. We confirm a two-hour window by text or email. Nothing is charged to hold it.",
   },
 ];
 

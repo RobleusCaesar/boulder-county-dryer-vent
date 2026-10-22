@@ -148,7 +148,7 @@ export function bookPage() {
   return page({
     path: routes.book,
     title: "Book My Visit — see your price in two taps",
-    description: `Two questions about your dryer vent, your published price ($${prices.standard.amount} or $${prices.difficult.amount}), then request the days that work. No card to hold a time.`,
+    description: `Two questions about your dryer vent, your published price ($${prices.standard.amount} or $${prices.difficult.amount}), then request the days that work. Nothing is charged to hold a time.`,
     current: "",
     body,
     bare: true,
