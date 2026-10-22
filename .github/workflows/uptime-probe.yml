@@ -1,0 +1,70 @@
+# External uptime probe. Independent of the droplet and any other monitor host.
+# GitHub may start the cron late; a failing pass rechecks inside this run.
+name: Uptime probe
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+  # Registers the workflow so workflow_dispatch can target this branch before
+  # the file is on main. Dropped once that dispatch has been run.
+  push:
+    branches:
+      - cursor/outside-uptime-probe-b1fa
+
+# One run at a time. A second trigger waits; an older waiting run is dropped
+# so a long outage does not pile up 10-minute jobs.
+concurrency:
+  group: uptime-probe
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    name: Outside vantage
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Unit tests
+        run: python3 ops/monitor/test_outside_probe.py
+
+      - name: Restore probe state
+        run: bash ops/monitor/git_state.sh restore "$RUNNER_TEMP/bcdv-probe"
+
+      - name: Run outside probe
+        id: probe
+        env:
+          ALERTS_ENABLED: ${{ vars.ALERTS_ENABLED }}
+          TELNYX_API_KEY: ${{ secrets.TELNYX_API_KEY }}
+          OWNER_PHONE: ${{ secrets.OWNER_PHONE }}
+          FROM_NUMBER: ${{ secrets.FROM_NUMBER }}
+          PYTHONUNBUFFERED: "1"
+          PROBE_AFTER_SAVE: bash ops/monitor/git_state.sh persist ${{ runner.temp }}/bcdv-probe
+        run: |
+          set +e
+          set -o pipefail
+          python3 ops/monitor/outside_probe.py \
+            --state "${RUNNER_TEMP}/bcdv-probe/state.json" \
+            --log "${RUNNER_TEMP}/bcdv-probe/OUTAGE-LOG.md" \
+            | tee "${RUNNER_TEMP}/bcdv-probe/last-run.json"
+          rc=$?
+          if [[ -s "${RUNNER_TEMP}/bcdv-probe/last-run.json" ]]; then
+            {
+              echo "## Outside probe"
+              echo ""
+              echo '```json'
+              cat "${RUNNER_TEMP}/bcdv-probe/last-run.json"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "exit_code=${rc}" >> "$GITHUB_OUTPUT"
+          exit "${rc}"
+
+      - name: Persist probe state
+        if: always() && (steps.probe.outputs.exit_code == '0' || steps.probe.outputs.exit_code == '2' || steps.probe.outputs.exit_code == '3')
+        run: bash ops/monitor/git_state.sh persist "$RUNNER_TEMP/bcdv-probe"
