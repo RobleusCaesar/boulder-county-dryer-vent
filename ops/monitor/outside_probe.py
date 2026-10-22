@@ -7,9 +7,10 @@ The droplet cannot see itself go down. Read-only GETs of public URLs.
 Log-only unless the environment variable ALERTS_ENABLED is exactly "true".
 When it is, a down component that stays down for 10 continuous minutes is
 texted once via the Telnyx SMS API, and a single recovery text is sent after
-it returns. A failed text is not retried. Time the probe did not observe does
-not count toward those 10 minutes, and the incident stays open across a long
-gap so there is still one down text and one recovery.
+it returns. A failed text is not retried. Missing Telnyx settings do not use
+up that text. Time the probe did not observe does not count toward those 10
+minutes. The incident stays open across a long gap, and the outage start and
+length stay the original ones, so there is still one down text and one recovery.
 Secrets are read from the environment and are never written to state, the
 outage log, or stdout.
 
@@ -166,30 +167,50 @@ def fetch(url, timeout=10, limit=65536):
         return None, "", clip(f"{type(exc).__name__}: {exc}", 160), elapsed, None
 
 
-def judge_hb(body, date_hdr, ms):
-    """Heartbeat age uses the response Date header, never the runner clock."""
+def heartbeat_age(payload, date_hdr):
+    """Return (age_seconds, problem). problem is set when the age is not usable.
+
+    Age is the Date header minus epoch. The runner clock is not used.
+    """
+    epoch = payload.get("epoch")
+    if isinstance(epoch, bool) or not isinstance(epoch, (int, float)):
+        return None, "hb missing epoch"
+    if epoch > HB_EPOCH_MAX:
+        return None, "hb epoch is not unix seconds"
+    server_now = parse_http_date(date_hdr)
+    if server_now is None:
+        return None, "hb missing or unparseable Date header"
+    age = server_now - float(epoch)
+    if age < -HB_FUTURE_SKEW:
+        return None, f"hb epoch is {abs(age) / 60:.0f} min ahead of Date"
+    return age, None
+
+
+def judge_hb(body, date_hdr, ms, code=200):
+    """Heartbeat age uses the response Date header, never the runner clock.
+
+    Only a fresh ok:false is the droplet's alert. A stale ok:false is down.
+    """
     try:
         payload = json.loads(body)
     except Exception as exc:
-        return "down", f"HTTP 200 but invalid JSON: {type(exc).__name__}"
+        return "down", f"HTTP {code} but invalid JSON: {type(exc).__name__}"
     if not isinstance(payload, dict):
-        return "down", f"HTTP 200 but JSON is {type(payload).__name__}, not object"
-    epoch = payload.get("epoch")
-    if isinstance(epoch, bool) or not isinstance(epoch, (int, float)):
-        return "down", "hb missing epoch"
-    if epoch > HB_EPOCH_MAX:
-        return "down", "hb epoch is not unix seconds"
-    server_now = parse_http_date(date_hdr)
-    if server_now is None:
-        return "down", "hb missing or unparseable Date header"
-    age = server_now - float(epoch)
-    if age < -HB_FUTURE_SKEW:
-        return "down", f"hb epoch is {abs(age) / 60:.0f} min ahead of Date"
+        return "down", f"HTTP {code} but JSON is {type(payload).__name__}, not object"
+    age, problem = heartbeat_age(payload, date_hdr)
+    fresh = problem is None and age <= HB_MAX_AGE
+    if payload.get("ok") is False and fresh:
+        return "droplet_owns", droplet_false_detail(payload, code, age)
+    if problem:
+        return "down", problem
     if age > HB_MAX_AGE:
-        return "down", f"hb stale {age / 60:.0f} min (droplet health timer not running?)"
+        detail = f"hb stale {age / 60:.0f} min (droplet health timer not running?)"
+        if payload.get("ok") is False:
+            detail += "; droplet ok: false"
+        return "down", detail
     if payload.get("ok") is not True:
-        # Fresh heartbeat, not-ok: the droplet alerts on its own. Log only.
-        return "droplet_owns", droplet_false_detail(payload, 200, age)
+        # Fresh heartbeat that is not ok:false and not ok:true. Log only.
+        return "droplet_owns", droplet_false_detail(payload, code, age)
     return "ok", f"hb ok, age {age / 60:.1f} min via Date ({ms} ms); droplet ok: true"
 
 
@@ -213,11 +234,12 @@ def droplet_false_detail(payload, code, age=None):
 def check_once(name, url, want, kind):
     """Return (status, detail). status is ok, down, or droplet_owns."""
     code, body, err, ms, date_hdr = fetch(url)
-    # A heartbeat that says ok:false is the droplet's alert, even on HTTP 503.
+    # A fresh ok:false is the droplet's alert, even on HTTP 503.
+    # A stale ok:false is this probe's outage.
     if kind == "hb":
         payload = json_object(body)
         if payload is not None and payload.get("ok") is False:
-            return "droplet_owns", droplet_false_detail(payload, code)
+            return judge_hb(body, date_hdr, ms, code)
     if code is None:
         return "down", f"{err} ({ms} ms)"
     if code != want:
@@ -226,7 +248,7 @@ def check_once(name, url, want, kind):
     if kind == "html":
         return "ok", f"HTTP {code} ({ms} ms)"
     if kind == "hb":
-        return judge_hb(body, date_hdr, ms)
+        return judge_hb(body, date_hdr, ms, code)
     try:
         payload = json.loads(body)
     except Exception as exc:
@@ -297,7 +319,17 @@ def save_state(path, state, *, hook=True):
         return True
     os.environ["PROBE_INSIDE_SAVE"] = "1"
     try:
-        completed = subprocess.run(shlex.split(command), check=False)
+        completed = subprocess.run(
+            shlex.split(command),
+            check=False,
+            stdout=subprocess.PIPE,
+            text=True,
+        )
+        if completed.stdout:
+            sys.stderr.write(completed.stdout)
+            if not completed.stdout.endswith("\n"):
+                sys.stderr.write("\n")
+            sys.stderr.flush()
         if completed.returncode != 0:
             PERSIST_FAILED = True
             print("::error::probe state persist failed", file=sys.stderr, flush=True)
@@ -329,9 +361,16 @@ def ensure_log(path):
     if os.path.exists(path) and os.path.getsize(path) > 0:
         return
     fd, tmp = tempfile.mkstemp(dir=parent, prefix=".olog-")
-    with os.fdopen(fd, "w") as handle:
-        handle.write(LOG_HEADER)
-    os.replace(tmp, path)
+    try:
+        with os.fdopen(fd, "w") as handle:
+            handle.write(LOG_HEADER)
+        os.replace(tmp, path)
+    except Exception:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
 
 
 def log_open(path, comp, since, detail):
@@ -366,9 +405,16 @@ def log_close(path, ref, comp, since, end, detail, resolution):
             lines.append(row)
         parent = os.path.dirname(os.path.abspath(path))
         fd, tmp = tempfile.mkstemp(dir=parent, prefix=".olog-")
-        with os.fdopen(fd, "w") as handle:
-            handle.writelines(lines)
-        os.replace(tmp, path)
+        try:
+            with os.fdopen(fd, "w") as handle:
+                handle.writelines(lines)
+            os.replace(tmp, path)
+        except Exception:
+            try:
+                os.unlink(tmp)
+            except OSError:
+                pass
+            raise
     except FileNotFoundError:
         with open(path, "a") as handle:
             handle.write(row)
@@ -402,6 +448,13 @@ def recovery_message(name, mins, status):
     return f"BCDV outside check: {name} recovered after {mins} min"
 
 
+def telnyx_ready():
+    key = os.environ.get("TELNYX_API_KEY") or ""
+    to_number = os.environ.get("OWNER_PHONE") or ""
+    from_number = os.environ.get("FROM_NUMBER") or ""
+    return bool(key and to_number and from_number)
+
+
 def send_text(message):
     """POST one SMS via Telnyx. The returned detail never includes secrets or a body."""
     if not alerts_enabled():
@@ -409,7 +462,7 @@ def send_text(message):
     key = os.environ.get("TELNYX_API_KEY") or ""
     to_number = os.environ.get("OWNER_PHONE") or ""
     from_number = os.environ.get("FROM_NUMBER") or ""
-    if not key or not to_number or not from_number:
+    if not telnyx_ready():
         return False, "alerts enabled but Telnyx settings are missing"
     message = str(message)
     for secret in (key, to_number, from_number):
@@ -458,6 +511,15 @@ def note_down(cs, name, down, detail, events, state, state_path):
         })
         save_state(state_path, state)
         return
+    if not telnyx_ready():
+        # Do not claim the text. A later run that has the secrets can still send it.
+        events.append({
+            "event": "text_failed",
+            "component": name,
+            "down_min": down_min,
+            "detail": "alerts enabled but Telnyx settings are missing",
+        })
+        return
     # Persist first. A failed send must not be tried again, and a failed
     # persist must not send a text the next run cannot see was claimed.
     cs["texted"] = True
@@ -482,7 +544,10 @@ def note_down(cs, name, down, detail, events, state, state_path):
 
 
 def note_recovery(cs, name, now, events, state, state_path, status):
-    """Return sent, failed, persist-failed, or no-text. No second attempt."""
+    """Return sent, failed, persist-failed, missing-settings, or no-text.
+
+    No second attempt after a send. Missing Telnyx settings do not claim it.
+    """
     mins = max(0, round((now - cs["down_since"]) / 60))
     message = recovery_message(name, mins, status)
     if not cs.get("texted"):
@@ -491,6 +556,13 @@ def note_recovery(cs, name, now, events, state, state_path, status):
         return "sent"
     if not alerts_enabled():
         return "no-text"
+    if not telnyx_ready():
+        events.append({
+            "event": "recovery_text_failed",
+            "component": name,
+            "detail": "alerts enabled but Telnyx settings are missing",
+        })
+        return "missing-settings"
     cs["recovery_sent"] = True
     if not save_state(state_path, state):
         cs["recovery_sent"] = False
@@ -516,8 +588,8 @@ def note_recovery(cs, name, now, events, state, state_path, status):
 
 def close_component(state, name, cs, now, events, args, status):
     recovery = note_recovery(cs, name, now, events, state, args.state, status)
-    if recovery == "persist-failed":
-        # The sent flag never landed. Keep the incident so a later run can
+    if recovery in ("persist-failed", "missing-settings"):
+        # The recovery was not claimed. Keep the incident so a later run can
         # send the one recovery, instead of closing with no record of it.
         return
     ref = cs.get("ref") or f"outside-probe:{name}:{int(cs['down_since'])}"
@@ -553,11 +625,17 @@ def close_component(state, name, cs, now, events, args, status):
     state["components"].pop(name, None)
 
 
-def note_continuity(cs, name, now, events):
-    """Start the 10-minute clock over when this incident was not observed lately.
+def continuity_start(cs):
+    """Start of the current 10-minute window. The true outage start is down_since."""
+    raw = cs.get("continuous_since", cs.get("down_since"))
+    return float(raw)
 
-    The incident, its ref, and the texted flag stay. Unobserved time does not
-    count as continuous downtime.
+
+def note_continuity(cs, name, now, events):
+    """Restart the 10-minute clock when this incident was not observed lately.
+
+    down_since stays the true outage start. The incident, its ref, and the
+    texted flag stay. Unobserved time does not count as continuous downtime.
     """
     last_seen = cs.get("last_seen", cs.get("down_since"))
     try:
@@ -566,7 +644,7 @@ def note_continuity(cs, name, now, events):
         return False
     if gap <= CONTINUITY_GAP:
         return False
-    cs["down_since"] = now
+    cs["continuous_since"] = now
     events.append({
         "event": "continuity_reset",
         "component": name,
@@ -596,17 +674,21 @@ def run_pass(checks, state, args, now, events, results):
                 current["ref"] = log_open(args.log, name, now, detail) if args.log else None
                 events.append({"event": "opened", "component": name, "detail": detail})
             else:
-                # Only a still-down check moves the clock. A recovery keeps
-                # the original incident through one recovery text.
+                # A long unobserved gap restarts the 10-minute clock only.
+                # down_since stays the true outage start through one recovery.
                 note_continuity(current, name, now, events)
             current["last_detail"] = detail
             current["last_seen"] = now
-            down_for = now - float(current["down_since"])
+            true_down = now - float(current["down_since"])
+            try:
+                watched = now - continuity_start(current)
+            except (TypeError, ValueError):
+                watched = true_down
             claimed = current.get("texted") or (
                 current.get("would_texted") and not alerts_enabled()
             )
-            if down_for >= ALERT_AFTER and not claimed:
-                note_down(current, name, down_for, detail, events, state, args.state)
+            if watched >= ALERT_AFTER and not claimed:
+                note_down(current, name, true_down, detail, events, state, args.state)
         else:
             if current:
                 close_component(state, name, current, now, events, args, status)
@@ -682,12 +764,12 @@ def main(argv=None):
 
     lock_handle = open(args.state + ".lock", "w")
     try:
-        fcntl.flock(lock_handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except OSError:
-        emit({"ok": None, "event": "skipped: another probe run holds the lock"})
-        return 0
+        try:
+            fcntl.flock(lock_handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
+            emit({"ok": None, "event": "skipped: another probe run holds the lock"})
+            return 0
 
-    try:
         state = load_state(args.state)
         if not isinstance(state.get("components"), dict):
             state["components"] = {}

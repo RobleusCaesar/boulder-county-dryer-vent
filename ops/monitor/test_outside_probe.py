@@ -12,7 +12,7 @@ from email.utils import formatdate
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from io import StringIO
 from pathlib import Path
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 import importlib.util
 
 SPEC = importlib.util.spec_from_file_location(
@@ -73,6 +73,12 @@ class ProbeTest(unittest.TestCase):
         for httpd in self.servers:
             httpd.shutdown()
             httpd.server_close()
+
+    def enable_alerts(self):
+        os.environ["ALERTS_ENABLED"] = "true"
+        os.environ["TELNYX_API_KEY"] = "TELNYXTESTKEY123456"
+        os.environ["OWNER_PHONE"] = "+15555550123"
+        os.environ["FROM_NUMBER"] = "+15555550999"
 
     def serve(self, routes, default=None):
         httpd = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
@@ -251,7 +257,7 @@ class ProbeTest(unittest.TestCase):
             return False, "telnyx HTTP 401"
 
         probe.send_text = fake_send
-        os.environ["ALERTS_ENABLED"] = "true"
+        self.enable_alerts()
         base = self.serve({
             "/down": {"code": 500, "body": "no"},
             "/up": {"code": 200, "body": "ok", "ctype": "text/html"},
@@ -317,7 +323,7 @@ class ProbeTest(unittest.TestCase):
             return False, "telnyx HTTP 500"
 
         probe.send_text = fake_send
-        os.environ["ALERTS_ENABLED"] = "true"
+        self.enable_alerts()
         base = self.serve({
             "/up": {"code": 200, "body": "ok", "ctype": "text/html"},
             "/neutral": {"code": 204, "body": ""},
@@ -358,7 +364,7 @@ class ProbeTest(unittest.TestCase):
             raise AssertionError(message)
 
         probe.send_text = forbid
-        os.environ["ALERTS_ENABLED"] = "true"
+        self.enable_alerts()
         base = self.serve({
             "/down": {"code": 500, "body": "no"},
             "/up": {"code": 200, "body": "ok", "ctype": "text/html"},
@@ -394,7 +400,8 @@ class ProbeTest(unittest.TestCase):
             saved = json.loads(Path(state).read_text())
             self.assertTrue(saved["components"]["site"]["texted"])
             self.assertEqual(saved["components"]["site"]["ref"], "outside-probe:site:3")
-            self.assertGreater(saved["components"]["site"]["down_since"], opened)
+            self.assertEqual(saved["components"]["site"]["down_since"], opened)
+            self.assertGreater(saved["components"]["site"]["continuous_since"], opened)
             self.assertIn("| OPEN |", Path(log).read_text())
 
             calls = []
@@ -409,8 +416,15 @@ class ProbeTest(unittest.TestCase):
             self.assertEqual(code, 0)
             self.assertEqual(len(calls), 1)
             self.assertIn("recovered", calls[0])
+            mins = max(0, round((time.time() - opened) / 60))
+            self.assertGreaterEqual(mins, 180)
+            self.assertIn(f"after {mins} min", calls[0])
+            closed = Path(log).read_text()
+            self.assertIn(probe.mt(opened), closed)
+            self.assertIn(f"{mins} min", closed)
+            self.assertNotIn("| OPEN |", closed)
             self.assertEqual(json.loads(Path(state).read_text())["components"], {})
-            self.assertEqual(Path(log).read_text().count("outside-probe:site:3"), 1)
+            self.assertEqual(closed.count("outside-probe:site:3"), 1)
 
     def test_short_gap_keeps_the_incident(self):
         base = self.serve({
@@ -538,7 +552,7 @@ class ProbeTest(unittest.TestCase):
             return True, "telnyx HTTP 200"
 
         probe.send_text = fake_send
-        os.environ["ALERTS_ENABLED"] = "true"
+        self.enable_alerts()
         base = self.serve({
             "/down": {"code": 500, "body": "no"},
             "/up": {"code": 200, "body": "ok", "ctype": "text/html"},
@@ -602,7 +616,7 @@ class ProbeTest(unittest.TestCase):
             return True, "telnyx HTTP 200"
 
         probe.send_text = fake_send
-        os.environ["ALERTS_ENABLED"] = "true"
+        self.enable_alerts()
         base = self.serve({
             "/down": {"code": 500, "body": "no"},
             "/neutral": {"code": 204, "body": ""},
@@ -636,7 +650,7 @@ class ProbeTest(unittest.TestCase):
             raise AssertionError(message)
 
         probe.send_text = forbid
-        os.environ["ALERTS_ENABLED"] = "true"
+        self.enable_alerts()
         base = self.serve({
             "/down": {"code": 500, "body": "no"},
             "/neutral": {"code": 204, "body": ""},
@@ -666,9 +680,34 @@ class ProbeTest(unittest.TestCase):
             saved = json.loads(Path(state).read_text())
             current = saved["components"]["site"]
             self.assertFalse(current["texted"])
-            self.assertGreater(current["down_since"], opened)
-            self.assertLess(abs(current["down_since"] - time.time()), 30)
+            self.assertEqual(current["down_since"], opened)
+            self.assertGreater(current["continuous_since"], opened)
+            self.assertLess(abs(current["continuous_since"] - time.time()), 30)
             self.assertEqual(current["ref"], "outside-probe:site:13")
+
+            current["continuous_since"] = time.time() - (11 * 60)
+            current["last_seen"] = time.time() - 60
+            Path(state).write_text(json.dumps(saved))
+            calls = []
+
+            def ok_send(message):
+                calls.append(message)
+                return True, "telnyx HTTP 200"
+
+            probe.send_text = ok_send
+            os.environ["TELNYX_API_KEY"] = "TELNYXTESTKEY123456"
+            os.environ["OWNER_PHONE"] = "+15555550123"
+            os.environ["FROM_NUMBER"] = "+15555550999"
+            code, payload = self.run_probe(state, log)
+            self.assertEqual(code, 2)
+            self.assertEqual(len(calls), 1)
+            shown = f"{(time.time() - opened) / 60:.0f}"
+            self.assertGreaterEqual(int(shown), 30)
+            self.assertIn(f"down {shown} min", calls[0])
+            self.assertEqual(
+                json.loads(Path(state).read_text())["components"]["site"]["down_since"],
+                opened,
+            )
 
     def test_vantage_down_does_not_reset_continuity(self):
         probe.CHECKS = [("site", "http://127.0.0.1:1/", 200, "html")]
@@ -697,8 +736,16 @@ class ProbeTest(unittest.TestCase):
             self.assertEqual(saved["components"]["site"]["down_since"], opened)
 
     def test_hb_503_ok_false_is_log_only(self):
+        epoch = 1_700_000_000
+        fresh = formatdate(epoch + 30, usegmt=True)
         base = self.serve({
             "/owned": {
+                "code": 503,
+                "date": fresh,
+                "ctype": "application/json",
+                "body": json.dumps({"ok": False, "epoch": epoch, "failing": ["disk"]}),
+            },
+            "/bare": {
                 "code": 503,
                 "ctype": "application/json",
                 "body": json.dumps({"ok": False, "failing": ["disk"]}),
@@ -709,6 +756,8 @@ class ProbeTest(unittest.TestCase):
         status, detail = probe.check_once("api_hb", base + "/owned", 200, "hb")
         self.assertEqual(status, "droplet_owns", detail)
         self.assertIn("droplet ok: false", detail)
+        status, detail = probe.check_once("api_hb", base + "/bare", 200, "hb")
+        self.assertEqual(status, "down", detail)
         status, detail = probe.check_once("api_hb", base + "/down", 200, "hb")
         self.assertEqual(status, "down", detail)
 
@@ -731,7 +780,7 @@ class ProbeTest(unittest.TestCase):
             return True, "telnyx HTTP 200"
 
         probe.send_text = fake_send
-        os.environ["ALERTS_ENABLED"] = "true"
+        self.enable_alerts()
         epoch = 1_700_000_000
         fresh = formatdate(epoch + 30, usegmt=True)
         base = self.serve({
@@ -743,8 +792,9 @@ class ProbeTest(unittest.TestCase):
             },
             "/owned": {
                 "code": 503,
+                "date": fresh,
                 "ctype": "application/json",
-                "body": json.dumps({"ok": False, "failing": ["disk"]}),
+                "body": json.dumps({"ok": False, "epoch": epoch, "failing": ["disk"]}),
             },
             "/neutral": {"code": 204, "body": ""},
         })
@@ -890,6 +940,214 @@ class ProbeTest(unittest.TestCase):
         )
         self.assertEqual(proc.returncode, 1)
         self.assertIn("usage", proc.stdout)
+
+    def test_stale_ok_false_is_down(self):
+        epoch = 1_700_000_000
+        stale = formatdate(epoch + 20 * 60, usegmt=True)
+        fresh = formatdate(epoch + 30, usegmt=True)
+        body = json.dumps({"ok": False, "epoch": epoch, "failing": ["disk"]})
+        base = self.serve({
+            "/stale": {"code": 200, "date": stale, "ctype": "application/json", "body": body},
+            "/stale503": {"code": 503, "date": stale, "ctype": "application/json", "body": body},
+            "/fresh503": {"code": 503, "date": fresh, "ctype": "application/json", "body": body},
+            "/neutral": {"code": 204, "body": ""},
+        })
+        status, detail = probe.check_once("api_hb", base + "/stale", 200, "hb")
+        self.assertEqual(status, "down", detail)
+        self.assertIn("stale", detail)
+        self.assertIn("droplet ok: false", detail)
+        status, detail = probe.check_once("api_hb", base + "/stale503", 200, "hb")
+        self.assertEqual(status, "down", detail)
+        self.assertIn("stale", detail)
+        status, detail = probe.check_once("api_hb", base + "/fresh503", 200, "hb")
+        self.assertEqual(status, "droplet_owns", detail)
+
+        probe.CHECKS = [("api_hb", base + "/stale", 200, "hb")]
+        probe.NEUTRAL = [base + "/neutral"]
+        with tempfile.TemporaryDirectory() as tmp:
+            state = str(Path(tmp) / "state.json")
+            log = str(Path(tmp) / "OUTAGE-LOG.md")
+            code, payload = self.run_probe(state, log)
+            self.assertEqual(code, 2)
+            self.assertEqual(payload["events"][0]["event"], "opened")
+            self.assertIn("api_hb", json.loads(Path(state).read_text())["components"])
+            self.assertIn("| OPEN |", Path(log).read_text())
+
+    def test_missing_telnyx_secrets_do_not_claim_the_text(self):
+        def forbid(message):
+            raise AssertionError(message)
+
+        probe.send_text = forbid
+        os.environ["ALERTS_ENABLED"] = "true"
+        os.environ["TELNYX_API_KEY"] = "TELNYXTESTKEY123456"
+        base = self.serve({
+            "/down": {"code": 500, "body": "no"},
+            "/up": {"code": 200, "body": "ok", "ctype": "text/html"},
+            "/neutral": {"code": 204, "body": ""},
+        })
+        probe.NEUTRAL = [base + "/neutral"]
+        now = time.time()
+        with tempfile.TemporaryDirectory() as tmp:
+            state = str(Path(tmp) / "state.json")
+            log = str(Path(tmp) / "OUTAGE-LOG.md")
+            Path(state).write_text(json.dumps({
+                "components": {
+                    "site": {
+                        "down_since": now - probe.ALERT_AFTER - 5,
+                        "last_seen": now - 60,
+                        "texted": False,
+                        "last_detail": "HTTP 500",
+                        "ref": "outside-probe:site:16",
+                    }
+                },
+            }))
+            probe.CHECKS = [("site", base + "/down", 200, "html")]
+            code, payload = self.run_probe(state, log)
+            self.assertEqual(code, 2)
+            self.assertEqual(payload["events"][0]["event"], "text_failed")
+            self.assertIn("missing", payload["events"][0]["detail"])
+            saved = json.loads(Path(state).read_text())
+            self.assertFalse(saved["components"]["site"]["texted"])
+
+            calls = []
+
+            def ok_send(message):
+                calls.append(message)
+                return True, "telnyx HTTP 200"
+
+            probe.send_text = ok_send
+            os.environ["OWNER_PHONE"] = "+15555550123"
+            os.environ["FROM_NUMBER"] = "+15555550999"
+            code, payload = self.run_probe(state, log)
+            self.assertEqual(code, 2)
+            self.assertEqual(len(calls), 1)
+            self.assertIn("down", calls[0])
+            self.assertTrue(json.loads(Path(state).read_text())["components"]["site"]["texted"])
+
+            calls.clear()
+            probe.send_text = forbid
+            os.environ.pop("OWNER_PHONE")
+            probe.CHECKS = [("site", base + "/up", 200, "html")]
+            code, payload = self.run_probe(state, log)
+            self.assertEqual(code, 2)
+            self.assertEqual(payload["events"][0]["event"], "recovery_text_failed")
+            saved = json.loads(Path(state).read_text())
+            self.assertIn("site", saved["components"])
+            self.assertNotIn("recovery_sent", saved["components"]["site"])
+
+            probe.send_text = ok_send
+            os.environ["OWNER_PHONE"] = "+15555550123"
+            code, payload = self.run_probe(state, log)
+            self.assertEqual(code, 0)
+            self.assertEqual(len(calls), 1)
+            self.assertIn("recovered", calls[0])
+            self.assertEqual(json.loads(Path(state).read_text())["components"], {})
+
+    def test_persist_hook_stdout_goes_to_stderr(self):
+        os.environ["PROBE_AFTER_SAVE"] = "bash -c 'echo probe-state-hook-stdout'"
+        base = self.serve({
+            "/up": {"code": 200, "body": "ok", "ctype": "text/html"},
+            "/neutral": {"code": 204, "body": ""},
+        })
+        probe.CHECKS = [("site", base + "/up", 200, "html")]
+        probe.NEUTRAL = [base + "/neutral"]
+        with tempfile.TemporaryDirectory() as tmp:
+            state = str(Path(tmp) / "state.json")
+            log = str(Path(tmp) / "OUTAGE-LOG.md")
+            out = StringIO()
+            err = StringIO()
+            with redirect_stdout(out), redirect_stderr(err):
+                code = probe.main([
+                    "--state", state,
+                    "--log", log,
+                    "--rechecks", "0",
+                    "--retry-wait", "0",
+                ])
+            self.assertEqual(code, 0)
+            self.assertNotIn("probe-state-hook-stdout", out.getvalue())
+            self.assertIn("probe-state-hook-stdout", err.getvalue())
+            payload = json.loads(out.getvalue())
+            self.assertTrue(payload["ok"])
+
+    def test_probe_state_skips_pending_recovery_and_cleans_temps(self):
+        script = Path(__file__).resolve().with_name("git_state.sh")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bare = root / "bare.git"
+            work = root / "work"
+            state = root / "state"
+            scratch = root / "scratch"
+            scratch.mkdir()
+            subprocess.run(["git", "init", "--bare", str(bare)], check=True, capture_output=True)
+            subprocess.run(
+                ["git", "-c", "init.defaultBranch=main", "init", str(work)],
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(
+                ["git", "-C", str(work), "remote", "add", "origin", str(bare)],
+                check=True,
+                capture_output=True,
+            )
+            (work / ".names").write_text("keep\n")
+            (work / ".want").write_text("keep\n")
+            state.mkdir()
+            (state / "state.json").write_text(
+                '{"pending_recovery": {"site": true}, "components": {}}\n'
+            )
+            (state / "OUTAGE-LOG.md").write_text(probe.LOG_HEADER)
+            env = os.environ.copy()
+            env["GITHUB_WORKSPACE"] = str(work)
+            env["TMPDIR"] = str(scratch)
+            env["PROBE_STATE_REMOTE"] = "origin"
+
+            def persist():
+                return subprocess.run(
+                    ["bash", str(script), "persist", str(state)],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    env=env,
+                )
+
+            skipped = persist()
+            self.assertEqual(skipped.returncode, 0, skipped.stderr)
+            self.assertIn("probe state unchanged", skipped.stdout)
+            self.assertEqual(list(scratch.iterdir()), [])
+            self.assertEqual((work / ".names").read_text(), "keep\n")
+            self.assertEqual((work / ".want").read_text(), "keep\n")
+            refs = subprocess.run(
+                ["git", "-C", str(bare), "show-ref"],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotIn("probe-state", refs.stdout)
+
+            (state / "state.json").write_text(
+                '{"components": {"site": {"down_since": 10, "last_seen": 10, "texted": false}}}\n'
+            )
+            (state / "OUTAGE-LOG.md").write_text(
+                probe.LOG_HEADER + "| 2026-01-01 00:00 | OPEN | ongoing | outside: site | x | (open) | r |\n"
+            )
+            committed = persist()
+            self.assertEqual(committed.returncode, 0, committed.stderr)
+            self.assertNotIn("unchanged", committed.stdout)
+            self.assertEqual(list(scratch.iterdir()), [])
+            again = persist()
+            self.assertEqual(again.returncode, 0, again.stderr)
+            self.assertIn("probe state unchanged", again.stdout)
+            self.assertEqual(list(scratch.iterdir()), [])
+            self.assertEqual((work / ".names").read_text(), "keep\n")
+            self.assertIn(
+                "probe-state",
+                subprocess.run(
+                    ["git", "-C", str(bare), "show-ref"],
+                    capture_output=True,
+                    text=True,
+                    check=True,
+                ).stdout,
+            )
 
     def test_parse_http_date(self):
         stamp = probe.parse_http_date("Sun, 09 Sep 2001 01:46:40 GMT")
