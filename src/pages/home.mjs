@@ -51,7 +51,7 @@ export function homePage(posts) {
         ${bookBtn(`Book My Visit · $${prices.standard.amount}`, "btn btn-ember blueprint")}
         <a href="${site.phoneHref}" class="btn btn-outline-light btn--phone">${site.phoneDisplay}</a>
       </div>
-      <p class="hero-fine">Three taps &#183; no card to hold a time &#183; cancel free up to 24h</p>
+      <p class="hero-fine">Three taps &#183; nothing charged to hold a time &#183; cancel free up to 24h</p>
     </div>
     <div class="blueprint price-tag">
       ${corners()}

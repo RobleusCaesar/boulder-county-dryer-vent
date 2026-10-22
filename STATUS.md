@@ -16,7 +16,7 @@ https://bouldercountydryervent.com/ — Settings → Pages → Source = **GitHub
 
 ## Removed in V2
 - `/portal/*` demo and `/admin/` password stub (were "Demo — not live accounts"; not in the redesign)
-- Stripe Payment Link env hooks (site no longer has a pay step — payment is after the visit)
+- Stripe Payment Link env hooks (site has no pay step — payment is due before the visit, by card through Stripe only)
 - Wikimedia fetch-at-build script (images are committed)
 
 ## Still stubbed / owner decisions

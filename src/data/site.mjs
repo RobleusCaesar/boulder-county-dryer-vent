@@ -246,7 +246,7 @@ export const homeSteps = [
   {
     n: "3",
     title: "Times",
-    body: "Tell us your town and the days that work. We confirm a two-hour window by text or email. No card to hold it.",
+    body: "Tell us your town and the days that work. We confirm a two-hour window by text or email. Nothing is charged to hold it.",
   },
 ];
 
@@ -356,7 +356,7 @@ export const pricingFaqs = [
   },
   {
     q: "How do I pay?",
-    a: "Nothing is charged to hold a time. You pay after the visit — by card link or invoice, or on site.",
+    a: "Nothing is charged to hold a time. Payment is due before the visit, by card through Stripe only.",
   },
   {
     q: "Do you clean HVAC ducts too?",
