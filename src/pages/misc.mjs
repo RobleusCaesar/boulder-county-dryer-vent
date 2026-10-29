@@ -68,7 +68,7 @@ ${ctaBand({ lede: "" })}`;
 
   return page({
     path: routes.about,
-    title: "About — one van, five towns, one job",
+    title: "About — one van, seven towns, one job",
     description: "Boulder County Dryer Vent is a local, fixed-price dryer vent cleaning service. One service only, routes not dispatch, photos every visit.",
     current: "about",
     body,
@@ -247,18 +247,12 @@ export function privacyPage() {
 
 /* ── Credits ────────────────────────────────────────────────────────── */
 export function creditsPage() {
-  const rows = [
-    ["boulder.jpg", "Flatirons Sunrise — Flatirons from Chautauqua", "Tyler Cipriani", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Flatirons_Sunrise.jpg"],
-    ["louisville.jpg", "Jacoe Store, Main Street, Louisville, CO", "Jeffrey Beall", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Jacoe_Store.JPG"],
-    ["lafayette.jpg", "E Simpson Street, Lafayette, CO", "Jared Winkler", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Lafayette,_CO.jpg"],
-    ["longmont.jpg", "Downtown Longmont Main Street", "David Shankbone", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:Longmont_Colorado.JPG"],
-    ["superior.jpg", "Rock Creek subdivision, Superior, CO", "Pleiades Two", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Superior,_Colorado,_Fall_2011.jpg"],
-  ];
+  const rows = towns.map((t) => [t.image, t.credit.title, t.credit.author, t.credit.license, t.credit.url, t.credit.licenseUrl]);
   const inner = `
-<p>Town page photographs are licensed local scenery from Wikimedia Commons &#8212; real places in the towns we serve, not job photos. Each is cropped and resized for the web; the original and its license are linked below.</p>
+<p>Town page photographs are licensed local scenery from Wikimedia Commons &#8212; real places in the towns we serve, not job photos. Each is cropped to 4:3 and compressed for the web; the original and its license are linked below. No other changes were made.</p>
 <div class="table-scroll"><table>
 <thead><tr><th>Page</th><th>Depicts</th><th>Author</th><th>License</th></tr></thead>
-<tbody>${join(rows, ([file, what, who, lic, url]) => `<tr><td>${esc(file.replace(".jpg", ""))}</td><td><a href="${url}" rel="noopener" target="_blank">${esc(what)}</a></td><td>${esc(who)}</td><td>${esc(lic)}</td></tr>`)}</tbody>
+<tbody>${join(rows, ([file, what, who, lic, url, licUrl]) => `<tr><td>${esc(file.replace(".jpg", ""))}</td><td><a href="${url}" rel="noopener" target="_blank">${esc(what)}</a></td><td>${esc(who)}</td><td><a href="${licUrl}" rel="noopener" target="_blank">${esc(lic)}</a></td></tr>`)}</tbody>
 </table></div>
 <p>Service photographs (technician, ducts, hoods) are illustrative images prepared for this site, not photographs of a specific customer&#8217;s home. Every customer receives photos of their own duct after the visit.</p>
 <p>Type: Barlow and Barlow Condensed by Jeremy Tribby, via Google Fonts (SIL Open Font License).</p>`;

@@ -14,28 +14,21 @@ const waitHonest =
 
 const priceProof = `$${prices.standard.amount} standard &#183; $${prices.difficult.amount} difficult/long &#183; $${prices.annual.amount} annual`;
 
-function lafayetteNearby(t) {
-  if (t.slug !== "lafayette-co") return "";
-  const louisville = towns.find((x) => x.slug === "louisville-co");
-  const superior = towns.find((x) => x.slug === "superior-co");
-  return `<p class="muted" style="margin:16px 0 0;font-size:16px">Also see <a href="${routes.areas}">all service areas</a>, <a href="${routes.area(louisville.slug)}">${esc(louisville.name)}</a>, and <a href="${routes.area(superior.slug)}">${esc(superior.name)}</a>.</p>`;
-}
-
 export function areasPage() {
   const body = `
 ${pageHero({
   kicker: "Service area",
-  title: "Boulder County only, one town at a time",
+  title: "Boulder County and the towns next door, one at a time",
   size: "t-page--lg max-20",
-  lede: `We do not drive to Denver. Staying inside five towns is what keeps the price flat and the schedule honest &#8212; if we are in your town anyway, the visit costs $${prices.standard.amount}.`,
+  lede: `We do not drive to Denver. Staying inside a short list of towns is what keeps the price flat and the schedule honest &#8212; if we are in your town anyway, the visit costs $${prices.standard.amount}. Erie and Broomfield are new to the list, and we confirm your address when you request a visit.`,
 })}
 
 <section class="bg-white">
   <div class="wrap section grid grid-2--wide grid center">
-    ${mapFigure({ caption: "Schematic, not to scale. Routes rotate through the five towns." })}
+    ${mapFigure({ caption: "Schematic, not to scale. Routes rotate through these towns." })}
     <div>
       <h2 class="t-block" style="margin-bottom:14px">Pick your town for local notes and zips</h2>
-      <p class="body-lg" style="margin-bottom:22px">Each town page lists the zip codes we cover and what we tend to find in that town&#8217;s homes. Or skip ahead &#8212; the booking flow asks for your town and zip anyway, and tells you straight away if you are outside the five.</p>
+      <p class="body-lg" style="margin-bottom:22px">Each town page lists the zip codes we cover and local facts that affect your vent. Or skip ahead &#8212; the booking flow asks for your town and zip anyway, and tells you straight away if you are off our published list.</p>
       ${bookBtn(`Book My Visit · $${prices.standard.amount}`)}
     </div>
   </div>
@@ -43,7 +36,7 @@ ${pageHero({
 
 <section class="bg-sand bt">
   <div class="wrap section">
-    <h2 class="t-section t-section--sm mb-3">Five towns</h2>
+    <h2 class="t-section t-section--sm mb-3">Seven towns</h2>
     <div class="grid grid-cards grid-cards--270">
       ${join(
         towns,
@@ -69,14 +62,16 @@ ${ctaBand({
 
   return page({
     path: routes.areas,
-    title: "Service areas — five Boulder County towns",
-    description: "Dryer vent cleaning in Boulder, Louisville, Lafayette, Longmont, and Superior, Colorado. Zip codes covered, flat published pricing, one town at a time.",
+    title: "Service areas — Boulder County and nearby towns",
+    description: "Dryer vent cleaning in Boulder, Louisville, Lafayette, Longmont, Superior, Erie, and Broomfield, Colorado. Zip codes covered, flat published pricing, one town at a time.",
     current: "areas",
     body,
   });
 }
 
 export function townPage(t) {
+  const nearby = t.nearby.map((slug) => towns.find((x) => x.slug === slug)).filter(Boolean);
+  const c = t.credit;
   const body = `
 <section class="bg-sand bb">
   <div class="wrap section--hero grid grid-2 center" style="padding-top:clamp(36px,5vw,72px);padding-bottom:clamp(36px,5vw,72px)">
@@ -99,7 +94,7 @@ export function townPage(t) {
     <figure class="blueprint">
       ${corners()}
       <span class="fig-img ar-4-3"><img src="/img/cities/${t.image}" alt="${attr(t.imageAlt)}" width="1200" height="900"></span>
-      <figcaption class="cap" style="font-size:13px;padding:9px 12px">${esc(t.imageCaption)}</figcaption>
+      <figcaption class="cap" style="font-size:13px;padding:9px 12px">${esc(t.imageCaption)} Photo: <a href="${c.url}" rel="noopener" target="_blank">${esc(c.title)}</a> by ${esc(c.author)}, <a href="${c.licenseUrl}" rel="noopener" target="_blank">${esc(c.license)}</a>, via Wikimedia Commons.</figcaption>
     </figure>
   </div>
 </section>
@@ -107,10 +102,8 @@ export function townPage(t) {
 <section class="bg-white">
   <div class="wrap section--md grid grid-2--280 grid start">
     <div>
-      <h2 class="t-block" style="margin-bottom:14px">What we see in ${esc(t.name)} homes</h2>
-      <p class="body-lg" style="margin-bottom:12px">${esc(t.local1)}</p>
-      <p class="body-lg">${esc(t.local2)}</p>
-      ${lafayetteNearby(t)}
+      <h2 class="t-block" style="margin-bottom:14px">${esc(t.name)} and its dryer vents</h2>
+      ${join(t.paragraphs, (para, i) => `<p class="body-lg" style="margin-bottom:${i === t.paragraphs.length - 1 ? 0 : 12}px">${esc(para)}</p>`)}
     </div>
     <div style="display:grid;gap:12px">
       ${join(
@@ -123,15 +116,23 @@ export function townPage(t) {
 </section>
 
 <section class="bg-sand bt">
-  <div class="wrap section--md grid grid-2 center">
-    <div>
-      <h2 class="t-block" style="margin-bottom:14px">Reviews from ${esc(t.name)}</h2>
-      <p class="body-lg">None yet &#8212; we publish reviews only when ${esc(t.name)} customers write them, unedited. Had a visit? <a href="${routes.contact}">Send yours</a> and say it is a review.</p>
-    </div>
+  <div class="wrap section--md grid grid-2 start">
     <div class="blueprint card">
       ${corners()}
-      <h3 style="margin:0 0 8px;font-size:23px;text-transform:uppercase;color:var(--ink)">What every ${esc(t.name)} visit includes</h3>
-      <p class="card-body">Full duct run rotary-brushed and vacuumed, hood and flapper cleaned, airflow metered before and after, and photos of the duct emailed the same day. <a href="${routes.service}">The full service, step by step &#8594;</a></p>
+      <h3 style="margin:0 0 10px;font-size:23px;text-transform:uppercase;color:var(--ink)">${esc(t.name)} at a glance</h3>
+      <ul style="list-style:none;margin:0;padding:0;display:grid;gap:8px">
+        ${join(t.facts, ([k, v]) => `<li class="card-body"><b>${esc(k)}:</b> ${esc(v)}</li>`)}
+      </ul>
+      <p class="muted" style="margin:12px 0 0;font-size:13px">Local facts from Wikipedia town articles, USGS elevations as listed there, and the 2020 U.S. census.</p>
+    </div>
+    <div>
+      <div class="blueprint card">
+        ${corners()}
+        <h3 style="margin:0 0 8px;font-size:23px;text-transform:uppercase;color:var(--ink)">What every ${esc(t.name)} visit includes</h3>
+        <p class="card-body">Full duct run rotary-brushed and vacuumed, hood and flapper cleaned, airflow metered before and after, and photos of the duct emailed the same day. <a href="${routes.service}">The full service, step by step &#8594;</a></p>
+      </div>
+      <p class="muted" style="margin:16px 0 0;font-size:16px">Read before you book: <a href="${routes.post("winter-dryer-vent-tips-boulder-county")}">get the vent ready for a Colorado winter</a>, <a href="${routes.post("roof-vs-ground-dryer-vent-cleaning-boulder")}">roof versus ground pricing</a>, and <a href="${routes.post("how-to-check-outdoor-dryer-vent-hood")}">how to check your outdoor hood</a>.</p>
+      <p class="muted" style="margin:12px 0 0;font-size:16px">Nearby: ${nearby.map((n) => `<a href="${routes.area(n.slug)}">${esc(n.name)}</a>`).join(", ")}. <a href="${routes.areas}">All service areas</a>.</p>
     </div>
   </div>
 </section>
@@ -153,7 +154,7 @@ export function townPage(t) {
   return page({
     path: routes.area(t.slug),
     title: `Dryer vent cleaning in ${t.name}, CO`,
-    description: `Fixed-price dryer vent cleaning in ${t.name}, Colorado (${t.zips.join(", ")}). $${prices.standard.amount} standard, $${prices.difficult.amount} for roof or long runs — published before you book, photos after every visit.`,
+    description: `Fixed-price dryer vent cleaning in ${t.name}, Colorado (${t.zips.join(", ")}). $${prices.standard.amount} standard, $${prices.difficult.amount} for roof or long runs. Local notes on ${t.name} homes, published before you book.`,
     current: "areas",
     body,
     image: `/img/cities/${t.image}`,

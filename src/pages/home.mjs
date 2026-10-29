@@ -163,11 +163,11 @@ export function homePage(posts) {
 <section class="bg-white">
   <div class="wrap section--xl">
     <p class="kicker">Service area</p>
-    <h2 class="t-section max-22 mb-3">Five towns, one route sheet</h2>
+    <h2 class="t-section max-22 mb-3">Seven towns, one route sheet</h2>
     <div class="grid grid-2 center">
       ${mapFigure()}
       <div>
-        <p class="body-lg" style="margin-bottom:20px">We run Boulder County only, one town at a time. That is why the price is flat and why we ask a couple of questions before confirming a time &#8212; we are fitting you onto a route, not driving out for an estimate.</p>
+        <p class="body-lg" style="margin-bottom:20px">We run Boulder County and the towns next to it, one town at a time. That is why the price is flat and why we ask a couple of questions before confirming a time &#8212; we are fitting you onto a route, not driving out for an estimate.</p>
         <div class="town-chips">
           ${join(
             towns,

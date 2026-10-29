@@ -5,7 +5,7 @@ export const site = {
   name: "Boulder County Dryer Vent",
   url: "https://bouldercountydryervent.com",
   description:
-    "Fixed-price dryer vent cleaning in Boulder County, Colorado. Published prices, no estimate visit, before-and-after photos of every duct. Boulder, Louisville, Lafayette, Longmont, and Superior.",
+    "Fixed-price dryer vent cleaning in Boulder County, Colorado. Published prices, no estimate visit, before-and-after photos of every duct. Boulder, Louisville, Lafayette, Longmont, Superior, Erie, and Broomfield.",
   phoneDisplay: "(720) 605-3198",
   phoneHref: "tel:+17206053198",
   phoneE164: "+1-720-605-3198",
@@ -152,85 +152,249 @@ export const priceCards = [
 export const routeFillNote =
   "Route-fill note: these are the published prices for a scheduled visit on a day we are already working your town. Same-day and single-stop trips are quoted on the phone.";
 
+// Per-town page content. Every local fact below is checkable against the
+// sources noted on each town page (Wikipedia town articles, USGS GNIS elevation
+// as listed on Wikipedia, U.S. Census 2020). No invented stats, no job counts,
+// no reviews. Prices, phone, and booking link come from the shared data above.
 export const towns = [
   {
     slug: "boulder-co",
     seoSlug: "boulder-co-dryer-vent-cleaning",
     name: "Boulder",
+    core: true,
     zips: ["80301", "80302", "80303", "80304", "80305", "80310"],
     blurb:
-      "Older University Hill bungalows, north Boulder ranches, and south Boulder two-stories all share the same problem: lint that never makes it out of a long, bent run.",
-    local1:
-      "Many Boulder homes vent through a crawl, a low roof, or a second-story termination tucked behind a deck. We price that work up front instead of discovering it on the ladder.",
-    local2: "We serve the city of Boulder and the nearby unincorporated pockets we can reach on the same route.",
+      "Boulder sits at the foot of the Flatirons at about 5,300 feet. Snow in winter and housing from many eras make the outdoor hood and the length of the duct the two things we check first.",
+    paragraphs: [
+      "Boulder was founded in late 1858 by gold prospectors who arrived at Boulder Canyon, and it was incorporated in 1871. It is the county seat and the home of the University of Colorado Boulder. A city that has been growing since 1858 has housing from many eras, and different eras route a dryer vent differently. That is the main reason we ask where your vent exits before we give you a price.",
+      "A dryer in a basement or a middle-of-the-house laundry closet pushes air a long way before it reaches daylight. When the run is longer than about 15 feet, or the vent leaves through the roof or a second-story wall, it is the $169 difficult clean. You see that price in the booking flow before you pick a time. A dryer on an outside ground-floor wall with a short run is the $129 standard clean.",
+      "The city sits near the base of the Rocky Mountain foothills, and snow can drift against a low side-wall hood and cover the louvers. If your dryer has started taking two cycles after a storm, check the hood first. Our guide to getting the vent ready for a Colorado winter walks through it.",
+    ],
+    facts: [
+      ["Elevation", "About 5,300 feet above sea level"],
+      ["Founded", "1858; incorporated 1871"],
+      ["Population", "108,250 (2020 census)"],
+      ["County", "Boulder County, and the county seat"],
+      ["Our business address", "6395 Gunpark Dr, Suite J, Boulder, CO 80301"],
+    ],
+    nearby: ["louisville-co", "superior-co", "longmont-co"],
     image: "boulder.jpg",
-    imageAlt: "Flatirons at sunrise from Chautauqua in Boulder, Colorado",
-    imageCaption: "Flatirons from Chautauqua — local Boulder scenery, not a job photo.",
+    imageAlt: "The Flatirons rock formations above Boulder, Colorado, at sunrise",
+    imageCaption: "The Flatirons from Chautauqua. Boulder scenery, not a job photo.",
+    credit: {
+      title: "Flatirons Sunrise",
+      author: "Tyler Cipriani",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+      url: "https://commons.wikimedia.org/wiki/File:Flatirons_Sunrise.jpg",
+    },
     map: { x: 30, y: 46 },
   },
   {
     slug: "louisville-co",
     seoSlug: "louisville-co-dryer-vent-cleaning",
     name: "Louisville",
+    core: true,
     zips: ["80027"],
     blurb:
-      "Louisville’s mix of 1970s ranches and newer two-stories is a good fit for a fixed-price visit. Most terminations are reachable without a surprise add-on.",
-    local1:
-      "If your dryer is in a basement and the cap is high on the rear wall or roof, the flow quotes the difficult rate before you book — not at the door.",
-    local2: "Downtown Louisville, Cottonwood, and the neighborhoods west of McCaslin are all in-area.",
+      "Louisville grew up around coal mines in the 1870s and became a commuter suburb after the last mine closed in the 1950s. Houses from several eras sit side by side, and each era puts the dryer vent in a different place.",
+    paragraphs: [
+      "The town traces back to the Welch Mine in 1877. It was named for Louis Nawatny, who platted his land, and it was incorporated in 1882. About 30 different mines operated within today's town limits over the years, the last ones closed in the 1950s, and the town turned into a suburban community. Today it has about 21,000 residents and a historic downtown on Main Street, with Steinbaugh Pavilion hosting the summer Street Faire.",
+      "Homes of different ages route the dryer vent differently. A laundry room in a basement or the middle of the house means a long run to the hood, and a laundry room on an outside ground-floor wall means a short one. The price follows the vent, not the street: $129 for a ground-level side-wall exit under about 15 feet, $169 for a roof, upper-floor, or long run.",
+      "Louisville shares ZIP code 80027 with Superior, so pick your town in the booking form and we will route you correctly. US 36, the Denver-Boulder Turnpike, forms the southwestern edge of town, and Louisville borders Superior, so the two towns can share a route day.",
+    ],
+    facts: [
+      ["Elevation", "About 5,400 feet above sea level"],
+      ["Founded", "1877; incorporated 1882"],
+      ["Population", "21,226 (2020 census)"],
+      ["ZIP code", "80027 (shared with Superior)"],
+      ["Town edge", "US 36 forms the southwestern border"],
+    ],
+    nearby: ["superior-co", "lafayette-co", "boulder-co"],
     image: "louisville.jpg",
     imageAlt: "Jacoe Store on Main Street in historic downtown Louisville, Colorado",
-    imageCaption: "Historic Main Street, Louisville — local scenery, not a job photo.",
+    imageCaption: "Jacoe Store on Main Street. Louisville scenery, not a job photo.",
+    credit: {
+      title: "Jacoe Store",
+      author: "Jeffrey Beall",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+      url: "https://commons.wikimedia.org/wiki/File:Jacoe_Store.JPG",
+    },
     map: { x: 56, y: 72 },
   },
   {
     slug: "lafayette-co",
     seoSlug: "lafayette-co-dryer-vent-cleaning",
     name: "Lafayette",
+    core: true,
     zips: ["80026"],
     blurb:
-      "From Old Town Lafayette to the newer streets east of Public Road, we clean residential dryer vents on a published price — not a range that moves after we arrive.",
-    local1:
-      "Townhomes with shared side yards and HOA rules are fine. We work from the home’s dryer, not from a roof we weren’t invited onto.",
-    local2: "If your HOA needs a certificate of insurance on file, say so in your booking notes.",
+      "Lafayette was platted in 1888 by Mary E. Miller on land where coal was found in 1884. Old Town still has structures moved in from the mine camps, and the newer streets around it are a very different kind of house.",
+    paragraphs: [
+      "Mary Miller filed the original plat in January 1888 and sold the first lot that March. Coal had been discovered on the Miller farm in 1884, and the town grew around the mines. A few buildings moved from those camps still stand in Old Town, and the Lafayette History Museum keeps some of the mining tools. Festival Plaza, on Public Road at Chester Street, is the center of Old Town today.",
+      "Lafayette has about 30,400 residents and roughly 12,500 housing units. US 287 runs through the center of town, and the city borders Louisville to the southwest, Broomfield to the east and south, and Erie to the north and east. Because it touches so many neighbors, a Lafayette visit can share a route day with a stop in any of them.",
+      "Townhomes with shared walls and HOA rules are fine for us. We work from the dryer inside the home and the hood on the outside wall, and we do not go onto a roof we were not invited onto. If your HOA wants a certificate of insurance on file, say so in your booking notes. A ground-level side-wall exit is the $129 standard clean. A roof or upper-floor exit is $169.",
+    ],
+    facts: [
+      ["Elevation", "About 5,300 feet above sea level"],
+      ["Founded", "1888 by Mary E. Miller"],
+      ["Population", "30,411 (2020 census)"],
+      ["ZIP code", "80026"],
+      ["Main road", "US 287, with I-25 exit 229 nearby"],
+    ],
+    nearby: ["louisville-co", "erie-co", "broomfield-co"],
     image: "lafayette.jpg",
     imageAlt: "Looking east on E Simpson Street in Lafayette, Colorado",
-    imageCaption: "E Simpson Street, Lafayette — local streetscape, not a job photo.",
+    imageCaption: "E Simpson Street. Lafayette streetscape, not a job photo.",
+    credit: {
+      title: "Lafayette, CO",
+      author: "Jared Winkler",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+      url: "https://commons.wikimedia.org/wiki/File:Lafayette,_CO.jpg",
+    },
     map: { x: 70, y: 58 },
   },
   {
     slug: "longmont-co",
     seoSlug: "longmont-co-dryer-vent-cleaning",
     name: "Longmont",
+    core: true,
     zips: ["80501", "80503", "80504"],
     blurb:
-      "Longmont is a longer drive from the rest of the county, so we batch these visits. That is why the calendar is honest: if we do not have a Longmont day open, we say so.",
-    local1:
-      "West Longmont two-stories and east-side ranches both book the same way. Stories and roof access set the price, not the ZIP.",
-    local2: "Hover and Hygiene-adjacent addresses are reviewed when you request a time.",
+      "Longmont is the second-largest town on our list and the one farthest from the rest of the route. We batch Longmont visits by day, so we tell you plainly when a Longmont day is open.",
+    paragraphs: [
+      "The Chicago-Colorado Colony founded Longmont in 1871 as the first planned community in Boulder County, with its streets laid out in a grid inside one square mile. The town was incorporated in 1885 and is named for Longs Peak, which you can see from town. About 98,900 people live here, in roughly 41,700 housing units.",
+      "A town this size has housing from every era, from the original grid near Main Street to newer subdivisions. In the mid-1990s the south edge of town became the site of Prospect New Town, the first New Urbanist project in Colorado. Wherever your house sits, the dryer vent has one job, and the length and exit point of that vent set your price, so we ask about both before quoting.",
+      "The climate is cold and semi-arid, and Longmont sits at about 5,000 feet, a little lower than Boulder. Winter snow can still pile against a low hood, and a hood that does not open lets lint build up behind it. Because Longmont is a longer drive, we group visits by day, and the booking flow shows your published price either way. The city sits in both Boulder and Weld counties.",
+    ],
+    facts: [
+      ["Elevation", "About 5,000 feet above sea level"],
+      ["Founded", "1871; incorporated 1885"],
+      ["Population", "98,885 (2020 census)"],
+      ["Climate", "Cold semi-arid"],
+      ["Counties", "Boulder and Weld"],
+    ],
+    nearby: ["boulder-co", "lafayette-co", "erie-co"],
     image: "longmont.jpg",
     imageAlt: "Main Street in downtown Longmont, Colorado",
-    imageCaption: "Downtown Longmont Main Street — local scenery, not a job photo.",
+    imageCaption: "Main Street in downtown Longmont. Local scenery, not a job photo.",
+    credit: {
+      title: "Longmont Colorado",
+      author: "David Shankbone",
+      license: "CC BY 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
+      url: "https://commons.wikimedia.org/wiki/File:Longmont_Colorado.JPG",
+    },
     map: { x: 62, y: 20 },
   },
   {
     slug: "superior-co",
     seoSlug: "superior-co-dryer-vent-cleaning",
     name: "Superior",
+    core: true,
     zips: ["80027"],
     blurb:
-      "Superior’s planned streets make routing simple. If we already have a day in Louisville or Boulder, a Superior stop is often the efficient next job.",
-    local1:
-      "Most homes here are two-story with rooftop or high-wall caps. Expect the $169 visit unless you have a ground-level termination.",
-    local2: "Rock Creek and the original Superior townsite are both in-area.",
+      "Superior had about 250 residents until the 1990s, then added Rock Creek Ranch and other subdivisions and passed 9,000 people by 2000. Most of the homes here are newer, and newer floor plans change how a dryer vent is routed.",
+    paragraphs: [
+      "William and Emmaline Hake settled along Coal Creek in 1860, and coal found on their homestead in 1864 started the mining that, by most accounts, gave the town its name. Superior was founded in 1896 and incorporated in 1904. The Industrial Mine closed in 1945, the population hovered around 250 for decades, and then Rock Creek Ranch and other subdivisions were built in the 1990s. About 13,400 people live here now, and Downtown Superior is a newer mixed-use district.",
+      "Because so much of Superior was built from the 1990s on, many homes have newer floor plans. A second-floor laundry room can mean a vent that runs up and out through the roof or a high wall, and that is the $169 difficult clean. A ground-floor laundry with a side-wall hood is the $129 standard clean. The booking flow asks two questions about the exit and the run, then shows your price before you pick a time.",
+      "Superior is the highest of the towns we list, at about 5,500 feet, and winter snow can pile against a side-wall hood. It shares ZIP code 80027 with Louisville, so choose your town in the booking form. Superior borders Louisville and is close to Boulder, so a Superior visit can share a route day with either.",
+    ],
+    facts: [
+      ["Elevation", "About 5,500 feet above sea level"],
+      ["Founded", "1896; incorporated 1904"],
+      ["Population", "13,361 (2024 estimate)"],
+      ["ZIP code", "80027 (shared with Louisville)"],
+      ["Growth", "Rock Creek Ranch and other subdivisions built from the 1990s"],
+    ],
+    nearby: ["louisville-co", "boulder-co", "broomfield-co"],
     image: "superior.jpg",
     imageAlt: "Overlook of the Rock Creek subdivision in Superior, Colorado",
-    imageCaption: "Rock Creek overlook, Superior — local scenery, not a job photo.",
+    imageCaption: "Rock Creek overlook. Superior scenery, not a job photo.",
+    credit: {
+      title: "Superior, Colorado, Fall 2011",
+      author: "Pleiades Two",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+      url: "https://commons.wikimedia.org/wiki/File:Superior,_Colorado,_Fall_2011.jpg",
+    },
     map: { x: 34, y: 84 },
+  },
+  {
+    slug: "erie-co",
+    seoSlug: "erie-co-dryer-vent-cleaning",
+    name: "Erie",
+    core: false,
+    zips: ["80516"],
+    blurb:
+      "Erie was a coal town in the 1870s and is now the most populous statutory town in Colorado. It grew by more than 65 percent between 2010 and 2020, so much of it is recent construction.",
+    paragraphs: [
+      "Erie was settled in 1867 and incorporated in 1874. Its coal miners owned their own land and houses instead of living in temporary camps. The old downtown still has an 1889 brick building, the Miner Memorial dedicated in 2000, and a Town Hall that used to be Lincoln School. Most of the mines closed by 1960.",
+      "The 2020 census counted 30,038 people, up about 65.6 percent from 2010, in 10,332 housing units. Nearly half of Erie households, 48.1 percent, had children under 18. Fast growth means a lot of newer homes, and more people at home generally means more laundry and more lint through the duct. A newer two-story plan can also mean a longer run or a roof exit. We price by the vent: $129 for a ground-level side-wall exit under about 15 feet, $169 for a roof, upper-floor, or long run.",
+      "Erie is partly in Weld County and partly in Boulder County. It sits just west of I-25, about 20 minutes from Boulder, and it borders Lafayette and Broomfield. Erie is new to our route sheet. Request a visit and we will confirm whether your address is on a route, and what days we have open, within one business day.",
+    ],
+    facts: [
+      ["Elevation", "About 5,100 feet above sea level"],
+      ["Settled", "1867; incorporated 1874"],
+      ["Population", "30,038 (2020 census)"],
+      ["Counties", "Weld and Boulder"],
+      ["ZIP code", "80516"],
+    ],
+    nearby: ["lafayette-co", "broomfield-co", "longmont-co"],
+    image: "erie.jpg",
+    imageAlt: "Erie Town Hall, the former Lincoln School, in Erie, Colorado",
+    imageCaption: "Erie Town Hall, the former Lincoln School. Local scenery, not a job photo.",
+    credit: {
+      title: "Town Hall Erie Colorado 01",
+      author: "Erie Bard",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+      url: "https://commons.wikimedia.org/wiki/File:Town_Hall_Erie_Colorado_01.jpg",
+    },
+    map: { x: 84, y: 40 },
+  },
+  {
+    slug: "broomfield-co",
+    seoSlug: "broomfield-co-dryer-vent-cleaning",
+    name: "Broomfield",
+    core: false,
+    zips: ["80020", "80021", "80023"],
+    blurb:
+      "Broomfield is its own city and county, formed in 2001 right next to Boulder County. About 74,000 people live here, in more than 31,000 homes.",
+    paragraphs: [
+      "The Broomfield post office opened in 1884, and historians think the name comes from the broomcorn grown here for brooms. The Denver-Boulder Turnpike opened through the area in 1952, and the City of Broomfield was incorporated in 1961. On November 15, 2001, Broomfield became its own county, the 64th and smallest in Colorado. It sits right next to Boulder County, on its southeast side.",
+      "About 74,100 people live in Broomfield, in more than 31,000 housing units. The climate is cold semi-arid, and in an average year the coldest night reaches about 9 degrees below zero, so a side-wall hood can get packed with snow after a storm. Broomfield covers three ZIP codes, 80020, 80021, and 80023. We do not guess at a home from its address. We ask where your vent exits and how long the run is, then show you the published price: $129 standard, $169 difficult.",
+      "Broomfield is new to our route sheet. Request a visit and we will confirm whether your address is on a route, and what days we have open, within one business day. Broomfield borders Lafayette, Erie, and Superior, so a stop here often fits with a visit in one of those towns.",
+    ],
+    facts: [
+      ["Elevation", "About 5,300 feet above sea level"],
+      ["Incorporated", "1961; became its own county in 2001"],
+      ["Population", "74,112 (2020 census)"],
+      ["Climate", "Cold semi-arid"],
+      ["ZIP codes", "80020, 80021, 80023"],
+    ],
+    nearby: ["lafayette-co", "superior-co", "erie-co"],
+    image: "broomfield.jpg",
+    imageAlt: "Morning view of the Flatirons from Broomfield, Colorado",
+    imageCaption: "The Flatirons from Broomfield. Local scenery, not a job photo.",
+    credit: {
+      title: "Flatirons view from Broomfield, Colorado",
+      author: "Kpsudeep",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+      url: "https://commons.wikimedia.org/wiki/File:Flatirons_view_from_Broomfield,_Colorado.jpg",
+    },
+    map: { x: 80, y: 78 },
   },
 ];
 
-export const inAreaZips = [...new Set(towns.flatMap((t) => t.zips))];
+// Towns on the regular route. Booking validation, the MCP tool, and llms.txt
+// only know these; Erie and Broomfield are confirmed by address on request.
+export const coreTowns = towns.filter((t) => t.core);
+
+export const inAreaZips = [...new Set(coreTowns.flatMap((t) => t.zips))];
 
 export const homeSteps = [
   {
@@ -349,7 +513,7 @@ export const planBullets = [
 ];
 
 export const pricingFaqs = [
-  { q: "Is there a trip or fuel charge?", a: "No. The published price is the whole price for a scheduled visit in our five towns." },
+  { q: "Is there a trip or fuel charge?", a: "No. The published price is the whole price for a scheduled visit in the towns we list." },
   {
     q: "What if my home turns out to be difficult?",
     a: "We tell you before any work starts. You either approve $169 or send us on our way — nothing owed either way.",
