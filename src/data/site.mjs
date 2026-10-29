@@ -390,11 +390,12 @@ export const towns = [
   },
 ];
 
-// Towns on the regular route. Booking validation, the MCP tool, and llms.txt
-// only know these; Erie and Broomfield are confirmed by address on request.
+// Towns on the regular route. llms.txt only lists these.
 export const coreTowns = towns.filter((t) => t.core);
 
-export const inAreaZips = [...new Set(coreTowns.flatMap((t) => t.zips))];
+// ZIPs the booking form treats as in the service area. Erie and Broomfield are
+// accepted by the booking system, the MCP tool, and the phone line as of 2026-10-29.
+export const inAreaZips = [...new Set(towns.flatMap((t) => t.zips))];
 
 export const homeSteps = [
   {
