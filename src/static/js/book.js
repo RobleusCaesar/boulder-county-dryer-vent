@@ -118,7 +118,7 @@
       zipHint.className = 'hint';
       if (z.length < 5) { zipHint.textContent = ''; return; }
       if (ZIPS.indexOf(z) !== -1) { zipHint.textContent = 'In our service area.'; zipHint.classList.add('ok'); }
-      else { zipHint.textContent = 'Outside the five towns we publish. Send it anyway and we will tell you if a route can reach you.'; zipHint.classList.add('warn'); }
+      else { zipHint.textContent = 'Not on our published route list. Send it anyway and we will tell you if a route can reach you.'; zipHint.classList.add('warn'); }
     });
   }
 

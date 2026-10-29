@@ -5,7 +5,7 @@ import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, ex
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { site, routes, towns, mcp, prices } from "../src/data/site.mjs";
+import { site, routes, towns, coreTowns, mcp, prices } from "../src/data/site.mjs";
 import { attr, esc, redirectPage } from "../src/lib/html.mjs";
 import { homePage } from "../src/pages/home.mjs";
 import { servicePage } from "../src/pages/service.mjs";
@@ -160,7 +160,7 @@ function writeDiscovery(dist) {
   const agentsUrl = `${site.url}${routes.agents}`;
   const cardUrl = `${site.url}/.well-known/mcp/server-card.json`;
   const catalogUrl = `${site.url}/.well-known/ai-catalog.json`;
-  const townList = towns.map((t) => t.name).join(", ");
+  const townList = coreTowns.map((t) => t.name).join(", ");
   const cardDescription = "Dryer vent cleaning in Boulder County. Payment is due before the visit, by card through Stripe only.";
   const createBookingDescription =
     `Open a PENDING request, not a booking. No token. Requires name, a valid US mobile or landline (phone), and a real Boulder County street address (street and town; validated). Optional: email, service (standard or difficult), preferred_windows, sms_consent, notes. Honeypot company_website must be empty or omitted. The response includes a short confirmation code. The person must text CONFIRM <code> from that same phone to ${site.phoneDisplay} within 48 hours, or the request expires and is never contacted. Strict per-IP and daily rate limits. No payment in MCP. Payment is due before the visit, by card through Stripe only.`;

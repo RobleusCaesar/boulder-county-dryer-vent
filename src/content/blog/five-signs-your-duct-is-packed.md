@@ -32,4 +32,4 @@ Stop here. The machine is holding heat it cannot exhaust, with a duct full of th
 > If the top of the dryer is hot to the touch, the heat has nowhere to go. That is the one that starts fires.
 
 ## What we would do about it
-One clean, about an hour, **$129** for most homes in our five towns and **$169** if your duct terminates on the roof or runs a long way. You see which one you are before you book. We meter the airflow before and after so the improvement is a number, not a feeling.
+One clean, about an hour, **$129** for most homes in the towns we serve and **$169** if your duct terminates on the roof or runs a long way. You see which one you are before you book. We meter the airflow before and after so the improvement is a number, not a feeling.
