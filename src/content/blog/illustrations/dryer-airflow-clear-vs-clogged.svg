@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+<rect width="1280" height="720" fill="#F6F1EA"/>
+<clipPath id="panel-clear"><rect x="32" y="28" width="596" height="664"/></clipPath>
+<g clip-path="url(#panel-clear)">
+<rect x="32" y="28" width="596" height="664" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+<rect x="32" y="28" width="596" height="7" fill="#E8632B"/>
+<text x="330.0" y="106" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="34" font-weight="650" fill="#1F2A37">Clear duct</text>
+<rect x="470" y="35" width="158" height="500" fill="#EEF1F3"/>
+<rect x="68" y="178" width="150" height="250" rx="8" fill="#FBF9F6" stroke="#1F2A37" stroke-width="3"/>
+<rect x="68" y="178" width="150" height="40.0" rx="8" fill="#1F2A37"/>
+<rect x="68" y="208.0" width="150" height="12.5" fill="#1F2A37"/>
+<circle cx="190" cy="196.75" r="8" fill="#E8632B"/>
+<circle cx="166" cy="196.75" r="4.5" fill="#F6F1EA"/>
+<circle cx="148" cy="196.75" r="4.5" fill="#F6F1EA" opacity="0.7"/>
+<circle cx="137.0" cy="318.0" r="45.0" fill="#F3EFE8" stroke="#1F2A37" stroke-width="3"/>
+<circle cx="137.0" cy="318.0" r="37.8" fill="none" stroke="#C9C1B6" stroke-width="2"/>
+<circle cx="137.0" cy="318.0" r="11.700000000000001" fill="#FBF9F6" stroke="#5E6A75" stroke-width="2"/>
+<rect x="84" y="400" width="118" height="7" rx="2" fill="#C9C1B6"/>
+<circle cx="218" cy="348" r="20" fill="#1F2A37"/>
+<circle cx="218" cy="348" r="11" fill="#141A22"/>
+<clipPath id="duct-clear"><rect x="218" y="326" width="204" height="44" rx="16"/></clipPath>
+<rect x="210" y="320" width="226" height="56" rx="28" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2.5"/>
+<rect x="224" y="330" width="190" height="36" rx="16" fill="#F4F8FA"/>
+<g opacity="1" fill="none" stroke="#E8632B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M234,348 H276"/><path d="M265,340 L276,348 L265,356"/></g>
+<g opacity="1" fill="none" stroke="#E8632B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M302,348 H344"/><path d="M333,340 L344,348 L333,356"/></g>
+<rect x="424" y="150" width="50" height="400" fill="#E6DDD2" stroke="#1F2A37" stroke-width="2.2"/>
+<line x1="424" y1="176" x2="474" y2="176" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="424" y1="220" x2="474" y2="220" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="424" y1="264" x2="474" y2="264" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="424" y1="308" x2="474" y2="308" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="424" y1="352" x2="474" y2="352" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="424" y1="396" x2="474" y2="396" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="424" y1="440" x2="474" y2="440" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="424" y1="484" x2="474" y2="484" stroke="#D3CBBF" stroke-width="1.4"/>
+<rect x="422" y="326" width="54" height="44" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2"/>
+<path d="M470,304 h74 l18,16 v56 l-18,16 h-74 z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.6"/>
+<line x1="482" y1="322.0" x2="536" y2="316.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="482" y1="337.0" x2="536" y2="331.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="482" y1="352.0" x2="536" y2="346.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="482" y1="367.0" x2="536" y2="361.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<g transform="rotate(-68 548 320)"><rect x="548" y="316" width="36" height="8" rx="2" fill="#1F2A37"/></g>
+<g opacity="1" fill="none" stroke="#E8632B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M540,348 H574"/><path d="M563,340 L574,348 L563,356"/></g>
+<circle cx="561.5" cy="333.0" r="3.2" fill="#E8632B" opacity="0.8"/>
+<circle cx="568.2" cy="338.6" r="2.3" fill="#E8632B" opacity="0.8"/>
+<circle cx="564.4" cy="345.4" r="3.2" fill="#E8632B" opacity="0.8"/>
+<circle cx="564.0" cy="351.0" r="2.3" fill="#E8632B" opacity="0.8"/>
+<text x="143" y="492" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Dryer</text>
+<text x="318" y="492" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Duct</text>
+<text x="518" y="492" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Hood</text>
+<text x="330.0" y="630" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="24" font-weight="500" fill="#5C6770">Warm, moist air leaves the house</text>
+</g>
+<clipPath id="panel-restricted"><rect x="652" y="28" width="596" height="664"/></clipPath>
+<g clip-path="url(#panel-restricted)">
+<rect x="652" y="28" width="596" height="664" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+<rect x="652" y="28" width="596" height="7" fill="#1F2A37"/>
+<text x="950.0" y="106" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="34" font-weight="650" fill="#1F2A37">Restricted duct</text>
+<rect x="1090" y="35" width="158" height="500" fill="#EEF1F3"/>
+<rect x="688" y="178" width="150" height="250" rx="8" fill="#FBF9F6" stroke="#1F2A37" stroke-width="3"/>
+<rect x="688" y="178" width="150" height="40.0" rx="8" fill="#1F2A37"/>
+<rect x="688" y="208.0" width="150" height="12.5" fill="#1F2A37"/>
+<circle cx="810" cy="196.75" r="8" fill="#E8632B"/>
+<circle cx="786" cy="196.75" r="4.5" fill="#F6F1EA"/>
+<circle cx="768" cy="196.75" r="4.5" fill="#F6F1EA" opacity="0.7"/>
+<circle cx="757.0" cy="318.0" r="45.0" fill="#F3EFE8" stroke="#1F2A37" stroke-width="3"/>
+<circle cx="757.0" cy="318.0" r="37.8" fill="none" stroke="#C9C1B6" stroke-width="2"/>
+<circle cx="757.0" cy="318.0" r="11.700000000000001" fill="#FBF9F6" stroke="#5E6A75" stroke-width="2"/>
+<rect x="704" y="400" width="118" height="7" rx="2" fill="#C9C1B6"/>
+<circle cx="838" cy="348" r="20" fill="#1F2A37"/>
+<circle cx="838" cy="348" r="11" fill="#141A22"/>
+<clipPath id="duct-restricted"><rect x="838" y="326" width="204" height="44" rx="16"/></clipPath>
+<rect x="830" y="320" width="226" height="56" rx="28" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2.5"/>
+<g clip-path="url(#duct-restricted)">
+<path d="M840.0,370.0 L840.0,336.0 L852.5,342.8 L865.0,341.0 L877.5,341.8 L890.0,334.7 L902.5,334.5 L915.0,331.4 L927.5,337.4 L940.0,338.5 L952.5,343.9 L965.0,340.0 L977.5,339.4 L990.0,332.5 L1002.5,334.0 L1015.0,332.9 L1027.5,339.9 L1040.0,340.3 L1040.0,370.0 Z" fill="#D7C4A2"/>
+<rect x="840" y="354" width="200" height="22" fill="#B08958" opacity="0.85"/>
+<circle cx="852" cy="344" r="2.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="874" cy="351" r="3.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="896" cy="358" r="2.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="918" cy="344" r="3.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="940" cy="351" r="2.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="962" cy="358" r="3.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="984" cy="344" r="2.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="1006" cy="351" r="3.2" fill="#8A6430" opacity="0.45"/>
+<circle cx="1028" cy="358" r="2.2" fill="#8A6430" opacity="0.45"/>
+</g>
+<g opacity="0.35" fill="none" stroke="#E8632B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M854,348 H890"/><path d="M879,340 L890,348 L879,356"/></g>
+<rect x="1044" y="150" width="50" height="400" fill="#E6DDD2" stroke="#1F2A37" stroke-width="2.2"/>
+<line x1="1044" y1="176" x2="1094" y2="176" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="1044" y1="220" x2="1094" y2="220" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="1044" y1="264" x2="1094" y2="264" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="1044" y1="308" x2="1094" y2="308" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="1044" y1="352" x2="1094" y2="352" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="1044" y1="396" x2="1094" y2="396" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="1044" y1="440" x2="1094" y2="440" stroke="#D3CBBF" stroke-width="1.4"/>
+<line x1="1044" y1="484" x2="1094" y2="484" stroke="#D3CBBF" stroke-width="1.4"/>
+<rect x="1042" y="326" width="54" height="44" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2"/>
+<path d="M1090,304 h74 l18,16 v56 l-18,16 h-74 z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.6"/>
+<line x1="1102" y1="322.0" x2="1156" y2="316.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="1102" y1="337.0" x2="1156" y2="331.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="1102" y1="352.0" x2="1156" y2="346.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="1102" y1="367.0" x2="1156" y2="361.0" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+<g transform="rotate(78 1168 320)"><rect x="1168" y="316" width="40" height="9" rx="2" fill="#1F2A37"/></g><ellipse cx="1166" cy="346" rx="14" ry="10" fill="#B08958"/><ellipse cx="1178" cy="352" rx="10" ry="7" fill="#D7C4A2"/>
+<circle cx="764.7" cy="305.3" r="3.2" fill="#E8632B" opacity="0.8"/>
+<circle cx="772.4" cy="309.7" r="2.3" fill="#E8632B" opacity="0.8"/>
+<circle cx="769.2" cy="315.1" r="3.2" fill="#E8632B" opacity="0.8"/>
+<circle cx="774.7" cy="320.9" r="2.3" fill="#E8632B" opacity="0.8"/>
+<circle cx="767.6" cy="326.3" r="3.2" fill="#E8632B" opacity="0.8"/>
+<circle cx="768.2" cy="330.7" r="2.3" fill="#E8632B" opacity="0.8"/>
+<text x="763" y="492" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Dryer</text>
+<text x="938" y="492" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Duct</text>
+<text x="1138" y="492" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Hood</text>
+<text x="950.0" y="630" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="24" font-weight="500" fill="#5C6770">Moist air stays in the drum</text>
+</g>
+</svg>
