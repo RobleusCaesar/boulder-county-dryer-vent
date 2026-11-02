@@ -12,7 +12,7 @@ description: What a dryer vent cleaning kit can clear on a short Boulder County 
 
 A dryer vent cleaning kit is a fair tool for one kind of house. The duct is short, straight, and metal, and it runs from a ground-floor dryer to a side-wall hood you can see from the yard. It is a poor match for a long run, a roof cap, or a pipe you cannot see the whole way. That is the split between a Saturday project and a job worth booking.
 
-The National Fire Protection Association, using 2010 through 2014 reports, found that failure to clean was the leading factor in home clothes dryer fires, about one-third of them. The same report says long, thin brushes are sold for lint in the vent pipe, and that dryer lint removal services do the same work. Cleaning the pipe matters. The open question is how much of your pipe a kit actually touches. The figures are in the [NFPA report on home fires involving clothes dryers and washing machines](https://content.nfpa.org/-/media/Project/Storefront/Catalog/Files/Research/NFPA-Research/US-Fire-Problem/Fire-causes/oswashersdryers.pdf).
+The National Fire Protection Association, using 2010 through 2014 reports, found that failure to clean was the leading factor in home clothes dryer fires, about one-third of them. The same report says long, thin brushes are sold to reach lint in the vent pipe, and that there are also dryer lint removal services. Cleaning the pipe matters. The open question is how much of your pipe a kit actually touches. The figures are in the [NFPA report on home fires involving clothes dryers and washing machines](https://content.nfpa.org/-/media/Project/Storefront/Catalog/Files/Research/NFPA-Research/US-Fire-Problem/Fire-causes/oswashersdryers.pdf).
 
 ## What is in the kit
 
@@ -44,7 +44,7 @@ A round brush follows a round pipe. On a short side-wall run, often under about 
 
 That is the job the kit is built for. A ground-floor laundry room on an outside wall is often exactly that.
 
-![Diagram of a dryer duct where a kit brush reaches only the first straight section, then stops at an elbow ahead of a long rise, a disconnected joint, and a roof cap](/img/diy-kit-brush-reach.jpg "The ember section is about as far as a drill brush reliably goes. The elbows, the open joint, and the roof cap are still ahead of it.")
+![Diagram of a dryer duct where a kit brush reaches only the first straight section, then stops at an elbow ahead of a long rise, a disconnected joint, and a roof cap](/img/diy-kit-brush-reach.jpg "The orange section is about as far as a drill brush reliably goes. The elbows, the open joint, and the roof cap are still ahead of it.")
 
 ## What a kit does not clear
 
@@ -76,13 +76,13 @@ Two-story houses and townhomes in the county often put the laundry upstairs or t
 
 ## When the professional clean is the better job
 
-Book [professional dryer vent cleaning](/dryer-vent-cleaning/) when the run is long, the exit is on the roof or an upper floor, the connector is crushed, the hood has a nest, a brush has stuck, or you are not sure the duct is still one piece. Also book when a normal load needs two cycles, the top of the dryer is hot to the touch, or there is little air at a hood you can reach. Those signs are ranked in [five signs your duct is packed](/blog/five-signs-your-duct-is-packed/). If the top of the dryer is hot to the touch, unplug it and leave it until the duct is cleared.
+Book [professional dryer vent cleaning](/dryer-vent-cleaning/) when the run is long, the exit is on the roof or an upper floor, the connector is crushed, the hood has a nest, a brush has stuck, or you are not sure the duct is still one piece. Also book when a normal load needs two cycles, the top of the dryer is hot to the touch, or there is little air at a hood you can reach. Those signs are ranked in [five signs your duct is packed](/blog/five-signs-your-duct-is-packed/). If the dryer runs hot, unplug it and leave it until the duct is cleared.
 
 A visit works from both ends. The hood comes off and is cleaned by hand, the flap is checked, and the airflow is read before and after. You get photos of the duct. A kit on one end of a pipe you cannot see does none of that. If a section is damaged, the work stops and you are told, rather than a brush being forced through.
 
-The published [dryer vent cleaning cost](/pricing/) is **$129** for a standard ground or side-wall clean, with a run under about 15 feet, and **$169** for a roof, upper-floor, or long run. You see which one you are before you book. After the first visit, the annual plan is **$109** for the next standard clean if you stay enrolled. A new duct, cap, or dryer part is not in the flat rate. [What the price includes](/blog/what-fixed-price-dryer-vent-cleaning-includes/) is the full-run clean, a basic inspection, an airflow check, and photos.
+The published [dryer vent cleaning cost](/pricing/) is **$129** for a standard ground or side-wall clean, with a run under about 15 feet, and **$169** for a roof, upper-floor, or long run. You see which price applies before you book. After the first visit, the annual plan is **$109** for the next standard clean if you stay enrolled. A new duct, cap, or dryer part is not in the flat rate. [What the price includes](/blog/what-fixed-price-dryer-vent-cleaning-includes/) is the full-run clean, a basic inspection, an airflow check, and photos.
 
-The NFPA report says to clean lint out of the vent pipe once a year, or to have a lint removal service do it. A kit on a short, straight duct can be part of looking after that pipe. It is not a stand-in for the full run when the duct leaves the room and you cannot see where it ends.
+The NFPA report says to clean lint out of the vent pipe once a year, and notes that lint removal services exist. A kit on a short, straight duct can be part of looking after that pipe. It is not a stand-in for the full run when the duct leaves the room and you cannot see where it ends.
 
 ![Checklist comparing dryer vent tasks a homeowner can do with jobs that belong in a professional clean](/img/diy-vs-pro-checklist.jpg "Clean the screen, check a ground-level hood, and look at the connector yourself. A roof exit, a long run, a crushed duct, a nest, a stuck brush, or a separated joint is a visit.")
 

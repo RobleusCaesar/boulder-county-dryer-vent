@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
   <rect width="1280" height="720" fill="#F6F1EA"/>
   <text x="48" y="58" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">Where a kit brush stops</text>
-  <text x="48" y="96" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">Ember marks the only stretch a drill brush reliably scrubs.</text>
+  <text x="48" y="96" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">Orange marks the only stretch a drill brush reliably scrubs.</text>
   <rect x="48" y="122" width="36" height="10" rx="2" fill="#E8632B"/>
   <text x="94" y="132" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Kit reaches</text>
   <rect x="230" y="122" width="36" height="10" rx="2" fill="#5E6A75"/>
@@ -30,10 +30,9 @@
   <circle cx="204" cy="455" r="15" fill="#1F2A37"/>
   <circle cx="204" cy="455" r="8" fill="#141A22"/>
 
-  <!-- Crushed connector -->
-  <path d="M204,478 C250,492 286,492 320,470 L320,440 C286,418 250,418 204,432 Z" fill="#C9B59A" stroke="#8A6430" stroke-width="2.2"/>
-  <path d="M224,455 C260,466 286,466 312,455" fill="none" stroke="#8A6430" stroke-width="1.6"/>
-  <text x="262" y="392" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Crushed</text>
+  <!-- Round connector -->
+  <rect x="204" y="436" width="116" height="38" rx="10" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2.2"/>
+  <text x="262" y="392" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Round</text>
   <text x="262" y="414" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">connector</text>
 
   <!-- Reachable section -->
@@ -87,5 +86,5 @@
   <text x="1004" y="188" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Roof cap</text>
   <text x="1004" y="212" font-family="Inter, Liberation Sans, sans-serif" font-size="16" font-weight="500" fill="#5C6770">Nest or lint at the cap</text>
 
-  <text x="48" y="680" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">A round brush does not pass a crushed connector, and it does not follow a run it cannot see.</text>
+  <text x="48" y="680" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">A round brush does not follow a run it cannot see.</text>
 </svg>
