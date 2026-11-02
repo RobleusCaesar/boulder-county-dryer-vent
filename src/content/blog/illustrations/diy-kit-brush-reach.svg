@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+  <text x="48" y="58" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">Where a kit brush stops</text>
+  <text x="48" y="96" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">Ember marks the only stretch a drill brush reliably scrubs.</text>
+  <rect x="48" y="122" width="36" height="10" rx="2" fill="#E8632B"/>
+  <text x="94" y="132" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Kit reaches</text>
+  <rect x="230" y="122" width="36" height="10" rx="2" fill="#5E6A75"/>
+  <text x="276" y="132" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Kit does not</text>
+
+  <!-- Wall behind the rise, drawn first -->
+  <rect x="590" y="168" width="72" height="330" fill="#E6DDD2"/>
+  <text x="626" y="524" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="16" font-weight="600" fill="#5C6770">In the wall</text>
+
+  <!-- Small roof behind the cap -->
+  <path d="M760,230 L940,118 L1140,230" fill="#E6DDD2" stroke="#1F2A37" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- Dryer -->
+  <rect x="48" y="300" width="156" height="268" rx="8" fill="#FBF9F6" stroke="#1F2A37" stroke-width="3"/>
+  <rect x="48" y="300" width="156" height="44" rx="8" fill="#1F2A37"/>
+  <rect x="48" y="330" width="156" height="14" fill="#1F2A37"/>
+  <circle cx="176" cy="320" r="7.5" fill="#E8632B"/>
+  <circle cx="154" cy="320" r="4.2" fill="#F6F1EA"/>
+  <circle cx="138" cy="320" r="4.2" fill="#F6F1EA" opacity="0.7"/>
+  <circle cx="126" cy="440" r="52" fill="#F3EFE8" stroke="#1F2A37" stroke-width="3"/>
+  <circle cx="126" cy="440" r="43" fill="none" stroke="#C9C1B6" stroke-width="2"/>
+  <circle cx="126" cy="440" r="13" fill="#FBF9F6" stroke="#5E6A75" stroke-width="2"/>
+  <rect x="68" y="528" width="116" height="8" rx="2" fill="#C9C1B6"/>
+  <text x="126" y="604" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="600" fill="#1F2A37">Dryer</text>
+  <circle cx="204" cy="455" r="15" fill="#1F2A37"/>
+  <circle cx="204" cy="455" r="8" fill="#141A22"/>
+
+  <!-- Crushed connector -->
+  <path d="M204,478 C250,492 286,492 320,470 L320,440 C286,418 250,418 204,432 Z" fill="#C9B59A" stroke="#8A6430" stroke-width="2.2"/>
+  <path d="M224,455 C260,466 286,466 312,455" fill="none" stroke="#8A6430" stroke-width="1.6"/>
+  <text x="262" y="392" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Crushed</text>
+  <text x="262" y="414" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">connector</text>
+
+  <!-- Reachable section -->
+  <rect x="312" y="418" width="250" height="74" rx="12" fill="#F8E3D8" stroke="#E8632B" stroke-width="3"/>
+  <rect x="326" y="434" width="214" height="42" rx="10" fill="#FBF9F6"/>
+  <g stroke="#E8632B" stroke-width="4" stroke-linecap="round">
+    <line x1="340" y1="455" x2="386" y2="455"/>
+    <line x1="398" y1="455" x2="444" y2="455"/>
+    <line x1="456" y1="455" x2="500" y2="455"/>
+  </g>
+  <circle cx="518" cy="455" r="11" fill="#E8632B"/>
+  <g stroke="#E8632B" stroke-width="2.2" stroke-linecap="round">
+    <line x1="518" y1="440" x2="518" y2="428"/>
+    <line x1="530" y1="444" x2="540" y2="434"/>
+    <line x1="532" y1="455" x2="546" y2="455"/>
+    <line x1="530" y1="466" x2="540" y2="476"/>
+    <line x1="518" y1="470" x2="518" y2="482"/>
+    <line x1="506" y1="466" x2="496" y2="476"/>
+    <line x1="504" y1="455" x2="490" y2="455"/>
+    <line x1="506" y1="444" x2="496" y2="434"/>
+  </g>
+  <text x="430" y="528" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#E8632B">Brush reaches here</text>
+
+  <!-- Elbow up, then a gap, then the run to the roof cap -->
+  <path d="M530,455 H640 V300" fill="none" stroke="#D5DCE3" stroke-width="56" stroke-linejoin="round" stroke-linecap="butt"/>
+  <path d="M544,455 H640 V314" fill="none" stroke="#F4F8FA" stroke-width="26" stroke-linejoin="round" stroke-linecap="butt"/>
+  <path d="M640,236 V176 H900" fill="none" stroke="#D5DCE3" stroke-width="56" stroke-linejoin="round" stroke-linecap="butt"/>
+  <path d="M640,222 V176 H886" fill="none" stroke="#F4F8FA" stroke-width="26" stroke-linejoin="round" stroke-linecap="butt"/>
+
+  <!-- Open pipe ends and debris in the gap -->
+  <path d="M626,268 h16 l-8,12 z" fill="#C4A574"/>
+  <path d="M646,260 h12 l-7,11 z" fill="#8A6430"/>
+  <path d="M632,286 h10 l-5,8 z" fill="#8A6430" opacity="0.8"/>
+
+  <text x="688" y="430" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Elbow</text>
+  <text x="688" y="454" font-family="Inter, Liberation Sans, sans-serif" font-size="16" font-weight="500" fill="#5C6770">Brush hangs up</text>
+  <text x="688" y="276" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Open joint</text>
+  <text x="572" y="200" text-anchor="end" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Long rise</text>
+
+  <!-- Roof cap over the end of the run -->
+  <path d="M888,176 h78 l16,18 v40 h-16 l-18,-12 v-28 z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.4"/>
+  <line x1="900" y1="196" x2="954" y2="188" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="900" y1="212" x2="954" y2="204" stroke="#5E6A75" stroke-width="2.2" stroke-linecap="round"/>
+  <g stroke="#8A6430" stroke-width="2.4" stroke-linecap="round">
+    <line x1="930" y1="158" x2="956" y2="142"/>
+    <line x1="940" y1="160" x2="952" y2="136"/>
+    <line x1="948" y1="160" x2="972" y2="148"/>
+    <line x1="936" y1="164" x2="924" y2="146"/>
+  </g>
+  <circle cx="944" cy="156" r="4" fill="#C4A574"/>
+  <text x="1004" y="188" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Roof cap</text>
+  <text x="1004" y="212" font-family="Inter, Liberation Sans, sans-serif" font-size="16" font-weight="500" fill="#5C6770">Nest or lint at the cap</text>
+
+  <text x="48" y="680" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">A round brush does not pass a crushed connector, and it does not follow a run it cannot see.</text>
+</svg>
