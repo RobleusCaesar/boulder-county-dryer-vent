@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+
+  <!-- Left: short run a kit can finish -->
+  <rect x="32" y="28" width="596" height="664" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="32" y="28" width="596" height="8" fill="#E8632B"/>
+  <text x="330" y="86" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">Short side-wall run</text>
+  <text x="330" y="122" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">The brush reaches the hood</text>
+
+  <rect x="478" y="150" width="150" height="406" fill="#EEF1F3"/>
+
+  <rect x="72" y="210" width="156" height="268" rx="8" fill="#FBF9F6" stroke="#1F2A37" stroke-width="3"/>
+  <rect x="72" y="210" width="156" height="44" rx="8" fill="#1F2A37"/>
+  <rect x="72" y="240" width="156" height="14" fill="#1F2A37"/>
+  <circle cx="202" cy="230" r="7.5" fill="#E8632B"/>
+  <circle cx="180" cy="230" r="4.2" fill="#F6F1EA"/>
+  <circle cx="164" cy="230" r="4.2" fill="#F6F1EA" opacity="0.7"/>
+  <circle cx="150" cy="352" r="52" fill="#F3EFE8" stroke="#1F2A37" stroke-width="3"/>
+  <circle cx="150" cy="352" r="43" fill="none" stroke="#C9C1B6" stroke-width="2"/>
+  <circle cx="150" cy="352" r="13" fill="#FBF9F6" stroke="#5E6A75" stroke-width="2"/>
+  <rect x="92" y="442" width="116" height="8" rx="2" fill="#C9C1B6"/>
+
+  <circle cx="228" cy="392" r="16" fill="#1F2A37"/>
+  <circle cx="228" cy="392" r="9" fill="#141A22"/>
+
+  <rect x="220" y="368" width="268" height="48" rx="24" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2.5"/>
+  <rect x="244" y="378" width="220" height="28" rx="14" fill="#F4F8FA"/>
+  <g stroke="#E8632B" stroke-width="4" stroke-linecap="round">
+    <line x1="252" y1="392" x2="292" y2="392"/>
+    <line x1="304" y1="392" x2="344" y2="392"/>
+    <line x1="356" y1="392" x2="396" y2="392"/>
+  </g>
+  <circle cx="424" cy="392" r="11" fill="#E8632B"/>
+  <g stroke="#E8632B" stroke-width="2.2" stroke-linecap="round">
+    <line x1="424" y1="376" x2="424" y2="366"/>
+    <line x1="436" y1="380" x2="444" y2="372"/>
+    <line x1="438" y1="392" x2="450" y2="392"/>
+    <line x1="436" y1="404" x2="444" y2="412"/>
+    <line x1="424" y1="408" x2="424" y2="418"/>
+    <line x1="412" y1="404" x2="404" y2="412"/>
+    <line x1="410" y1="392" x2="398" y2="392"/>
+    <line x1="412" y1="380" x2="404" y2="372"/>
+  </g>
+
+  <rect x="462" y="176" width="50" height="390" fill="#E6DDD2" stroke="#1F2A37" stroke-width="2.2"/>
+  <line x1="462" y1="204" x2="512" y2="204" stroke="#D3CBBF" stroke-width="1.4"/>
+  <line x1="462" y1="246" x2="512" y2="246" stroke="#D3CBBF" stroke-width="1.4"/>
+  <line x1="462" y1="288" x2="512" y2="288" stroke="#D3CBBF" stroke-width="1.4"/>
+  <line x1="462" y1="330" x2="512" y2="330" stroke="#D3CBBF" stroke-width="1.4"/>
+  <line x1="462" y1="372" x2="512" y2="372" stroke="#D3CBBF" stroke-width="1.4"/>
+  <line x1="462" y1="456" x2="512" y2="456" stroke="#D3CBBF" stroke-width="1.4"/>
+  <line x1="462" y1="498" x2="512" y2="498" stroke="#D3CBBF" stroke-width="1.4"/>
+  <line x1="462" y1="540" x2="512" y2="540" stroke="#D3CBBF" stroke-width="1.4"/>
+  <rect x="456" y="368" width="62" height="48" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2"/>
+
+  <path d="M512,346 h62 l16,14 v52 l-16,14 h-62 z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.5"/>
+  <line x1="524" y1="364" x2="566" y2="358" stroke="#5E6A75" stroke-width="2.1" stroke-linecap="round"/>
+  <line x1="524" y1="380" x2="566" y2="374" stroke="#5E6A75" stroke-width="2.1" stroke-linecap="round"/>
+  <line x1="524" y1="396" x2="566" y2="390" stroke="#5E6A75" stroke-width="2.1" stroke-linecap="round"/>
+  <g transform="rotate(-62 586 348)">
+    <rect x="574" y="344" width="34" height="8" rx="2" fill="#1F2A37"/>
+  </g>
+  <g fill="none" stroke="#E8632B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M548,390 H582"/>
+    <path d="M570,382 L582,390 L570,398"/>
+  </g>
+
+  <!-- Drill, sitting under the duct as the thing that turns the rod -->
+  <g transform="translate(286 478)">
+    <rect x="0" y="18" width="78" height="36" rx="8" fill="#1F2A37"/>
+    <rect x="58" y="26" width="22" height="20" rx="3" fill="#5E6A75"/>
+    <rect x="76" y="31" width="16" height="10" rx="2" fill="#E8632B"/>
+    <rect x="18" y="50" width="16" height="28" rx="4" fill="#1F2A37"/>
+    <rect x="14" y="74" width="24" height="8" rx="3" fill="#141A22"/>
+  </g>
+  <text x="330" y="584" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="600" fill="#1F2A37">Drill turns the brush</text>
+
+  <text x="150" y="508" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="600" fill="#1F2A37">Dryer</text>
+  <text x="560" y="470" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="600" fill="#1F2A37">Hood</text>
+  <text x="330" y="648" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">Both ends are in reach</text>
+
+  <!-- Right: long run the kit does not finish -->
+  <rect x="652" y="28" width="596" height="664" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="652" y="28" width="596" height="8" fill="#1F2A37"/>
+  <text x="950" y="86" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">Long run to a roof</text>
+  <text x="950" y="122" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">The brush stops at the elbow</text>
+
+  <rect x="1160" y="150" width="88" height="450" fill="#EEF1F3"/>
+  <path d="M760,250 L1040,132 L1220,250" fill="#E6DDD2" stroke="#1F2A37" stroke-width="2.4" stroke-linejoin="round"/>
+
+  <!-- Dryer -->
+  <rect x="688" y="430" width="132" height="210" rx="8" fill="#FBF9F6" stroke="#1F2A37" stroke-width="3"/>
+  <rect x="688" y="430" width="132" height="36" rx="8" fill="#1F2A37"/>
+  <rect x="688" y="456" width="132" height="10" fill="#1F2A37"/>
+  <circle cx="796" cy="446" r="6.5" fill="#E8632B"/>
+  <circle cx="776" cy="446" r="3.6" fill="#F6F1EA"/>
+  <circle cx="762" cy="446" r="3.6" fill="#F6F1EA" opacity="0.7"/>
+  <circle cx="754" cy="546" r="40" fill="#F3EFE8" stroke="#1F2A37" stroke-width="3"/>
+  <circle cx="754" cy="546" r="32" fill="none" stroke="#C9C1B6" stroke-width="2"/>
+  <circle cx="754" cy="546" r="10" fill="#FBF9F6" stroke="#5E6A75" stroke-width="2"/>
+  <rect x="706" y="608" width="96" height="7" rx="2" fill="#C9C1B6"/>
+  <circle cx="820" cy="548" r="14" fill="#1F2A37"/>
+  <circle cx="820" cy="548" r="8" fill="#141A22"/>
+
+  <!-- Horizontal duct, brush stops before the elbow -->
+  <rect x="812" y="526" width="150" height="44" rx="22" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2.4"/>
+  <rect x="828" y="536" width="96" height="24" rx="12" fill="#F4F8FA"/>
+  <g stroke="#E8632B" stroke-width="3.5" stroke-linecap="round">
+    <line x1="836" y1="548" x2="866" y2="548"/>
+    <line x1="876" y1="548" x2="904" y2="548"/>
+  </g>
+  <circle cx="918" cy="548" r="8" fill="#E8632B"/>
+  <g stroke="#E8632B" stroke-width="2" stroke-linecap="round">
+    <line x1="918" y1="536" x2="918" y2="528"/>
+    <line x1="928" y1="539" x2="934" y2="532"/>
+    <line x1="930" y1="548" x2="940" y2="548"/>
+    <line x1="928" y1="557" x2="934" y2="564"/>
+    <line x1="918" y1="560" x2="918" y2="568"/>
+  </g>
+  <text x="888" y="510" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="16" font-weight="600" fill="#E8632B">Stops</text>
+
+  <!-- Elbow joins the horizontal run to the rise, then a gap -->
+  <path d="M940,548 H986 V400" fill="none" stroke="#D5DCE3" stroke-width="44" stroke-linejoin="round" stroke-linecap="butt"/>
+  <path d="M952,548 H986 V412" fill="none" stroke="#F4F8FA" stroke-width="20" stroke-linejoin="round" stroke-linecap="butt"/>
+  <path d="M986,348 V278" fill="none" stroke="#D5DCE3" stroke-width="44" stroke-linecap="butt"/>
+  <path d="M986,336 V290" fill="none" stroke="#F4F8FA" stroke-width="20" stroke-linecap="butt"/>
+  <path d="M974,376 h14 l-7,10 z" fill="#C4A574"/>
+  <path d="M988,370 h10 l-6,9 z" fill="#8A6430"/>
+  <text x="1020" y="384" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Open joint</text>
+
+  <!-- Roof cap seated on the duct -->
+  <path d="M946,246 L986,208 L1026,246 Z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.4" stroke-linejoin="round"/>
+  <rect x="958" y="244" width="56" height="42" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.4"/>
+  <line x1="970" y1="258" x2="1004" y2="258" stroke="#5E6A75" stroke-width="2" stroke-linecap="round"/>
+  <line x1="970" y1="272" x2="1004" y2="272" stroke="#5E6A75" stroke-width="2" stroke-linecap="round"/>
+  <g stroke="#8A6430" stroke-width="2.2" stroke-linecap="round">
+    <line x1="974" y1="214" x2="996" y2="198"/>
+    <line x1="986" y1="216" x2="992" y2="196"/>
+    <line x1="994" y1="214" x2="1014" y2="204"/>
+  </g>
+  <circle cx="990" cy="210" r="3" fill="#C4A574"/>
+  <text x="1044" y="228" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Roof cap</text>
+  <text x="1044" y="250" font-family="Inter, Liberation Sans, sans-serif" font-size="16" font-weight="500" fill="#5C6770">Nest at the cap</text>
+
+  <text x="754" y="678" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="600" fill="#1F2A37">Dryer</text>
+  <text x="1020" y="678" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">The far end is out of reach</text>
+</svg>

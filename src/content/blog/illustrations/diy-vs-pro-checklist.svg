@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+
+  <rect x="36" y="36" width="590" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="36" y="36" width="590" height="8" fill="#2E8B57"/>
+  <text x="331" y="108" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">Safe to do yourself</text>
+  <text x="331" y="146" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">If you can see both ends</text>
+
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="26" font-weight="600" fill="#1F2A37">
+    <circle cx="104" cy="230" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 230 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="238">Clean the lint screen</text>
+
+    <circle cx="104" cy="330" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 330 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="338">Check a ground-level hood</text>
+
+    <circle cx="104" cy="430" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 430 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="438">Look at the connector</text>
+
+    <circle cx="104" cy="530" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 530 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="538">Brush a short, straight run</text>
+  </g>
+  <text x="331" y="628" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">Stop if the brush will not come back</text>
+
+  <rect x="654" y="36" width="590" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="654" y="36" width="590" height="8" fill="#E8632B"/>
+  <text x="949" y="108" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">Book a pro</text>
+  <text x="949" y="146" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">When the duct leaves sight</text>
+
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="26" font-weight="600" fill="#1F2A37">
+    <circle cx="722" cy="230" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 230 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="238">Roof or upper-floor exit</text>
+
+    <circle cx="722" cy="330" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 330 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="338">Long run or several elbows</text>
+
+    <circle cx="722" cy="430" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 430 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="438">Crushed transition duct</text>
+
+    <circle cx="722" cy="530" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 530 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="538">Nest, stuck brush, or a gap</text>
+  </g>
+  <text x="949" y="628" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">Do not climb a roof to check the cap</text>
+</svg>
