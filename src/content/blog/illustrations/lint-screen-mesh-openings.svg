@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <title>What a dryer lint screen catches and what passes through the mesh</title>
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+
+  <rect x="32" y="28" width="596" height="664" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="32" y="28" width="596" height="8" fill="#1F2A37"/>
+  <text x="330" y="92" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">On the screen</text>
+  <text x="330" y="132" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">The mat you can peel off</text>
+
+  <rect x="150" y="190" width="360" height="300" rx="8" fill="#F4F7F8" stroke="#1F2A37" stroke-width="3"/>
+  <rect x="286" y="172" width="88" height="20" rx="4" fill="#1F2A37"/>
+  <g stroke="#5E6A75" stroke-width="1.6">
+    <line x1="174" y1="230" x2="486" y2="230"/>
+    <line x1="174" y1="270" x2="486" y2="270"/>
+    <line x1="174" y1="310" x2="486" y2="310"/>
+    <line x1="174" y1="350" x2="486" y2="350"/>
+    <line x1="174" y1="390" x2="486" y2="390"/>
+    <line x1="174" y1="430" x2="486" y2="430"/>
+    <line x1="174" y1="460" x2="486" y2="460"/>
+    <line x1="210" y1="214" x2="210" y2="466"/>
+    <line x1="250" y1="214" x2="250" y2="466"/>
+    <line x1="290" y1="214" x2="290" y2="466"/>
+    <line x1="330" y1="214" x2="330" y2="466"/>
+    <line x1="370" y1="214" x2="370" y2="466"/>
+    <line x1="410" y1="214" x2="410" y2="466"/>
+    <line x1="450" y1="214" x2="450" y2="466"/>
+  </g>
+  <g fill="#C4A574" stroke="#8A6430" stroke-width="1.5">
+    <ellipse cx="250" cy="268" rx="46" ry="28"/>
+    <ellipse cx="320" cy="300" rx="58" ry="34"/>
+    <ellipse cx="390" cy="274" rx="42" ry="26"/>
+    <ellipse cx="286" cy="340" rx="50" ry="30"/>
+    <ellipse cx="368" cy="348" rx="54" ry="28"/>
+    <ellipse cx="248" cy="390" rx="36" ry="22"/>
+    <ellipse cx="330" cy="400" rx="48" ry="24"/>
+  </g>
+  <text x="330" y="560" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Larger fibers tangle on the mesh</text>
+  <text x="330" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">This is the piece you clear every load</text>
+
+  <rect x="652" y="28" width="596" height="664" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="652" y="28" width="596" height="8" fill="#E8632B"/>
+  <text x="950" y="92" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="600" fill="#1F2A37">Through the openings</text>
+  <text x="950" y="132" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="500" fill="#5C6770">Fine lint joins the exhaust</text>
+
+  <rect x="700" y="230" width="250" height="220" rx="8" fill="#F4F7F8" stroke="#1F2A37" stroke-width="3"/>
+  <g stroke="#5E6A75" stroke-width="1.6">
+    <line x1="722" y1="266" x2="928" y2="266"/>
+    <line x1="722" y1="302" x2="928" y2="302"/>
+    <line x1="722" y1="338" x2="928" y2="338"/>
+    <line x1="722" y1="374" x2="928" y2="374"/>
+    <line x1="722" y1="410" x2="928" y2="410"/>
+    <line x1="758" y1="252" x2="758" y2="428"/>
+    <line x1="794" y1="252" x2="794" y2="428"/>
+    <line x1="830" y1="252" x2="830" y2="428"/>
+    <line x1="866" y1="252" x2="866" y2="428"/>
+    <line x1="902" y1="252" x2="902" y2="428"/>
+  </g>
+  <!-- A few fibers small enough to sit in the openings, then leave -->
+  <g fill="none" stroke="#B08958" stroke-width="2.4" stroke-linecap="round">
+    <path d="M770 292 h18"/>
+    <path d="M842 328 h16"/>
+    <path d="M806 364 h20"/>
+  </g>
+  <rect x="948" y="300" width="210" height="80" rx="40" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2.5"/>
+  <rect x="970" y="316" width="170" height="48" rx="24" fill="#F4F8FA"/>
+  <g fill="#C4A574">
+    <circle cx="1004" cy="340" r="3.2"/>
+    <circle cx="1032" cy="346" r="2.4"/>
+    <circle cx="1058" cy="338" r="3"/>
+    <circle cx="1086" cy="348" r="2.2"/>
+    <circle cx="1112" cy="340" r="2.8"/>
+  </g>
+  <g fill="none" stroke="#E8632B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M990 340 H1030"/>
+    <path d="M1018 332 L1032 340 L1018 348"/>
+  </g>
+  <text x="950" y="520" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">Smaller fibers pass the mesh</text>
+  <text x="950" y="560" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">They travel with the warm air</text>
+  <text x="950" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">A clean screen can still feed the duct</text>
+</svg>
