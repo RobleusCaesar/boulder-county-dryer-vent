@@ -6,7 +6,7 @@ category: Pricing
 readTime: 4 min read
 image: lint-before
 imageAlt: Lint pulled from a residential dryer vent during a clean
-description: Plain list of what Boulder County Dryer Vent’s published $129 / $169 prices cover — and the few things that are not in the flat rate.
+description: Plain list of what Boulder County Dryer Vent’s published $129 / $190 prices cover — and the few things that are not in the flat rate.
 ---
 
 A “quote after we look” visit is how most dryer-vent companies still work. We publish the price first so you can decide before anyone rolls a truck.
@@ -20,7 +20,7 @@ When the job matches the tier you booked, the visit includes:
 - Before-and-after photos of the duct
 - Cleanup of the work area
 
-You pick the tier online from two questions (exit type and run length). Standard ground / side-wall jobs are **$129**. Roof, upper-floor, or long runs are **$169**.
+You pick the tier online from two questions (exit type and run length). Standard ground / side-wall jobs are **$129**. Roof, upper-floor, or long runs are **$190**.
 
 ## What is not in the flat rate
 We do not bury add-ons at the door for ordinary access. The flat rate does **not** cover:

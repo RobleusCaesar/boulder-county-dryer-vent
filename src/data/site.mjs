@@ -87,7 +87,7 @@ export const nav = [
 
 export const prices = {
   standard: { amount: 129, label: "Standard clean" },
-  difficult: { amount: 169, label: "Difficult clean" },
+  difficult: { amount: 190, label: "Difficult clean" },
   annual: { amount: 109, label: "Annual plan" },
 };
 
@@ -114,7 +114,7 @@ export const priceCards = [
   {
     id: "difficult",
     kicker: "Difficult",
-    price: "$169",
+    price: `$${prices.difficult.amount}`,
     unit: "flat",
     title: "Difficult clean",
     homeBody: "Roof terminations, long runs, and laundry rooms on an upper floor or interior wall.",
@@ -127,7 +127,7 @@ export const priceCards = [
       "Crawlspace or attic sections",
     ],
     tag: false,
-    cta: "Book at $169",
+    cta: `Book at $${prices.difficult.amount}`,
   },
   {
     id: "annual",
@@ -167,7 +167,7 @@ export const towns = [
       "Boulder sits at the foot of the Flatirons at about 5,300 feet. Snow in winter and housing from many eras make the outdoor hood and the length of the duct the two things we check first.",
     paragraphs: [
       "Boulder was founded in late 1858 by gold prospectors who arrived at Boulder Canyon, and it was incorporated in 1871. It is the county seat and the home of the University of Colorado Boulder. A city that has been growing since 1858 has housing from many eras, and different eras route a dryer vent differently. That is the main reason we ask where your vent exits before we give you a price.",
-      "A dryer in a basement or a middle-of-the-house laundry closet pushes air a long way before it reaches daylight. When the run is longer than about 15 feet, or the vent leaves through the roof or a second-story wall, it is the $169 difficult clean. You see that price in the booking flow before you pick a time. A dryer on an outside ground-floor wall with a short run is the $129 standard clean.",
+      `A dryer in a basement or a middle-of-the-house laundry closet pushes air a long way before it reaches daylight. When the run is longer than about 15 feet, or the vent leaves through the roof or a second-story wall, it is the $${prices.difficult.amount} difficult clean. You see that price in the booking flow before you pick a time. A dryer on an outside ground-floor wall with a short run is the $129 standard clean.`,
       "The city sits near the base of the Rocky Mountain foothills, and snow can drift against a low side-wall hood and cover the louvers. If your dryer has started taking two cycles after a storm, check the hood first. Our guide to getting the vent ready for a Colorado winter walks through it.",
     ],
     facts: [
@@ -200,7 +200,7 @@ export const towns = [
       "Louisville grew up around coal mines in the 1870s and became a commuter suburb after the last mine closed in the 1950s. Houses from several eras sit side by side, and each era puts the dryer vent in a different place.",
     paragraphs: [
       "The town traces back to the Welch Mine in 1877. It was named for Louis Nawatny, who platted his land, and it was incorporated in 1882. About 30 different mines operated within today's town limits over the years, the last ones closed in the 1950s, and the town turned into a suburban community. Today it has about 21,000 residents and a historic downtown on Main Street, with Steinbaugh Pavilion hosting the summer Street Faire.",
-      "Homes of different ages route the dryer vent differently. A laundry room in a basement or the middle of the house means a long run to the hood, and a laundry room on an outside ground-floor wall means a short one. The price follows the vent, not the street: $129 for a ground-level side-wall exit under about 15 feet, $169 for a roof, upper-floor, or long run.",
+      `Homes of different ages route the dryer vent differently. A laundry room in a basement or the middle of the house means a long run to the hood, and a laundry room on an outside ground-floor wall means a short one. The price follows the vent, not the street: $129 for a ground-level side-wall exit under about 15 feet, $${prices.difficult.amount} for a roof, upper-floor, or long run.`,
       "Louisville shares ZIP code 80027 with Superior, so pick your town in the booking form and we will route you correctly. US 36, the Denver-Boulder Turnpike, forms the southwestern edge of town, and Louisville borders Superior, so the two towns can share a route day.",
     ],
     facts: [
@@ -234,7 +234,7 @@ export const towns = [
     paragraphs: [
       "Mary Miller filed the original plat in January 1888 and sold the first lot that March. Coal had been discovered on the Miller farm in 1884, and the town grew around the mines. A few buildings moved from those camps still stand in Old Town, and the Lafayette History Museum keeps some of the mining tools. Festival Plaza, on Public Road at Chester Street, is the center of Old Town today.",
       "Lafayette has about 30,400 residents and roughly 12,500 housing units. US 287 runs through the center of town, and the city borders Louisville to the southwest, Broomfield to the east and south, and Erie to the north and east. Because it touches so many neighbors, a Lafayette visit can share a route day with a stop in any of them.",
-      "Townhomes with shared walls and HOA rules are fine for us. We work from the dryer inside the home and the hood on the outside wall, and we do not go onto a roof we were not invited onto. If your HOA wants a certificate of insurance on file, say so in your booking notes. A ground-level side-wall exit is the $129 standard clean. A roof or upper-floor exit is $169.",
+      `Townhomes with shared walls and HOA rules are fine for us. We work from the dryer inside the home and the hood on the outside wall, and we do not go onto a roof we were not invited onto. If your HOA wants a certificate of insurance on file, say so in your booking notes. A ground-level side-wall exit is the $129 standard clean. A roof or upper-floor exit is $${prices.difficult.amount}.`,
     ],
     facts: [
       ["Elevation", "About 5,300 feet above sea level"],
@@ -299,7 +299,7 @@ export const towns = [
       "Superior had about 250 residents until the 1990s, then added Rock Creek Ranch and other subdivisions and passed 9,000 people by 2000. Most of the homes here are newer, and newer floor plans change how a dryer vent is routed.",
     paragraphs: [
       "William and Emmaline Hake settled along Coal Creek in 1860, and coal found on their homestead in 1864 started the mining that, by most accounts, gave the town its name. Superior was founded in 1896 and incorporated in 1904. The Industrial Mine closed in 1945, the population hovered around 250 for decades, and then Rock Creek Ranch and other subdivisions were built in the 1990s. About 13,400 people live here now, and Downtown Superior is a newer mixed-use district.",
-      "Because so much of Superior was built from the 1990s on, many homes have newer floor plans. A second-floor laundry room can mean a vent that runs up and out through the roof or a high wall, and that is the $169 difficult clean. A ground-floor laundry with a side-wall hood is the $129 standard clean. The booking flow asks two questions about the exit and the run, then shows your price before you pick a time.",
+      `Because so much of Superior was built from the 1990s on, many homes have newer floor plans. A second-floor laundry room can mean a vent that runs up and out through the roof or a high wall, and that is the $${prices.difficult.amount} difficult clean. A ground-floor laundry with a side-wall hood is the $129 standard clean. The booking flow asks two questions about the exit and the run, then shows your price before you pick a time.`,
       "Superior is the highest of the towns we list, at about 5,500 feet, and winter snow can pile against a side-wall hood. It shares ZIP code 80027 with Louisville, so choose your town in the booking form. Superior borders Louisville and is close to Boulder, so a Superior visit can share a route day with either.",
     ],
     facts: [
@@ -332,7 +332,7 @@ export const towns = [
       "Erie was a coal town in the 1870s and is now the most populous statutory town in Colorado. It grew by more than 65 percent between 2010 and 2020, so much of it is recent construction.",
     paragraphs: [
       "Erie was settled in 1867 and incorporated in 1874. Its coal miners owned their own land and houses instead of living in temporary camps. The old downtown still has an 1889 brick building, the Miner Memorial dedicated in 2000, and a Town Hall that used to be Lincoln School. Most of the mines closed by 1960.",
-      "The 2020 census counted 30,038 people, up about 65.6 percent from 2010, in 10,332 housing units. Nearly half of Erie households, 48.1 percent, had children under 18. Fast growth means a lot of newer homes, and more people at home generally means more laundry and more lint through the duct. A newer two-story plan can also mean a longer run or a roof exit. We price by the vent: $129 for a ground-level side-wall exit under about 15 feet, $169 for a roof, upper-floor, or long run.",
+      `The 2020 census counted 30,038 people, up about 65.6 percent from 2010, in 10,332 housing units. Nearly half of Erie households, 48.1 percent, had children under 18. Fast growth means a lot of newer homes, and more people at home generally means more laundry and more lint through the duct. A newer two-story plan can also mean a longer run or a roof exit. We price by the vent: $129 for a ground-level side-wall exit under about 15 feet, $${prices.difficult.amount} for a roof, upper-floor, or long run.`,
       "Erie is partly in Weld County and partly in Boulder County. It sits just west of I-25, about 20 minutes from Boulder, and it borders Lafayette and Broomfield. Erie is new to our route sheet. Request a visit and we will confirm whether your address is on a route, and what days we have open, within one business day.",
     ],
     facts: [
@@ -365,7 +365,7 @@ export const towns = [
       "Broomfield is its own city and county, formed in 2001 right next to Boulder County. About 74,000 people live here, in more than 31,000 homes.",
     paragraphs: [
       "The Broomfield post office opened in 1884, and historians think the name comes from the broomcorn grown here for brooms. The Denver-Boulder Turnpike opened through the area in 1952, and the City of Broomfield was incorporated in 1961. On November 15, 2001, Broomfield became its own county, the 64th and smallest in Colorado. It sits right next to Boulder County, on its southeast side.",
-      "About 74,100 people live in Broomfield, in more than 31,000 housing units. The climate is cold semi-arid, and in an average year the coldest night reaches about 9 degrees below zero, so a side-wall hood can get packed with snow after a storm. Broomfield covers three ZIP codes, 80020, 80021, and 80023. We do not guess at a home from its address. We ask where your vent exits and how long the run is, then show you the published price: $129 standard, $169 difficult.",
+      `About 74,100 people live in Broomfield, in more than 31,000 housing units. The climate is cold semi-arid, and in an average year the coldest night reaches about 9 degrees below zero, so a side-wall hood can get packed with snow after a storm. Broomfield covers three ZIP codes, 80020, 80021, and 80023. We do not guess at a home from its address. We ask where your vent exits and how long the run is, then show you the published price: $129 standard, $${prices.difficult.amount} difficult.`,
       "Broomfield is new to our route sheet. Request a visit and we will confirm whether your address is on a route, and what days we have open, within one business day. Broomfield borders Lafayette, Erie, and Superior, so a stop here often fits with a visit in one of those towns.",
     ],
     facts: [
@@ -517,7 +517,7 @@ export const pricingFaqs = [
   { q: "Is there a trip or fuel charge?", a: "No. The published price is the whole price for a scheduled visit in the towns we list." },
   {
     q: "What if my home turns out to be difficult?",
-    a: "We tell you before any work starts. You either approve $169 or send us on our way — nothing owed either way.",
+    a: `We tell you before any work starts. You either approve $${prices.difficult.amount} or send us on our way — nothing owed either way.`,
   },
   {
     q: "How do I pay?",

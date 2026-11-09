@@ -29,7 +29,7 @@ Roof caps are harder to inspect. From the ground, look for a missing hood, bird 
 Emptying the dryer lint screen every load matters. It does not clean the duct from the dryer to the outdoor hood. Homes can look fine at the trap and still have a packed outdoor end.
 
 ## When to book a clean
-Book when you see stuck flappers, heavy lint at the hood, weak outdoor airflow, or it has been a year or more since a full clean. Our published prices are **$129** for a standard ground or side-wall clean and **$169** for roof, upper-floor, or long runs. Annual revisits are **$109** once you are enrolled.
+Book when you see stuck flappers, heavy lint at the hood, weak outdoor airflow, or it has been a year or more since a full clean. Our published prices are **$129** for a standard ground or side-wall clean and **$190** for roof, upper-floor, or long runs. Annual revisits are **$109** once you are enrolled.
 
 ## Book
 Fixed prices, real availability, book and pay online: [Book a visit](/book/). Or call **(720) 605-3198**. Serving Boulder, Louisville, Lafayette, Longmont, Superior, and nearby Boulder County towns.
