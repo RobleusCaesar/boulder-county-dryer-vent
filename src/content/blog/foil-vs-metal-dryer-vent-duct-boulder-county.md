@@ -50,7 +50,7 @@ Replacing a crushed hose is a homeowner job when you can reach both ends and a g
 
 ## When to book
 
-Book a clean when the connector is crushed, when you cannot tell if the duct in the wall is open, when the outdoor hood is stuck or packed, or when it has been about a year. Timing is in [when to clean a dryer vent in Boulder County](/blog/when-to-clean-dryer-vent-boulder-county/). Published prices are **$129** for a standard ground or side-wall clean and **$169** for a roof, upper-floor, or long run. Pick the tier from [roof versus ground](/blog/roof-vs-ground-dryer-vent-cleaning-boulder/). A new duct, cap, or dryer part is not in the flat rate. [What the price includes](/blog/what-fixed-price-dryer-vent-cleaning-includes/) is the clean, a basic inspection, an airflow check, and photos.
+Book a clean when the connector is crushed, when you cannot tell if the duct in the wall is open, when the outdoor hood is stuck or packed, or when it has been about a year. Timing is in [when to clean a dryer vent in Boulder County](/blog/when-to-clean-dryer-vent-boulder-county/). Published prices are **$129** for a standard ground or side-wall clean and **$190** for a roof, upper-floor, or long run. Pick the tier from [roof versus ground](/blog/roof-vs-ground-dryer-vent-cleaning-boulder/). A new duct, cap, or dryer part is not in the flat rate. [What the price includes](/blog/what-fixed-price-dryer-vent-cleaning-includes/) is the clean, a basic inspection, an airflow check, and photos.
 
 ## Book
 Fixed prices, real availability, book and pay online: [Book a visit](/book/). Or call **(720) 605-3198**. Serving Boulder, Louisville, Lafayette, Longmont, Superior, and nearby Boulder County towns.

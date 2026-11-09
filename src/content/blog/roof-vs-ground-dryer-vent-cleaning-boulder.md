@@ -7,7 +7,7 @@ readTime: 4 min read
 image: wildrose-exterior-after
 imageAlt: Clean exterior dryer vent termination after a residential clean in Louisville
 imageCaption: Ground-level exterior hood after a standard clean — this access tier is $129.
-description: Plain explanation of why a ground or side-wall dryer vent clean is $129 and a roof or upper-floor exit is $169 — and how to pick the right tier before you book.
+description: Plain explanation of why a ground or side-wall dryer vent clean is $129 and a roof or upper-floor exit is $190 — and how to pick the right tier before you book.
 ---
 
 Most Boulder County homes vent the dryer through a short ground or side-wall run. Some go up to a roof cap or a second-story wall. Access and safety change the work, so we publish two flat prices instead of a surprise quote at the door.
@@ -15,8 +15,8 @@ Most Boulder County homes vent the dryer through a short ground or side-wall run
 ## Ground or side-wall exits — $129
 If the outdoor cap is at ground level or a first-floor side wall, and the duct run is short, the job is a **standard clean at $129**. That covers the full clean from the dryer connection out to the cap, a basic inspection, airflow check, before-and-after photos, and cleanup.
 
-## Roof or upper-floor exits — $169
-If the vent exits on the roof, a second story, or the duct run is long, the job is a **difficult clean at $169**. Ladders, roof work, and longer pulls take more time and gear. The flat price still covers the same clean scope — just for that harder access.
+## Roof or upper-floor exits — $190
+If the vent exits on the roof, a second story, or the duct run is long, the job is a **difficult clean at $190**. Ladders, roof work, and longer pulls take more time and gear. The flat price still covers the same clean scope — just for that harder access.
 
 ## How to choose before you book
 You do not need a technician on site to pick a tier. On our book page, two questions cover it:

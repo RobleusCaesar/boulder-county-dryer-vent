@@ -33,7 +33,7 @@ Dry Colorado winters make it tempting to point the dryer into the laundry room f
 A gas dryer produces carbon monoxide. It has to vent outdoors through the whole heating season, not only in mild weather. An electric dryer does not produce carbon monoxide, but an indoor vent kit still pushes moisture and fine lint into the house. That moisture shows up on windows and cold walls, and the lint settles in the room. The outdoor hood, cleared of snow and ice, is the exit to use all winter.
 
 ## When to book a clean
-Book when the flap stays stuck after a gentle thaw, when water shows up at the dryer connection, when lint at the hood is heavy or damp, or when it has been a year or more since a full clean. Published prices are **$129** for a standard ground or side-wall clean and **$169** for a roof, upper-floor, or long run.
+Book when the flap stays stuck after a gentle thaw, when water shows up at the dryer connection, when lint at the hood is heavy or damp, or when it has been a year or more since a full clean. Published prices are **$129** for a standard ground or side-wall clean and **$190** for a roof, upper-floor, or long run.
 
 ## Book
 Fixed prices, real availability, book and pay online: [Book a visit](/book/). Or call **(720) 605-3198**. Serving Boulder, Louisville, Lafayette, Longmont, Superior, and nearby Boulder County towns.

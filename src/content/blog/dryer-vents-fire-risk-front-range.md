@@ -21,4 +21,4 @@ Lint is fuel. A restricted vent makes the dryer run hotter and longer, which is 
 We clear the run, check the termination, document with photos, and note obvious issues (crushed flex, bad caps) without upselling surprise work.
 
 ## Fixed price, no estimate visit
-Standard access: **$129**. Difficult access (upper wall, roof, or stacked): **$169** — confirmed before work if it differs from what you booked.
+Standard access: **$129**. Difficult access (upper wall, roof, or stacked): **$190** — confirmed before work if it differs from what you booked.

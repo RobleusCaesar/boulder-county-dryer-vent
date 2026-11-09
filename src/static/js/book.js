@@ -4,7 +4,7 @@
 (function () {
   'use strict';
   var CFG = window.BCDV || {};
-  var PRICES = CFG.prices || { standard: 129, difficult: 169, annual: 109 };
+  var PRICES = CFG.prices || { standard: 129, difficult: 190, annual: 109 };
   var SLOTS = CFG.slots || []; // Populate in src/data/site.mjs when real capacity exists.
   var ZIPS = CFG.inAreaZips || [];
   var KEY = 'bcdv.book.v2';
@@ -132,6 +132,7 @@
       var chosen = SLOTS.filter(function (s) { return s.id === state.slot; })[0];
       var fields = {
         Service: tierLabel() + ' — $' + price() + ' flat',
+        service_type: difficult() ? 'difficult' : 'standard',
         'Vent exit': labelFor('exit'),
         'Duct run': labelFor('run'),
         Town: f.get('town'),
