@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <title>Stop the dryer, check three things, then book a vent cleaning or an appliance repair</title>
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+
+  <!-- Stop -->
+  <rect x="32" y="36" width="392" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="32" y="36" width="392" height="8" fill="#E8632B"/>
+  <circle cx="228" cy="128" r="36" fill="#FDE8DF" stroke="#E8632B" stroke-width="3"/>
+  <rect x="210" y="110" width="36" height="36" rx="4" fill="#E8632B"/>
+  <text x="228" y="196" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Stop</text>
+  <text x="228" y="230" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">Before you look</text>
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">
+    <circle cx="78" cy="300" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="78" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">1</text>
+    <text x="108" y="307">Turn the cycle off</text>
+
+    <circle cx="78" cy="372" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="78" y="378" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">2</text>
+    <text x="108" y="379">Unplug or shut the breaker</text>
+
+    <circle cx="78" cy="444" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="78" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">3</text>
+    <text x="108" y="451">Let the machine cool</text>
+
+    <circle cx="78" cy="516" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="78" y="522" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">4</text>
+    <text x="108" y="523">Do not start another load</text>
+  </g>
+  <text x="228" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#E8632B">Smoke or flame: leave</text>
+  <text x="228" y="646" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#E8632B">and call 911</text>
+
+  <!-- Check -->
+  <rect x="444" y="36" width="392" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="444" y="36" width="392" height="8" fill="#2E8B57"/>
+  <circle cx="640" cy="128" r="36" fill="#E7F4EC" stroke="#2E8B57" stroke-width="3"/>
+  <path d="M622 128 l12 12 26-28" fill="none" stroke="#2E8B57" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="640" y="196" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Check</text>
+  <text x="640" y="230" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">What you can see</text>
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">
+    <circle cx="490" cy="300" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <path d="M482 300 l5 6 11-13" fill="none" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="520" y="307">Clear the lint screen</text>
+
+    <circle cx="490" cy="372" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <path d="M482 372 l5 6 11-13" fill="none" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="520" y="379">Look at the connector</text>
+
+    <circle cx="490" cy="444" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <path d="M482 444 l5 6 11-13" fill="none" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="520" y="451">Ground-level hood flap</text>
+
+    <circle cx="490" cy="516" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <path d="M482 516 l5 6 11-13" fill="none" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="520" y="523">Do not run a heat cycle</text>
+  </g>
+  <text x="640" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#5C6770">Do not pull a gas line.</text>
+  <text x="640" y="646" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#5C6770">Stay off the ladder.</text>
+
+  <!-- Call -->
+  <rect x="856" y="36" width="392" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="856" y="36" width="392" height="8" fill="#1F2A37"/>
+  <circle cx="1052" cy="128" r="36" fill="#1F2A37"/>
+  <g transform="translate(1052 130) rotate(-40)" fill="#F6F1EA">
+    <rect x="-22" y="-16" width="14" height="22" rx="7"/>
+    <rect x="-12" y="-6" width="28" height="8" rx="3"/>
+    <rect x="10" y="-6" width="14" height="22" rx="7"/>
+  </g>
+  <text x="1052" y="196" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Call</text>
+  <text x="1052" y="230" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">Two different jobs</text>
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">
+    <circle cx="902" cy="300" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">1</text>
+    <text x="932" y="307">Weak air: vent cleaning</text>
+
+    <circle cx="902" cy="372" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="378" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">2</text>
+    <text x="932" y="379">Lint holding the flap shut</text>
+
+    <circle cx="902" cy="444" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">3</text>
+    <text x="932" y="451">Clear vent, smell remains</text>
+
+    <circle cx="902" cy="516" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="522" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">4</text>
+    <text x="932" y="523">That is an appliance tech</text>
+  </g>
+  <text x="1052" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">A vent cleaning does not fix</text>
+  <text x="1052" y="646" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">a heater or a thermostat.</text>
+</svg>

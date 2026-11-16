@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <title>Vent cleaning clears the duct. An appliance repair fixes the heater or thermostat.</title>
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+
+  <rect x="36" y="36" width="590" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="36" y="36" width="590" height="8" fill="#2E8B57"/>
+  <text x="331" y="108" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Book a vent cleaning</text>
+  <text x="331" y="146" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">The duct, the connector, the hood</text>
+
+  <!-- Small duct icon -->
+  <rect x="250" y="172" width="162" height="36" rx="18" fill="#D5DCE3" stroke="#5E6A75" stroke-width="2"/>
+  <rect x="262" y="182" width="138" height="16" rx="8" fill="#F4F8FA"/>
+  <path d="M270 190 H330" fill="none" stroke="#C4A574" stroke-width="6" stroke-linecap="round"/>
+  <path d="M400 178 h28 l8 8 v16 l-8 8 h-28 z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="1.6"/>
+
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="24" font-weight="600" fill="#1F2A37">
+    <circle cx="104" cy="268" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 268 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="276">Lint coating the duct</text>
+
+    <circle cx="104" cy="352" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 352 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="360">Little warm air at the hood</text>
+
+    <circle cx="104" cy="436" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 436 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="444">Lint holding the flap shut</text>
+
+    <circle cx="104" cy="520" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 520 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="528">About a year since a clean</text>
+  </g>
+  <text x="331" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">A flat hose is a replacement, not a brush.</text>
+
+  <rect x="654" y="36" width="590" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="654" y="36" width="590" height="8" fill="#E8632B"/>
+  <text x="949" y="108" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Call an appliance tech</text>
+  <text x="949" y="146" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">Inside the dryer, not the duct</text>
+
+  <!-- Small heater coil -->
+  <path d="M868 190 h16 l8-16 h14 l8 16 h14 l8-16 h14 l8 16 h16" fill="none" stroke="#E8632B" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="949" cy="204" rx="28" ry="8" fill="#C4A574" stroke="#8A6430" stroke-width="1.2"/>
+
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="24" font-weight="600" fill="#1F2A37">
+    <circle cx="722" cy="268" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 268 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="276">Smell with a clear vent</text>
+
+    <circle cx="722" cy="352" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 352 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="360">Failed heating element</text>
+
+    <circle cx="722" cy="436" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 436 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="444">Failed thermostat</text>
+
+    <circle cx="722" cy="520" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 520 h20" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="528">Melted object on the drum</text>
+  </g>
+  <text x="949" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">A dryer part is not in the flat rate.</text>
+</svg>
