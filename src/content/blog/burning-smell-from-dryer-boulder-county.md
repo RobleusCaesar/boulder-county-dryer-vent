@@ -14,11 +14,9 @@ A burning smell from the dryer means stop the load. Lint may be on the heater or
 
 ## Stop the dryer first
 
-Turn the cycle off. Unplug an electric dryer, or shut off its breaker. On a gas dryer, turn the machine off and leave the gas connector alone. Do not start another load to see if the smell comes back.
+If you see smoke, or any flame, leave the house and call 911. Do not open the dryer to look, and do not reach behind it to unplug it.
 
-If you see smoke, or any flame, leave the house and call 911. Do not open the dryer to look.
-
-If there is no smoke and no flame, let the machine cool before you look. Do not run the dryer until you know where the smell came from.
+If there is no smoke and no flame, turn the cycle off. Unplug an electric dryer, or shut off its breaker. On a gas dryer, turn the machine off and leave the gas connector alone. Do not start another load to see if the smell comes back. Let the machine cool before you look. Do not run the dryer until you know where the smell came from.
 
 ## Common causes
 
@@ -26,7 +24,7 @@ If there is no smoke and no flame, let the machine cool before you look. Do not 
 
 **Lint around the drum or on the heater.** Lint that misses the screen can fall behind the drum. On an electric dryer it can land on the heating element and char. On a gas dryer it can sit near the burner housing. The smell may fade, then come back if more lint is still in the cabinet. Cleaning the vent does not reach the element. That lint is inside the dryer.
 
-**A crushed transition duct.** The short connector from the dryer to the pipe in the wall flattens when the machine is pushed in. A kink, a sag, or a foil hose mashed flat is a pinch, so the dryer runs hot. [The duct behind the dryer](/blog/foil-vs-metal-dryer-vent-duct-boulder-county/) is the piece you can see. On a gas dryer, do not pull, kink, or stretch the gas connector. If you smell gas, stop and leave it alone.
+**A crushed transition duct.** The short connector from the dryer to the pipe in the wall flattens when the machine is pushed in. A kink, a sag, or a foil hose mashed flat is a pinch, so the dryer runs hot. [The duct behind the dryer](/blog/foil-vs-metal-dryer-vent-duct-boulder-county/) is the piece you can see. On a gas dryer, do not pull, kink, or stretch the gas connector. If you smell gas, do not touch switches or plugs. Leave the house and call 911 or your gas utility from outside.
 
 **A hood flap that is stuck.** Lint in the mouth, a flap that will not swing, or louvers packed shut keep the exhaust in the pipe. [How to check the outdoor hood](/blog/how-to-check-outdoor-dryer-vent-hood/) covers that look. Stay off the ladder and off the roof.
 
@@ -40,7 +38,7 @@ If there is no smoke and no flame, let the machine cool before you look. Do not 
 
 **The transition duct.** After the dryer is cool and unplugged, slide it out just far enough to see the connector. It should be round, short, and not coiled on the floor. A flat spot is a pinch. Do not disconnect a gas line to get a better view.
 
-**The outside hood.** On a hood you can reach from the yard, look at the flap. Lint in the mouth, or a flap that stays shut, is a blockage you can see. Only if there was no smoke, a short heated cycle shows the airflow: the flap should open, and you should feel warm air a few inches out. If the smell returns as soon as the heat comes on, stop and unplug the dryer.
+**The outside hood.** On a hood you can reach from the yard, look at the flap. Lint in the mouth, or a flap that stays shut, is a blockage you can see. Do not run a heated cycle to test the airflow. The dryer just smelled like burning; leave it off until you know why.
 
 ![Three steps for a burning dryer smell: stop and unplug, check the screen and duct and hood, then book a vent cleaning or an appliance repair](/img/burning-smell-stop-check-call.jpg "Stop the dryer before you look. Check the screen, the connector, and a hood you can reach from the ground. Then book a vent cleaning, or an appliance tech if the heater is the problem.")
 
