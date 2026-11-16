@@ -52,7 +52,7 @@
 
     <circle cx="490" cy="516" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
     <path d="M482 516 l5 6 11-13" fill="none" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="520" y="523">Warm air a few inches out</text>
+    <text x="520" y="523">Do not run a heat cycle</text>
   </g>
   <text x="640" y="620" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#5C6770">Do not pull a gas line.</text>
   <text x="640" y="646" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#5C6770">Stay off the ladder.</text>
