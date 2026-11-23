@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <title>Empty twigs and lint are a vent cleaning. A live bird, eggs, or a mouse is not.</title>
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+
+  <rect x="36" y="36" width="590" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="36" y="36" width="590" height="8" fill="#2E8B57"/>
+  <text x="331" y="108" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Vent cleaning</text>
+  <text x="331" y="146" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">Empty hood, nothing living in it</text>
+
+  <!-- Small empty hood -->
+  <path d="M250 176 h120 l22 16 v52 l-22 16 h-120 z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.2"/>
+  <g fill="none" stroke="#8A6430" stroke-width="2.4" stroke-linecap="round">
+    <path d="M276 236 C300 214 330 220 352 206"/>
+    <path d="M280 244 C310 228 338 234 366 218"/>
+    <path d="M286 250 C320 246 348 250 370 236"/>
+  </g>
+  <ellipse cx="330" cy="246" rx="18" ry="6" fill="#D7C4A2" stroke="#8A6430" stroke-width="1"/>
+
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="24" font-weight="600" fill="#1F2A37">
+    <circle cx="104" cy="320" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 320 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="328">Twigs and lint only</text>
+
+    <circle cx="104" cy="400" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 400 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="408">No bird in the hood</text>
+
+    <circle cx="104" cy="480" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 480 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="488">No eggs or chicks</text>
+
+    <circle cx="104" cy="560" r="22" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2.4"/>
+    <path d="M93 560 l7 8 16-18" fill="none" stroke="#2E8B57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="568">You are sure it is empty</text>
+  </g>
+  <text x="331" y="640" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#2E8B57">Then the duct and the hood can be cleaned</text>
+
+  <rect x="654" y="36" width="590" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="654" y="36" width="590" height="8" fill="#E8632B"/>
+  <text x="949" y="108" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Not a lint clean</text>
+  <text x="949" y="146" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="20" font-weight="500" fill="#5C6770">Something is living in the hood</text>
+
+  <!-- Occupied hood: egg and a bird -->
+  <path d="M840 168 h168 l28 18 v64 l-28 18 h-168 z" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.2"/>
+  <ellipse cx="900" cy="230" rx="11" ry="15" fill="#FBF9F6" stroke="#1F2A37" stroke-width="2.2"/>
+  <ellipse cx="948" cy="236" rx="24" ry="13" fill="#5C6770"/>
+  <circle cx="972" cy="226" r="10" fill="#5C6770"/>
+  <path d="M980 226 L994 232 L980 238" fill="#E8632B"/>
+  <path d="M926 232 L908 222 L910 240 Z" fill="#5C6770"/>
+  <circle cx="976" cy="224" r="1.7" fill="#FBF9F6"/>
+  <path d="M944 232 C954 220 966 222 964 234" fill="none" stroke="#FBF9F6" stroke-width="1.6" stroke-linecap="round"/>
+
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="24" font-weight="600" fill="#1F2A37">
+    <circle cx="722" cy="320" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 310 L732 330 M732 310 L712 330" fill="none" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="328">A live bird</text>
+
+    <circle cx="722" cy="400" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 390 L732 410 M732 390 L712 410" fill="none" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="408">Eggs or chicks</text>
+
+    <circle cx="722" cy="480" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 470 L732 490 M732 470 L712 490" fill="none" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="488">A mouse or other rodent</text>
+
+    <circle cx="722" cy="560" r="22" fill="#FDE8DF" stroke="#E8632B" stroke-width="2.4"/>
+    <path d="M712 550 L732 570 M732 550 L712 570" fill="none" stroke="#E8632B" stroke-width="3" stroke-linecap="round"/>
+    <text x="764" y="568">You are not sure</text>
+  </g>
+  <text x="949" y="640" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#E8632B">Leave it. Ask before anyone pulls it out.</text>
+</svg>
