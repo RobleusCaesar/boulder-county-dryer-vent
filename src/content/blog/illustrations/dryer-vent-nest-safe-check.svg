@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img">
+  <title>Look from the yard, do not reach into the hood, and leave a live bird or eggs alone</title>
+  <rect width="1280" height="720" fill="#F6F1EA"/>
+
+  <!-- Look -->
+  <rect x="32" y="36" width="392" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="32" y="36" width="392" height="8" fill="#2E8B57"/>
+  <circle cx="228" cy="118" r="36" fill="#E7F4EC" stroke="#2E8B57" stroke-width="3"/>
+  <circle cx="228" cy="118" r="14" fill="none" stroke="#2E8B57" stroke-width="3"/>
+  <circle cx="228" cy="118" r="5" fill="#2E8B57"/>
+  <text x="228" y="186" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Look</text>
+  <text x="228" y="218" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">From the yard</text>
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">
+    <circle cx="78" cy="286" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <text x="78" y="292" text-anchor="middle" font-size="16" font-weight="700" fill="#2E8B57">1</text>
+    <text x="108" y="293">Flap open or missing</text>
+
+    <circle cx="78" cy="358" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <text x="78" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="#2E8B57">2</text>
+    <text x="108" y="365">Twigs, grass, feathers</text>
+
+    <circle cx="78" cy="430" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <text x="78" y="436" text-anchor="middle" font-size="16" font-weight="700" fill="#2E8B57">3</text>
+    <text x="108" y="437">Droppings on the sill</text>
+
+    <circle cx="78" cy="502" r="16" fill="#E7F4EC" stroke="#2E8B57" stroke-width="2"/>
+    <text x="78" y="508" text-anchor="middle" font-size="16" font-weight="700" fill="#2E8B57">4</text>
+    <text x="108" y="509">Scratching, dryer off</text>
+  </g>
+  <text x="228" y="600" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#2E8B57">Stay off the ladder</text>
+  <text x="228" y="626" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#2E8B57">and off the roof</text>
+
+  <!-- Do not reach -->
+  <rect x="444" y="36" width="392" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="444" y="36" width="392" height="8" fill="#E8632B"/>
+  <circle cx="640" cy="118" r="36" fill="#FDE8DF" stroke="#E8632B" stroke-width="3"/>
+  <path d="M624 102 L656 134 M656 102 L624 134" fill="none" stroke="#E8632B" stroke-width="4" stroke-linecap="round"/>
+  <text x="640" y="186" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Hands off</text>
+  <text x="640" y="218" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">Do not reach in</text>
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">
+    <circle cx="490" cy="286" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="490" y="292" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">1</text>
+    <text x="520" y="293">No hand in the hood</text>
+
+    <circle cx="490" cy="358" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="490" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">2</text>
+    <text x="520" y="365">No hanger or brush</text>
+
+    <circle cx="490" cy="430" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="490" y="436" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">3</text>
+    <text x="520" y="437">No bait in the duct</text>
+
+    <circle cx="490" cy="502" r="16" fill="#FDE8DF" stroke="#E8632B" stroke-width="2"/>
+    <text x="490" y="508" text-anchor="middle" font-size="16" font-weight="700" fill="#E8632B">4</text>
+    <text x="520" y="509">Do not run a cycle</text>
+  </g>
+  <text x="640" y="600" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#E8632B">Smoke or flame: leave</text>
+  <text x="640" y="626" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#E8632B">and call 911</text>
+
+  <!-- Leave it -->
+  <rect x="856" y="36" width="392" height="648" fill="#FBF9F6" stroke="#C9C1B6" stroke-width="1.5"/>
+  <rect x="856" y="36" width="392" height="8" fill="#1F2A37"/>
+  <circle cx="1052" cy="118" r="36" fill="#EEF1F3" stroke="#1F2A37" stroke-width="3"/>
+  <ellipse cx="1044" cy="122" rx="10" ry="13" fill="none" stroke="#1F2A37" stroke-width="2.4"/>
+  <ellipse cx="1062" cy="122" rx="10" ry="13" fill="none" stroke="#1F2A37" stroke-width="2.4"/>
+  <text x="1052" y="186" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="32" font-weight="650" fill="#1F2A37">Leave it</text>
+  <text x="1052" y="218" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="500" fill="#5C6770">If something is living there</text>
+  <g font-family="Inter, Liberation Sans, sans-serif" font-size="22" font-weight="600" fill="#1F2A37">
+    <circle cx="902" cy="286" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="292" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">1</text>
+    <text x="932" y="293">Live bird: stop</text>
+
+    <circle cx="902" cy="358" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">2</text>
+    <text x="932" y="365">Eggs or chicks: stop</text>
+
+    <circle cx="902" cy="430" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="436" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">3</text>
+    <text x="932" y="437">Do not pull the nest</text>
+
+    <circle cx="902" cy="502" r="16" fill="#EEF1F3" stroke="#1F2A37" stroke-width="2"/>
+    <text x="902" y="508" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2A37">4</text>
+    <text x="932" y="509">Ask before removal</text>
+  </g>
+  <text x="1052" y="600" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">Empty twigs and lint</text>
+  <text x="1052" y="626" text-anchor="middle" font-family="Inter, Liberation Sans, sans-serif" font-size="18" font-weight="600" fill="#1F2A37">are debris, not a nest in use</text>
+</svg>
