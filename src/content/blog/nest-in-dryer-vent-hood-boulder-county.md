@@ -28,9 +28,9 @@ Stay on the ground. Do not climb a ladder, and do not go on the roof. If the cap
 
 **What is in the mouth.** Twigs, dry grass, feathers, shredded paper, or lint tangled with plant material means something has been using the opening. A little dust on the face of the hood is ordinary. A wad in the mouth is not.
 
-**The sill under the hood.** Droppings on the siding or the ledge mean an animal is using that spot. Do not sweep them up by hand.
+**The sill under the hood.** Droppings on the siding or the ledge mean an animal is using that spot. Do not sweep or vacuum droppings or nest material. That raises dust, and mice can carry hantavirus. Leave it, or wear gloves, wet it down with a disinfectant or bleach solution, and wipe it up with paper towels. The [CDC steps for cleaning up after rodents](https://www.cdc.gov/healthy-pets/rodent-control/clean-up.html) cover this.
 
-**Sounds, with the dryer off.** Scratching in the laundry wall is a reason to stop. It is not a reason to open the wall, and it is not a reason to reach into the hood.
+**Sounds, with the dryer off.** Scratching in the laundry wall is a reason to stop using the dryer. It is not a reason to open the wall, and it is not a reason to reach into the hood.
 
 Do not put your hand, a coat hanger, a hose, or a brush into the hood. A nest is twigs, and a brush jams in it. That limit is in [a kit versus a professional clean](/blog/diy-dryer-vent-cleaning-kit-vs-professional-boulder-county/).
 
@@ -40,7 +40,7 @@ Do not put your hand, a coat hanger, a hose, or a brush into the hood. A nest is
 
 Most native birds, their eggs, and their chicks are protected under the Migratory Bird Treaty Act. It is illegal to destroy a nest that has eggs or chicks in it, or young that still depend on that nest. The [U.S. Fish and Wildlife Service](https://www.fws.gov/story/bird-nests) states that rule. A dryer hood sits on the outside of the house. Removing a bird from inside a building is a different rule, and it [does not cover an exterior hood](https://www.fws.gov/program/migratory-bird-permits/authorized-activities-no-permit-required).
 
-House sparrows, European starlings, and pigeons are not on that protected list. From the yard you often cannot tell which bird you have. If you see a live bird, eggs, or chicks, leave the nest. Do not pull it apart, and do not run the dryer to drive the bird out. Ask before anyone removes it.
+House sparrows, European starlings, and pigeons are not on that protected list. From the yard you often cannot tell which bird you have. If you see a live bird, eggs, or chicks, leave the nest. Do not pull it apart, and do not run the dryer to drive the bird out. Call your local Colorado Parks and Wildlife office before anyone removes it. Keep the dryer off.
 
 [Colorado Parks and Wildlife](https://cpw.state.co.us/protect-your-home-wildlife) says it does not remove nuisance animals from a property. A local office can tell you what to do next. A wildlife company is who removes the animal.
 
@@ -52,11 +52,11 @@ A flap that stays open is a hole into the wall. Mice use an opening that size, a
 
 Do not reach in. Do not put poison or bait in the duct. The dryer moves air through that pipe, and an animal that dies in the run is a blockage you cannot see. Colorado Parks and Wildlife does not remove the mouse. A pest-control company does. After the animal is gone, the lint and the debris are a vent cleaning.
 
-Do not cover the hood with mesh to keep animals out. Mesh catches lint and can block the vent. The flap is what closes the opening. If the flap is missing, bent, or stuck open, the hood needs a part that shuts. A new hood or flap is not in the flat rate.
+Do not cover the hood with mesh to keep animals out. Mesh catches lint and can block the vent. Some wildlife guides, including the Colorado Parks and Wildlife page linked above, say to screen dryer vents. That advice does not apply here: a screen on a dryer exhaust traps lint. The flap is what closes the opening. If the flap is missing, bent, or stuck open, the hood needs a part that shuts. A new hood or flap is not in the flat rate.
 
 ![Split diagram of an empty dryer hood packed with twigs and lint beside a hood that holds a live bird, eggs, or a mouse](/img/dryer-vent-empty-nest-or-animal.jpg "Twigs and lint, with no bird and no eggs, can be cleared on a vent cleaning. A live bird, eggs, chicks, or a mouse is not a lint clean. Leave the animal and ask first.")
 
-## After the hood is empty
+## Once nothing is living in the hood
 
 [Dryer vent cleaning](/dryer-vent-cleaning/) clears lint from the connector, the duct, and the hood. Book it when the hood held debris and you are sure nothing is living in it, when the lint screen is clean and the air at the hood is weak, or when it has been about a year. Weak airflow and a hot dryer top are in [five signs your duct is packed](/blog/five-signs-your-duct-is-packed/). A burning smell is a different stop: [when the dryer smells like something is burning](/blog/burning-smell-from-dryer-boulder-county/).
 
