@@ -54,20 +54,19 @@ redact_stream() {
 # 0 = branch exists, 2 = branch is absent, 1 = fetch failed.
 # Callers must use `if fetch_state_branch; then` so a missing branch does not abort.
 fetch_state_branch() {
-  local err
+  local err rc
   err=$(mktemp)
   if git fetch --depth=1 --no-tags "$remote" \
     "+refs/heads/${branch}:refs/remotes/${remote}/${branch}" 2>"$err"; then
-    rm -f "$err"
-    return 0
+    rc=0
+  elif grep -Eq "couldn't find remote ref|Could not find remote branch|Remote branch .+ not found" "$err"; then
+    rc=2
+  else
+    redact_stream <"$err" >&2 || true
+    rc=1
   fi
-  if grep -Eq "couldn't find remote ref|Could not find remote branch|Remote branch .+ not found" "$err"; then
-    rm -f "$err"
-    return 2
-  fi
-  redact_stream <"$err" >&2 || true
   rm -f "$err"
-  return 1
+  return "$rc"
 }
 
 restore_state() {
@@ -146,9 +145,6 @@ def meaningful(state):
     comps = state.get("components")
     if isinstance(comps, dict) and comps:
         out["components"] = comps
-    pending = state.get("pending_recovery")
-    if isinstance(pending, dict) and pending:
-        out["pending_recovery"] = pending
     return out
 
 prev = load_state(os.environ.get("PROBE_PREV_STATE", ""))
@@ -161,9 +157,37 @@ else:
 PY
 }
 
+# Globals so the EXIT trap can still see them after persist_state returns.
+index_file=""
+meta=""
+err=""
+prev_dir=""
+
 persist_state() {
-  local frc have=0 parent="" prev_dir="" prev_state="" prev_log=""
-  local decision index_file meta sha err push_rc
+  local frc have=0 parent="" prev_state="" prev_log=""
+  local decision sha="" push_rc
+  index_file=""
+  meta=""
+  err=""
+  prev_dir=""
+  # Only remove temps this run created. An empty name must not become ".names".
+  cleanup() {
+    if [[ -n "${index_file-}" ]]; then
+      rm -f "$index_file"
+    fi
+    if [[ -n "${meta-}" ]]; then
+      rm -f "$meta" "${meta}.names" "${meta}.want"
+    fi
+    if [[ -n "${err-}" ]]; then
+      rm -f "$err"
+    fi
+    if [[ -n "${prev_dir-}" ]]; then
+      rm -rf "$prev_dir"
+    fi
+    return 0
+  }
+  trap cleanup EXIT
+
   [[ -f "${dir}/state.json" ]] || fail_persist "missing ${dir}/state.json"
   [[ -f "${dir}/OUTAGE-LOG.md" ]] || fail_persist "missing ${dir}/OUTAGE-LOG.md"
   if ! python3 -c 'import json,sys; json.load(open(sys.argv[1]))' "${dir}/state.json"; then
@@ -191,12 +215,6 @@ persist_state() {
       prev_log="${prev_dir}/OUTAGE-LOG.md"
     fi
   fi
-
-  cleanup() {
-    rm -f "${index_file:-}" "${meta:-}" "${meta:-}.names" "${meta:-}.want" "${err:-}"
-    rm -rf "${prev_dir:-}"
-  }
-  trap cleanup EXIT
 
   decision=$(decide_commit "$prev_state" "$prev_log")
   if [[ "$decision" != "commit" ]]; then
